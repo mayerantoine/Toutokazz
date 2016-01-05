@@ -1,0 +1,82 @@
+﻿ @model ToutokazAdmin.WebUI.Models.AccountViewModel
+
+@{
+    ViewBag.Title = "Toutokazz";
+    Layout = "~/Views/Shared/_LayoutAccountPage.cshtml";
+}
+            <fieldset>
+                   <legend>CRÉER UN COMPTE PROFESSIONEL</legend>
+               </fieldset>
+        <div class="col-lg-7">
+              <div>
+                        @Html.Raw(@ViewBag.Message)
+                    </div>
+                    <form class="form-horizontal" role="form" method="post">
+                         @Html.ValidationSummary(false)
+                  
+                            <div class="form-group">
+                              
+                            <label for="lblNomEntreprise" class="col-sm-3 control-label">Nom de l'entreprise</label>
+                            <div class="col-sm-9">               
+                                @Html.TextBoxFor(model => model.nom_entreprise, new {@class="form-control", id="nom_entreprise", placeholder="Nom  de l'entreprise"})
+                            </div>
+                          </div>
+                           <div class="form-group">
+                            <label for="lblNom" class="col-sm-3 control-label">Nom du responsable</label>
+                            <div class="col-sm-9">                
+                               @Html.TextBoxFor(model => model.Nom, new {@class="form-control", id="Nom", placeholder="Nom"})
+                            </div>
+                          </div>
+                            <div class="form-group">
+                            <label for="lblPrenom" class="col-sm-3 control-label">Prenom du responsable</label>
+                            <div class="col-sm-9">
+                       
+                                  @Html.TextBoxFor(model => model.Prenom, new {@class="form-control", id="Prenom", placeholder="Prenom"})
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputEmail" class="col-sm-3 control-label">Email </label>
+                            <div class="col-sm-9">
+                  
+                                    @Html.TextBoxFor(model=>model.Email, new {type="email", @class="form-control", id="Email", placeholder="Votre Email"})
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="inputPassword" class="col-sm-3 control-label">Mot de Passe</label>
+                            <div class="col-sm-9">
+                      
+                                  @Html.PasswordFor(model => model.password, new {@class="form-control", id="password", placeholder="Mot de passe" })
+                            </div>
+                          </div>
+                             <div class="form-group">
+                            <label for="inputPasswordConfirm" class="col-sm-3 control-label">Confirmer  mot de passe</label>
+                            <div class="col-sm-9">
+                
+                                  @Html.PasswordFor(model => model.confirmPassword, new {@class="form-control", id="confirmPassword", placeholder="Mot de passe" })
+                            </div>
+                          </div>
+                         <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                              <div class="checkbox">
+                                <label>
+                                  <input type="checkbox"> En cliquant , vous acceptez nos conditions d'utilisation
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-default">Valider</button>
+                            </div>
+                          </div>
+                        </form>
+              </div>
+              <div class="col-lg-5">
+                 <h5> <label class="">CRÉATION DE VOTRE COMPTE PROFESSIONEL</label> </h5>
+                   <p> Ce service vous permet de retrouver toutes vos annonces au même endroit.
+                   Déposez à présent plus simplement et plus rapidement vos annonces et améliorez leur gestion.</p> 
+                  <p>Conditions d'utlisations d'un compte proffessionel</p>
+                  <p>Vous avez deja un compte:</p>
+                   <p><a class="btn btn-medium btn-warning" href="@Url.Action("Login","Account")" role="button">CONNEXION</a></p>
+              </div>
+       

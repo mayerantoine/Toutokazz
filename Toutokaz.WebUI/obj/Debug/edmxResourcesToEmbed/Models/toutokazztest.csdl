@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="toutokaz_dbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="toutokaz_dbEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="tb_account" EntityType="toutokaz_dbModel.tb_account" />
+    <EntitySet Name="tb_account_type" EntityType="toutokaz_dbModel.tb_account_type" />
+    <EntitySet Name="tb_ad_image" EntityType="toutokaz_dbModel.tb_ad_image" />
+    <EntitySet Name="tb_ad_option" EntityType="toutokaz_dbModel.tb_ad_option" />
+    <EntitySet Name="tb_ads" EntityType="toutokaz_dbModel.tb_ads" />
+    <EntitySet Name="tb_ads_type" EntityType="toutokaz_dbModel.tb_ads_type" />
+    <EntitySet Name="tb_category" EntityType="toutokaz_dbModel.tb_category" />
+    <EntitySet Name="tb_commune" EntityType="toutokaz_dbModel.tb_commune" />
+    <EntitySet Name="tb_departement" EntityType="toutokaz_dbModel.tb_departement" />
+    <EntitySet Name="tb_devise" EntityType="toutokaz_dbModel.tb_devise" />
+    <EntitySet Name="tb_message" EntityType="toutokaz_dbModel.tb_message" />
+    <EntitySet Name="tb_section" EntityType="toutokaz_dbModel.tb_section" />
+    <EntitySet Name="tb_user_profile" EntityType="toutokaz_dbModel.tb_user_profile" />
+    <AssociationSet Name="FK_tb_account_tb_account_type" Association="toutokaz_dbModel.FK_tb_account_tb_account_type">
+      <End Role="tb_account_type" EntitySet="tb_account_type" />
+      <End Role="tb_account" EntitySet="tb_account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_account" Association="toutokaz_dbModel.FK_tb_ads_tb_account">
+      <End Role="tb_account" EntitySet="tb_account" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ad_image_tb_ads" Association="toutokaz_dbModel.FK_tb_ad_image_tb_ads">
+      <End Role="tb_ads" EntitySet="tb_ads" />
+      <End Role="tb_ad_image" EntitySet="tb_ad_image" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_ads_type" Association="toutokaz_dbModel.FK_tb_ads_tb_ads_type">
+      <End Role="tb_ads_type" EntitySet="tb_ads_type" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_category" Association="toutokaz_dbModel.FK_tb_ads_tb_category">
+      <End Role="tb_category" EntitySet="tb_category" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_commune" Association="toutokaz_dbModel.FK_tb_ads_tb_commune">
+      <End Role="tb_commune" EntitySet="tb_commune" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_departement" Association="toutokaz_dbModel.FK_tb_ads_tb_departement">
+      <End Role="tb_departement" EntitySet="tb_departement" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_devise" Association="toutokaz_dbModel.FK_tb_ads_tb_devise">
+      <End Role="tb_devise" EntitySet="tb_devise" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_section" Association="toutokaz_dbModel.FK_tb_ads_tb_section">
+      <End Role="tb_section" EntitySet="tb_section" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_user_profile" Association="toutokaz_dbModel.FK_tb_ads_tb_user_profile">
+      <End Role="tb_user_profile" EntitySet="tb_user_profile" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_message_tb_ads" Association="toutokaz_dbModel.FK_tb_message_tb_ads">
+      <End Role="tb_ads" EntitySet="tb_ads" />
+      <End Role="tb_message" EntitySet="tb_message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_category_tb_section" Association="toutokaz_dbModel.FK_tb_category_tb_section">
+      <End Role="tb_section" EntitySet="tb_section" />
+      <End Role="tb_category" EntitySet="tb_category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_commune_tb_departement" Association="toutokaz_dbModel.FK_tb_commune_tb_departement">
+      <End Role="tb_departement" EntitySet="tb_departement" />
+      <End Role="tb_commune" EntitySet="tb_commune" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tb_account">
+    <Key>
+      <PropertyRef Name="id_account" />
+    </Key>
+    <Property Name="id_account" Type="Int32" Nullable="false" />
+    <Property Name="id_account_type" Type="Int32" />
+    <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="telephone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="adresse" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="id_commune" Type="Int32" />
+    <Property Name="id_departement" Type="Int32" />
+    <NavigationProperty Name="tb_account_type" Relationship="toutokaz_dbModel.FK_tb_account_tb_account_type" FromRole="tb_account" ToRole="tb_account_type" />
+    <NavigationProperty Name="tb_ads" Relationship="toutokaz_dbModel.FK_tb_ads_tb_account" FromRole="tb_account" ToRole="tb_ads" />
+  </EntityType>
+  <EntityType Name="tb_account_type">
+    <Key>
+      <PropertyRef Name="id_account_type" />
+    </Key>
+    <Property Name="id_account_type" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="account_type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tb_account" Relationship="toutokaz_dbModel.FK_tb_account_tb_account_type" FromRole="tb_account_type" ToRole="tb_account" />
+  </EntityType>
+  <EntityType Name="tb_ad_image">
+    <Key>
+      <PropertyRef Name="id_image" />
+    </Key>
+    <Property Name="id_image" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="id_ad" Type="Int32" />
+    <Property Name="ad_code" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="image_filename" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="image_path" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tb_ads" Relationship="toutokaz_dbModel.FK_tb_ad_image_tb_ads" FromRole="tb_ad_image" ToRole="tb_ads" />
+  </EntityType>
+  <EntityType Name="tb_ad_option">
+    <Key>
+      <PropertyRef Name="id_option" />
+    </Key>
+    <Property Name="id_option" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ad_option" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="payant" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tb_ads">
+    <Key>
+      <PropertyRef Name="id_ad" />
+    </Key>
+    <Property Name="id_ad" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="id_section" Type="Int32" />
+    <Property Name="id_category" Type="Int32" />
+    <Property Name="id_user" Type="Int32" />
+    <Property Name="ad_title" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="ad_code" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="ad_description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="ad_status" Type="Int32" />
+    <Property Name="ad_is_published" Type="Int32" />
+    <Property Name="ad_name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="ad_email" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="ad_phone" Type="String" MaxLength="16" Unicode="true" FixedLength="true" />
+    <Property Name="ad_date_created" Type="DateTime" Precision="3" />
+    <Property Name="ad_date_expired" Type="DateTime" Precision="3" />
+    <Property Name="id_item_condition" Type="Int32" />
+    <Property Name="ad_price" Type="Double" />
+    <Property Name="ad_type" Type="Int32" />
+    <Property Name="id_commune" Type="Int32" Nullable="false" />
+    <Property Name="id_account" Type="Int32" />
+    <Property Name="id_departement" Type="Int32" />
+    <Property Name="id_devise" Type="Int32" />
+    <NavigationProperty Name="tb_account" Relationship="toutokaz_dbModel.FK_tb_ads_tb_account" FromRole="tb_ads" ToRole="tb_account" />
+    <NavigationProperty Name="tb_ad_image" Relationship="toutokaz_dbModel.FK_tb_ad_image_tb_ads" FromRole="tb_ads" ToRole="tb_ad_image" />
+    <NavigationProperty Name="tb_ads_type" Relationship="toutokaz_dbModel.FK_tb_ads_tb_ads_type" FromRole="tb_ads" ToRole="tb_ads_type" />
+    <NavigationProperty Name="tb_category" Relationship="toutokaz_dbModel.FK_tb_ads_tb_category" FromRole="tb_ads" ToRole="tb_category" />
+    <NavigationProperty Name="tb_commune" Relationship="toutokaz_dbModel.FK_tb_ads_tb_commune" FromRole="tb_ads" ToRole="tb_commune" />
+    <NavigationProperty Name="tb_departement" Relationship="toutokaz_dbModel.FK_tb_ads_tb_departement" FromRole="tb_ads" ToRole="tb_departement" />
+    <NavigationProperty Name="tb_devise" Relationship="toutokaz_dbModel.FK_tb_ads_tb_devise" FromRole="tb_ads" ToRole="tb_devise" />
+    <NavigationProperty Name="tb_section" Relationship="toutokaz_dbModel.FK_tb_ads_tb_section" FromRole="tb_ads" ToRole="tb_section" />
+    <NavigationProperty Name="tb_user_profile" Relationship="toutokaz_dbModel.FK_tb_ads_tb_user_profile" FromRole="tb_ads" ToRole="tb_user_profile" />
+    <NavigationProperty Name="tb_message" Relationship="toutokaz_dbModel.FK_tb_message_tb_ads" FromRole="tb_ads" ToRole="tb_message" />
+  </EntityType>
+  <EntityType Name="tb_ads_type">
+    <Key>
+      <PropertyRef Name="id_ad_type" />
+    </Key>
+    <Property Name="id_ad_type" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ad_type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tb_ads" Relationship="toutokaz_dbModel.FK_tb_ads_tb_ads_type" FromRole="tb_ads_type" ToRole="tb_ads" />
+  </EntityType>
+  <EntityType Name="tb_category">
+    <Key>
+      <PropertyRef Name="id_category" />
+    </Key>
+    <Property Name="id_category" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="id_section" Type="Int32" />
+    <Property Name="category_title" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="category_desctiption" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tb_ads" Relationship="toutokaz_dbModel.FK_tb_ads_tb_category" FromRole="tb_category" ToRole="tb_ads" />
+    <NavigationProperty Name="tb_section" Relationship="toutokaz_dbModel.FK_tb_category_tb_section" FromRole="tb_category" ToRole="tb_section" />
+  </EntityType>
+  <EntityType Name="tb_commune">
+    <Key>
+      <PropertyRef Name="id_commune" />
+    </Key>
+    <Property Name="id_commune" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="id_departement" Type="Int32" />
+    <Property Name="commune" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tb_ads" Relationship="toutokaz_dbModel.FK_tb_ads_tb_commune" FromRole="tb_commune" ToRole="tb_ads" />
+    <NavigationProperty Name="tb_departement" Relationship="toutokaz_dbModel.FK_tb_commune_tb_departement" FromRole="tb_commune" ToRole="tb_departement" />
+  </EntityType>
+  <EntityType Name="tb_departement">
+    <Key>
+      <PropertyRef Name="id_departement" />
+    </Key>
+    <Property Name="id_departement" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="departement" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tb_ads" Relationship="toutokaz_dbModel.FK_tb_ads_tb_departement" FromRole="tb_departement" ToRole="tb_ads" />
+    <NavigationProperty Name="tb_commune" Relationship="toutokaz_dbModel.FK_tb_commune_tb_departement" FromRole="tb_departement" ToRole="tb_commune" />
+  </EntityType>
+  <EntityType Name="tb_devise">
+    <Key>
+      <PropertyRef Name="id_devise" />
+    </Key>
+    <Property Name="id_devise" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="symbole" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="tb_ads" Relationship="toutokaz_dbModel.FK_tb_ads_tb_devise" FromRole="tb_devise" ToRole="tb_ads" />
+  </EntityType>
+  <EntityType Name="tb_message">
+    <Key>
+      <PropertyRef Name="id_message" />
+    </Key>
+    <Property Name="id_message" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="id_ad" Type="Int32" Nullable="false" />
+    <Property Name="message" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="email_from" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="date_received" Type="DateTime" Precision="3" />
+    <Property Name="id_user" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tb_ads" Relationship="toutokaz_dbModel.FK_tb_message_tb_ads" FromRole="tb_message" ToRole="tb_ads" />
+  </EntityType>
+  <EntityType Name="tb_section">
+    <Key>
+      <PropertyRef Name="id_section" />
+    </Key>
+    <Property Name="id_section" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="section_title" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="section_description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="tb_ads" Relationship="toutokaz_dbModel.FK_tb_ads_tb_section" FromRole="tb_section" ToRole="tb_ads" />
+    <NavigationProperty Name="tb_category" Relationship="toutokaz_dbModel.FK_tb_category_tb_section" FromRole="tb_section" ToRole="tb_category" />
+  </EntityType>
+  <EntityType Name="tb_user_profile">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="firstname" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="pseudo" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="role" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="status" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="tb_ads" Relationship="toutokaz_dbModel.FK_tb_ads_tb_user_profile" FromRole="tb_user_profile" ToRole="tb_ads" />
+  </EntityType>
+  <Association Name="FK_tb_account_tb_account_type">
+    <End Role="tb_account_type" Type="toutokaz_dbModel.tb_account_type" Multiplicity="0..1" />
+    <End Role="tb_account" Type="toutokaz_dbModel.tb_account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_account_type">
+        <PropertyRef Name="id_account_type" />
+      </Principal>
+      <Dependent Role="tb_account">
+        <PropertyRef Name="id_account_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_account">
+    <End Role="tb_account" Type="toutokaz_dbModel.tb_account" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="toutokaz_dbModel.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_account">
+        <PropertyRef Name="id_account" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ad_image_tb_ads">
+    <End Role="tb_ads" Type="toutokaz_dbModel.tb_ads" Multiplicity="0..1" />
+    <End Role="tb_ad_image" Type="toutokaz_dbModel.tb_ad_image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_ads">
+        <PropertyRef Name="id_ad" />
+      </Principal>
+      <Dependent Role="tb_ad_image">
+        <PropertyRef Name="id_ad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_ads_type">
+    <End Role="tb_ads_type" Type="toutokaz_dbModel.tb_ads_type" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="toutokaz_dbModel.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_ads_type">
+        <PropertyRef Name="id_ad_type" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="ad_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_category">
+    <End Role="tb_category" Type="toutokaz_dbModel.tb_category" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="toutokaz_dbModel.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_category">
+        <PropertyRef Name="id_category" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_commune">
+    <End Role="tb_commune" Type="toutokaz_dbModel.tb_commune" Multiplicity="1" />
+    <End Role="tb_ads" Type="toutokaz_dbModel.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_commune">
+        <PropertyRef Name="id_commune" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_commune" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_departement">
+    <End Role="tb_departement" Type="toutokaz_dbModel.tb_departement" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="toutokaz_dbModel.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_departement">
+        <PropertyRef Name="id_departement" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_departement" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_devise">
+    <End Role="tb_devise" Type="toutokaz_dbModel.tb_devise" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="toutokaz_dbModel.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_devise">
+        <PropertyRef Name="id_devise" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_devise" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_section">
+    <End Role="tb_section" Type="toutokaz_dbModel.tb_section" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="toutokaz_dbModel.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_section">
+        <PropertyRef Name="id_section" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_user_profile">
+    <End Role="tb_user_profile" Type="toutokaz_dbModel.tb_user_profile" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="toutokaz_dbModel.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user_profile">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_message_tb_ads">
+    <End Role="tb_ads" Type="toutokaz_dbModel.tb_ads" Multiplicity="1" />
+    <End Role="tb_message" Type="toutokaz_dbModel.tb_message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_ads">
+        <PropertyRef Name="id_ad" />
+      </Principal>
+      <Dependent Role="tb_message">
+        <PropertyRef Name="id_ad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_category_tb_section">
+    <End Role="tb_section" Type="toutokaz_dbModel.tb_section" Multiplicity="0..1" />
+    <End Role="tb_category" Type="toutokaz_dbModel.tb_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_section">
+        <PropertyRef Name="id_section" />
+      </Principal>
+      <Dependent Role="tb_category">
+        <PropertyRef Name="id_section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_commune_tb_departement">
+    <End Role="tb_departement" Type="toutokaz_dbModel.tb_departement" Multiplicity="0..1" />
+    <End Role="tb_commune" Type="toutokaz_dbModel.tb_commune" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_departement">
+        <PropertyRef Name="id_departement" />
+      </Principal>
+      <Dependent Role="tb_commune">
+        <PropertyRef Name="id_departement" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title> 
+        <meta name="viewport" content="width=device-width" />
+        <link href="~/Content/jquery.mobile-1.4.5.css" rel="stylesheet" />
+        <link href="~/Content/jquery.mobile.icons-1.4.5.min.css" rel="stylesheet" />
+        <link href="~/Content/jquery.mobile.theme-1.4.5.css" rel="stylesheet" />
+        <link href="~/Content/jquery.mobile.icons-1.4.5.css" rel="stylesheet" />
+        <link href="~/Content/css/glide.core.min.css" rel="stylesheet" />
+        <link href="~/Content/css/glide.theme.min.css" rel="stylesheet" />
+        <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+        <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/css/bootstrap-social.css" rel="stylesheet" />
+        <link href="~/Content/css/czsale-mobile.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-2.0.3.js"></script>
+        <script src="~/Scripts/jquery.mobile-1.4.5.js"></script>  
+        <script src="~/Scripts/glide.min.js"></script>      
+        <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script>
+            $(document).ready(function () {
+                $.mobile.ajaxEnabled = false;
+
+                $("#Glide").glide({
+                    type: "carousel",
+                    paddings: 0,
+                    autoheight: true,
+                    centered: false
+                });
+
+                
+              
+            });
+        </script>
+    </head> 
+<body>
+
+    <div id="masterpage" data-role="page">
+        @RenderSection("Header",false)
+        @RenderSection("PageTitle",false)
+        <div data-role="content">
+            @RenderSection("featured", false)
+            @RenderBody()
+        </div>
+        @RenderSection("AdsSame",false)
+        <div data-role="footer">
+            <p>
+                <h2>Copyright &copy; 2015, Toutokazz </h2>
+                @Html.Partial("_ViewSwitcher")
+            </p>
+
+        </div>
+    </div>
+
+</body>
+</html>

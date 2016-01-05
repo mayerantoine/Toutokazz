@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Toutokaz.Domain.Models.tb_section>
+@using Toutokaz.WebUI.Helpers;
+
+<!-- Categories List by Section submenu-->
+<div class="row bottom-menu">
+    <div class="col-md-12">
+        <div class="col-md-4">
+            @{
+
+                int cnt = 0;
+                foreach (var item in Model)
+                {
+                                     
+                        if (cnt++ % 3 ==0 && cnt>1)
+                        {
+                            @:</div><div class="col-md-4">
+                         }
+                         @: <h5> <a href="@Url.Action("allannonce", "Annonces", new { id_section=item.id_section, section_title= item.section_title.ToSeoUrl()})"><img src="@Url.Content("~/Content/images/"+item.icon_image+"")" /> @Html.DisplayName(item.section_title) </a></h5>
+                        foreach (var cat in item.tb_category)
+                        {
+
+                            @Html.ActionLink(cat.category_title, "allannonce", "annonces", new { id_category = cat.id_category, category_title = cat.category_title.ToSeoUrl() }, new { @class = "category-display" })
+
+                        }
+
+                }
+
+            }
+        </div>
+
+    </div>
+</div>

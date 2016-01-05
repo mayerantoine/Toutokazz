@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0"
+            xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
+<!--http://www.shiningtreasures.com/post/2013/09/02/how-to-make-mvcsitemapprovider-remember-a-user-position-->
+  <mvcSiteMapNode title="Home" controller="Home" action="Index">
+    <mvcSiteMapNode title="Compte" controller="Account" action="Login">
+      <mvcSiteMapNode  title="Compte" controller="Account" action="Create"/>
+      <mvcSiteMapNode  title="ComptePro" controller="Account" action="CreatePro"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="Toutes les annonces" controller="Annonces" action="touteslesannonces">
+      <mvcSiteMapNode title="Section" clickable="false" action="section" preservedRouteParameters="id_section">
+        <mvcSiteMapNode title="Categorie" action="category" preservedRouteParameters="id_category" >
+          <mvcSiteMapNode title="Article"   action="details" preservedRouteParameters="id"/>
+        </mvcSiteMapNode>
+      </mvcSiteMapNode>
+    </mvcSiteMapNode>
+      <mvcSiteMapNode title="Deposer" controller="Annonces" action="deposerannonce"/>
+ </mvcSiteMapNode>
+
+</mvcSiteMap>

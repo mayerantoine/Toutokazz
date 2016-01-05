@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Toutokaz.Domain.Models.tb_category>
+ @using Toutokaz.WebUI.Helpers; 
+
+ @{
+       ViewBag.Title = "Toutokazz";
+       Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+    
+<div id="categorie">
+    <ul data-role="listview">
+        @foreach (var item in Model)
+        {
+            <li><a href="#">@Html.DisplayName(item.category_title)</a></li>
+         
+        }
+    </ul>
+</div>
+  

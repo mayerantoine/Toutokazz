@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Default Web Site/Api" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\webdev\\Toutokaz\\Toutokazz\.WebAPI\\obj\\Debug\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\webdev\\Toutokaz\\Toutokazz\.WebAPI\\obj\\Debug\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="metadata=res://*/Models.toutokazzmodel.csdl|res://*/Models.toutokazzmodel.ssdl|res://*/Models.toutokazzmodel.msl;provider=System.Data.SqlClient;provider connection string=&amp;quot;data source=L313315;initial catalog=toutokaz_db;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework&amp;quot;&quot; providerName=&quot;System.Data.EntityClient" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\webdev\\Toutokaz\\Toutokazz\.WebAPI\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="Toutokaz.Domain.Models.toutokaz_dbEntities-Web.config Connection String" description="" value="metadata=res://*/Models.toutokazzmodel.csdl|res://*/Models.toutokazzmodel.ssdl|res://*/Models.toutokazzmodel.msl;provider=System.Data.SqlClient;provider connection string=&amp;quot;data source=L313315;initial catalog=toutokaz_db;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework&amp;quot;&quot; providerName=&quot;System.Data.EntityClient" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\webdev\\Toutokaz\\Toutokazz\.WebAPI\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Toutokaz.Domain.Models.toutokaz_dbEntities']/@connectionString" />
+  </parameter>
+</parameters>

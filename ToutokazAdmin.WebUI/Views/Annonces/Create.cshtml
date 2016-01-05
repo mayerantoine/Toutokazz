@@ -1,0 +1,129 @@
+﻿@model Toutokaz.Domain.Models.tb_ads
+@using ToutokazAdmin.WebUI.Helpers
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdminPage.cshtml";
+}
+
+       <div class="row"> 
+        <div class="col-lg-offset-8 col-lg-4">
+              <a class="btn btn-primary btn-outline btn-sm" href="@Url.Action("Index","Annonces")">Annuler</a>
+            <a class="btn btn-primary btn-outline btn-sm" href="@Url.Action("Create","Annonces")"><span class="glyphicon glyphicon-plus"></span>Nouveau</a>
+            </div>           
+    </div>
+<div class="col-lg-12">
+      <fieldset>
+          <legend>DEPOSER UNE ANNONCE</legend>
+       </fieldset>
+
+     <div class="col-lg-9">
+                  <div>
+                            @Html.Raw(@ViewBag.Message)
+                  </div>
+
+    @using (Html.BeginForm("Create","Annonces",FormMethod.Post,new{ @class="form-horizontal",enctype="multipart/form-data"}))
+         {
+        @Html.AntiForgeryToken()
+         <div class="form-group">
+                @Html.LabelFor(model => model.ad_type,"Type",new { @class="col-sm-4 control-label"})
+            <div class="col-sm-5">
+                @Html.DropDownList("ad_type",@ViewBag.ad_type as SelectList,"(Choisir le type)",new  { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.ad_type)
+            </div>
+             </div>
+            
+        <div class="form-group">
+                @Html.LabelFor(model => model.id_commune,"Commune",new { @class="col-sm-4 control-label"})
+            <div class="col-sm-5">
+                @Html.DropDownList("id_commune",@ViewBag.id_commune as SelectList,"(Votre commune)",new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.id_commune)
+            </div>
+             </div>
+
+        <div class="form-group">
+                @Html.LabelFor(model => model.id_category,"Categorie",new { @class="col-sm-4 control-label"})
+            <div class="col-sm-8">
+                  @Html.DropDownList("id_category", @ViewBag.CategoryList as IDictionary<string , IEnumerable<SelectListItem> > ,"(Selectioner la categorie de l'annonce)", new {  @class="col-sm-8 form-control"})
+                @Html.ValidationMessageFor(model => model.id_category)
+            </div>
+        </div>
+       
+          <div class="form-group">
+                @Html.LabelFor(model => model.ad_title,"Titre de l'annonce",new { @class="col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.ad_title,new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.ad_title)
+            </div>
+           </div>
+
+       <div class="form-group">
+           @Html.LabelFor(model => model.ad_description,"Description de l'annonce",new { @class="col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.TextAreaFor(model => model.ad_description,new { @class="form-control",rows="8"})
+                @Html.ValidationMessageFor(model => model.ad_description)
+            </div>
+           </div>
+         <div class="form-group">
+                @Html.LabelFor(model => model.ad_email, "Email",new { @class="col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.ad_email,new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.ad_email)
+            </div>
+             </div>
+
+        <div class="form-group">
+                @Html.LabelFor(model => model.ad_phone,"Telephone",new { @class="col-sm-4 control-label"})
+            <div class="col-sm-8">
+                @Html.TextBoxFor(model => model.ad_phone,new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.ad_phone)
+            </div>
+            </div>
+
+   
+              <div class="form-group">
+                @Html.LabelFor(model => model.id_item_condition,"Condition de l'article",new { @class="col-sm-4 control-label"})
+            <div class="col-sm-5">
+                  @Html.DropDownList("id_item_condition",@ViewBag.id_item_condition as SelectList,"(Condition de l'article)",new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.id_item_condition)
+            </div>
+                  </div>
+
+         <div class="form-group">
+                @Html.LabelFor(model => model.ad_price,"Prix",new { @class="col-sm-4 control-label"})
+            <div class="col-sm-5">
+                @Html.TextBoxFor(model => model.ad_price,new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.ad_price)
+            </div>
+              <div class="col-sm-3">
+                @Html.DropDownList("id_devise",@ViewBag.id_devise as SelectList,"(Devise)",new { @class="form-control"})
+                @Html.ValidationMessageFor(model => model.id_devise)
+            </div>
+             </div>
+
+
+             <div class="form-group">
+                @Html.LabelFor(model => model.id_devise,"Ajouter photo",new { @class="col-sm-4 control-label"})
+            <div class="col-sm-8">
+                  <input type="file" id="image1" name="image1" class="form-control">
+                  <input type="file" id="image2" name="image2" class="form-control">
+                  <input type="file" id="image3" name="image3" class="form-control">
+                    <img  id="imgPreview1" src="@Url.Content("~/Content/img/default-img.jpg")" alt="Image de votre article" class="imgpreview"/>
+                    <img  id="imgPreview2" src="@Url.Content("~/Content/img/default-img.jpg")" alt="Image de votre article" class="imgpreview"/>
+                    <img  id="imgPreview3" src="@Url.Content("~/Content/img/default-img.jpg")" alt="Image de votre article" class="imgpreview"/>
+                  
+            </div>
+                  </div>
+           
+
+           
+                   <div class="form-group">  
+                          <div class="col-sm-offset-4 col-sm-8">
+                            <input type="submit" value="Sauvergarder" />
+                           </div>
+                       </div>  
+   
+        }
+        
+
+    </div>
+</div>

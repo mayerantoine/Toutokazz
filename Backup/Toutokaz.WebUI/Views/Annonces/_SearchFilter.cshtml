@@ -1,0 +1,25 @@
+﻿@using Toutokaz.WebUI.Helpers
+
+<div class="row">
+		<div class="col-md-12 hidden-xs">
+
+                 <span style="font-size:14px;font-weight:bold; padding-left:10px;">@ViewBag.count_annonce </span> <span> annonces trouvées</span> 
+                <div class="pull-right" style="margin-left:15px;">
+                         <a href="@Url.Action("allannonce", "Annonces", new { typeannonce=ViewBag.currentType, keywords=ViewBag.currentKeyword ,  id_category =ViewBag.currentCategory, id_account_type = ViewBag.currentAccountType,display= 1})"><span class="glyphicon glyphicon-th-list"></span></a>
+                        <a href="@Url.Action("allannonce", "Annonces", new { typeannonce=ViewBag.currentType, keywords=ViewBag.currentKeyword ,  id_category =ViewBag.currentCategory, id_account_type = ViewBag.currentAccountType,display = 2})"><span class="glyphicon glyphicon-th"></span></a>
+
+                </div>
+                <span class="pull-right" style="margin-left:15px;">
+                  @Ajax.ActionLink("Prix","recherche", "Annonces", new { typeannonce = ViewBag.currentType, keywords = ViewBag.currentKeyword, id_category = ViewBag.currentCategory, ad_city = ViewBag.currentAdCity,id_account_type = ViewBag.currentAccountType,sortOrder=ViewBag.PrixSortParm}, new AjaxOptions { UpdateTargetId = "main-right", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @style="margin-left:15px;"})
+                  @Html.Label(" / ")
+                  @Ajax.ActionLink("Date", "recherche", "Annonces",new { typeannonce=ViewBag.currentType, keywords=ViewBag.currentKeyword ,  id_category =ViewBag.currentCategory,  ad_city=ViewBag.currentAdCity,id_account_type = ViewBag.currentAccountType,sortOrder=ViewBag.DateSortParm}, new AjaxOptions { UpdateTargetId = "main-right", InsertionMode = InsertionMode.Replace,HttpMethod="GET" }, null)
+               </span> 
+                <span class="pull-right" style="font-size:14px;font-weight:bold; margin-left:35px;">Trier par : </span>
+                <div class="btn-group pull-right">         
+                         @Ajax.ActionLink("Toutes", "recherche", "Annonces",new { typeannonce=ViewBag.currentType, keywords=ViewBag.currentKeyword ,  id_category =ViewBag.currentCategory,  ad_city=ViewBag.currentAdCity,display = ViewBag.currentDisplay}, new AjaxOptions { UpdateTargetId = "main-right", InsertionMode = InsertionMode.Replace,HttpMethod="GET" }, new { @class="btn btn-default" })         
+                         @Ajax.ActionLink("Particuliers", "recherche", "Annonces", new { typeannonce=ViewBag.currentType, keywords=ViewBag.currentKeyword ,  id_category =ViewBag.currentCategory,  ad_city=ViewBag.currentAdCity,id_account_type = 1,display = ViewBag.currentDisplay}, new AjaxOptions { UpdateTargetId = "main-right", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, new { @class = "btn btn-default" })
+                         @Ajax.ActionLink("Professionnels", "recherche", "Annonces",new { typeannonce=ViewBag.currentType, keywords=ViewBag.currentKeyword ,  id_category =ViewBag.currentCategory,  ad_city=ViewBag.currentAdCity,id_account_type = 2,display = ViewBag.currentDisplay}, new AjaxOptions { UpdateTargetId="main-right", InsertionMode=InsertionMode.Replace,HttpMethod="GET"},new { @class="btn btn-default"}) 
+                       </div>
+    	
+		</div>
+    </div>

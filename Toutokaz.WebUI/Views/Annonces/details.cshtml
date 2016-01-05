@@ -1,0 +1,312 @@
+﻿@model Toutokaz.Domain.Models.tb_ads
+@using Toutokaz.WebUI.Helpers
+@{
+
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    List<Toutokaz.Domain.Models.tb_section> Menu = ViewBag.Menu;
+
+}
+
+@section open_graph_tags{
+    @Html.Partial("_OpenGraphTag")
+}
+
+
+@section categories_menu {
+    @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
+}
+<script type="text/javascript">
+    function onSuccessContact() {
+        var form = $('#contactAnnonceur');
+        form.find("input[type=text], textarea").val("");
+        $('#load').hide();
+    };
+
+</script>
+<div class="col-lg-12 content-right">
+    <h3>
+        @Html.Label(Model.ad_title)
+        @if (Model.ad_status == 4)
+        {
+            <label class="label label-danger">vendu</label>
+        }
+
+    </h3>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12" id="slider">
+                    <div class="col-md-12" id="carousel-bounding-box" style="padding: 0;">
+                        <div id="detailCarousel" class="carousel slide thumbnail">
+                            <div class="carousel-inner">
+
+                                @{
+                              int slide = 1;
+                              foreach( var item in Model.tb_ad_image)
+                              {
+
+                                   if(slide == 1 ) {
+                                <div class="active item details" data-slide-number="@slide">
+                                    <img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+ (string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" :item.image_filename)+ "?width=800&height=500")" class="img-responsive" />
+                                </div>
+                                   }
+                                   else {
+
+                                <div class="item details" data-slide-number="@slide">
+                                    <img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + (string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename) + "?width=800&height=500")" class="img-responsive" />
+                                </div>
+                                   }
+                                  slide++;
+                              }
+                                }
+                            </div>
+                            <a class="carousel-control left" href="#detailCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                            <a class="carousel-control right" href="#detailCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
+                    <ul class="list-inline">
+                        @{
+                              int cnt =0;
+                               foreach(var item in Model.tb_ad_image)
+                               {
+
+                                   if( cnt == 0) {
+                        <li><a id="carousel-selector-@cnt" class="selected"><img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + item.image_filename + "?width=80&height=60")" class="img-responsive" /></a></li>
+                                   }
+                                   else{
+
+                        <li><a id="carousel-selector-@cnt"><img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+ item.image_filename + "?width=80&height=60")" class="img-responsive" /></a></li>
+                                }
+                                   cnt++;
+                              }
+                        }
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    @if (Model.id_category == 1 || Model.id_category == 2)
+                    {
+                        <div class="row">
+                            <div class="col-md-3">
+                                <table class="table table-condensed table-borderless">
+                                    <tbody>
+                                        @foreach (var c in Model.tb_ad_vehicule)
+                                        {
+                                            <tr>
+                                                <td> Marque</td>
+                                                <td class="detail-font-size">@Html.Label(c.marque)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Modèle</td>
+                                                <td class="detail-font-size">@Html.Label(c.modele)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Annee</td>
+                                                <td class="detail-font-size">@Html.DisplayFor(m => c.annee)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Transmission</td>
+                                                <td class="detail-font-size">
+                                                    @if (c.id_transmission == 1)
+                                                    {  @Html.Label("Manuelle")}
+                                                    else if (c.id_transmission == 2)
+                                                    { @Html.Label("Automatique") }
+                                                    else
+                                                    {  @Html.Label("NA")}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Carburant</td>
+                                                <td class="detail-font-size">
+                                                    @if (c.id_carburant == 1)
+                                                    {  @Html.Display("Gazoline")}
+                                                    else if (c.id_carburant == 2)
+                                                    { @Html.Display("Diesel") }
+                                                    else if (c.id_carburant == 3)
+                                                    { @Html.Display("Propane") }
+                                                    else
+                                                    {  @Html.Display("NA")}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Kilometrage</td>
+                                                <td class="detail-font-size">@Html.DisplayFor(m => c.mileage) <label>Km</label></td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    }
+
+                    @if (Model.id_section == 2)
+                    {
+                        <div class="row">
+                            <div class="col-md-4">
+                                <table class="table table-condensed table-borderless">
+                                    <tbody>
+                                        @foreach (var c in Model.tb_ad_immobilier)
+                                        {
+                                            <tr>
+                                                <td> Pièce(s)</td>
+                                                <td class="detail-font-size">@Html.DisplayFor(m => c.id_nb_pieces) pièce(s)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Chambre(s)</td>
+                                                <td class="detail-font-size">@Html.DisplayFor(m => c.id_nb_pieces) chambre(s)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Surface</td>
+                                                <td class="detail-font-size">@Html.DisplayFor(m => c.surface)<label> m&sup2;</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Loyer</td>
+                                                <td class="detail-font-size">@Html.DisplayFor(m => c.loyer) <label> m&sup2;</label></td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Description</h4>
+                    <p style="text-align: justify;">
+                        @Html.Raw(Model.ad_description)
+                    </p>
+                </div>
+
+
+            </div>
+
+            <div class="row" style="margin-top:15px">
+                <div class="pull-left col-md-6">
+                    <span style="font-weight:bold">Partager avec :</span>
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=@Request.Url.AbsoluteUri" title="Share on Facebook" target="_blank" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+                    <a href="https://twitter.com/share?url=@Request.Url.AbsoluteUri" title="Share on Twitter" target="_blank" class="btn btn-twitter"><i class="fa fa-twitter"></i> Twitter</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="well" style="text-align:center;font-size:16px;font-weight:bold;">
+                @if (Model.tb_account.id_account_type.Equals(1))
+                {
+
+                    if (String.IsNullOrEmpty(Model.tb_account.pseudo))
+                    {
+                        <span><a href="@Url.Action("annonceur", "annonces", new { id = Model.id_account , annonceurname = Model.tb_account.firstname.ToSeoUrl() })">Voir les annonces de @Model.tb_account.firstname@Model.tb_account.lastname</a></span>
+                    }
+                    else
+                    {
+                        <span><a href="@Url.Action("annonceur", "annonces", new { id = Model.id_account , annonceurname = Model.tb_account.firstname.ToSeoUrl() })">Voir les annonces de @Model.tb_account.pseudo</a></span>
+                    }
+                }
+                else
+                {
+                        <span><a href="@Url.Action("vitrine", "annonces", new { id = Model.id_account , annonceurname = Model.tb_account.nom_entreprise.ToSeoUrl() })">Voir la vitrine de @Model.tb_account.nom_entreprise</a></span>
+                }
+            </div>
+            <!--Detail de l'annonce-->
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h6>DETAIL DE L'ANNONCE</h6>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-condensed table-hover">
+                        <tbody style="font-size: 14px;">
+                            <tr>
+                                <td>Code Annonce</td>
+                                <td>@Html.Label(Model.ad_code.ToString())</td>
+                            </tr>
+                            @if (Model.id_section != 9 && Model.id_section != 8)
+                            {
+                                    <tr>
+                                        <td>Prix</td>
+                                        <td><strong>@HttpUtility.HtmlDecode(Model.tb_devise.symbole) @Html.DisplayFor(x => x.ad_price)</strong></td>
+                                    </tr>
+                            }
+                            <tr>
+                                <td>Catégorie</td>
+                                <td>@Html.Label(Model.tb_category.category_title)</td>
+                            </tr>
+
+                            <tr>
+                                <td>Annonce crée le </td>
+                                <td>@Html.Encode(Model.ad_date_created.Value.ToShortDateString())</td>
+                            </tr>
+                            <tr>
+                                <td>Commune</td>
+                                <td>@Html.Label(Model.tb_commune.commune)</td>
+                            </tr>
+                            <tr>
+                                <td>Département</td>
+                                <td>@Html.Label(Model.tb_departement.departement)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+            <!--Contacter Annonceur-->
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h6>CONTACTER L'ANNONCEUR</h6>
+                </div>
+                <div class="panel-body">
+                    @using (Ajax.BeginForm("contact", "Annonces", new AjaxOptions { InsertionMode = InsertionMode.Replace, LoadingElementDuration = 1000, UpdateTargetId = "contact-message", HttpMethod = "Post", LoadingElementId = "load", OnSuccess = "onSuccessContact" }, new { id = "contactAnnonceur" }))
+                    {
+                            <div class="form-group">
+                                @Html.Hidden("idad", (object)Model.id_ad)
+                                @Html.Hidden("Emailaccount", (object)Model.tb_account.email)
+                                @Html.Hidden("ad_code", (object)Model.ad_code)
+                                @Html.Hidden("ad_title", (object)Model.ad_title.ToSeoUrl())
+                            </div>
+                            <div id="contact-message" class="contact-message">
+
+                            </div>
+                            <div id="load" class="" style="display:none;">
+                                <img src="~/Content/img/ajax-loader.gif" />
+                            </div>
+                            <div class="form-group">
+                                <label for="InputEmail">Email* </label>
+                                <input type="email" class="form-control" id="Email" name="Email" placeholder="Votre email">
+                            </div>
+                            <div class="form-group">
+                                <label for="InputEmail">Telephone(facultatif) </label>
+                                <input type="text" class="form-control" id="Telephone" name="telephone" placeholder="Votre telephone">
+                            </div>
+                            <div class="form-group">
+                                <label for="InputText">Votre message* :</label>
+                                <textarea class="form-control" id="message" name="message" rows="7" style="margin-bottom:10px;"> Bonjour, J'aimerais avoir plus de renseignements sur votre annonce déposée sur toutokazz.com. Merci de me contacter à cet effet. Cordialement</textarea>
+                            </div>
+                            <button class="btn btn-info" id="btnContact" type="submit">Envoyer</button>
+                    }
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        @{ Html.RenderAction("_GetSimilarAds", "Annonces", new { id = Model.id_ad });}
+    </div>
+
+</div>

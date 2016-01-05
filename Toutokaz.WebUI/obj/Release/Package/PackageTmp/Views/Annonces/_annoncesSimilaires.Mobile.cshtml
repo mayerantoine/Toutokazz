@@ -1,0 +1,30 @@
+﻿@model  IEnumerable<Toutokaz.Domain.Models.tb_ads>
+@using Toutokaz.WebUI.Helpers
+@using MvcSiteMapProvider.Web.Html
+@using PagedList.Mvc
+
+
+
+<ul data-role="listview" id="content_result">
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="@Url.Action("details","Annonces", new { id= item.id_ad, ad_title=item.ad_title.ToSeoUrl()},null)">
+                <img alt="@Url.Content(string.IsNullOrEmpty(item.tb_ad_image.FirstOrDefault().image_filename)? "default-img.jpg" : item.tb_ad_image.FirstOrDefault().image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+ (string.IsNullOrEmpty(item.tb_ad_image.FirstOrDefault().image_filename)? "default-img.jpg" : item.tb_ad_image.FirstOrDefault().image_filename)+"?width=180&height=140" )" />
+                <span id="ad_title">@Html.DisplayFor(model => item.ad_title)</span>
+                <p>
+                    @if (item.id_section != 9 && item.id_section != 12)
+                    {
+                        <span id="price">@Html.Raw(HttpUtility.HtmlDecode(item.tb_devise.symbole))@Html.DisplayFor(x => item.ad_price)</span>
+                    }| @Html.DisplayFor(x => item.tb_category.category_title) | <span class="glyphicon glyphicon-map-marker"></span> @Html.DisplayFor(x => item.tb_commune.commune)
+
+                </p>
+
+
+            </a>
+
+            </li>
+
+    }
+    </ul>
+

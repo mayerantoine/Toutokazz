@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Toutokaz.Domain.Models.tb_section>
+@using Toutokaz.WebUI.Helpers;
+
+    <div align="center" style="margin-top:20px;margin-bottom:15px;">
+        <img src="~/Content/img/logo-revamp.png"/>
+
+    </div>
+
+    <div data-role="collapsible-set" data-inset="true">
+        @foreach (var item in Model)
+        {
+            <div data-role="collapsible" data-iconpos="right">               
+                <h4><div  class="box_image"><img src="@Url.Content("~/Content/images/"+item.icon_image)" style="float:left" /></div>
+                <div stlyle="padding-top:15px;">@Html.Raw(item.section_title)  </div>
+                </h4>
+                <ul data-role="listview">
+                    <li><a href="@Url.Action("allannonce", "Annonces", new { id_section=item.id_section, section_title= item.section_title.ToSeoUrl()})">@Html.DisplayName("Toutes nos annonces " + item.section_title)</a></li>
+                    @foreach (var subitem in item.tb_category.ToList())
+                    {
+                        <li><a href="@Url.Action("allannonce", "Annonces", new {  id_section=item.id_section, section_title = item.section_title.ToSeoUrl() , id_category=subitem.id_category, category_title= subitem.category_title.ToSeoUrl()})">@Html.DisplayName(subitem.category_title)</a></li>
+
+                    }
+
+                </ul>
+            </div>
+
+        }
+    </div>
+
+    <div>
+        <a href="@Url.Action("create","account")" data-role="button" style="background: #f99146;">Créer un Compte</a>
+    </div>

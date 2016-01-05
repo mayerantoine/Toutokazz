@@ -1,0 +1,17 @@
+﻿@model Toutokaz.WebUI.Models.CategoryPageModel
+
+@{
+    ViewBag.Title = "category";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@section categories_menu {
+          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
+}
+
+@section left{
+    @{  Html.RenderAction("_GetSearchAds","Annonces") ;}
+  
+
+}
+
+   @Html.Partial("_annoncelist",Model.AdsList)

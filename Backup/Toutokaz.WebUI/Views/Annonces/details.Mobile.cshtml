@@ -1,0 +1,243 @@
+﻿@model Toutokaz.Domain.Models.tb_ads
+@using Toutokaz.WebUI.Helpers
+@{
+
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+    List<Toutokaz.Domain.Models.tb_section> Menu = ViewBag.Menu;
+
+}
+
+<script type="text/javascript">
+        function onSuccessContact() {
+            var form = $('#contactAnnonceur');
+            form.find("input[type=text], textarea").val("");
+            $('#load').hide();
+        };
+
+        function goBack() {
+            console.log('click back');
+            window.history.back();
+        }
+</script>
+
+@section Header{
+    <div data-role="header">
+        <div align="center">
+            <img src="~/Content/img/logo-revamp-white.png" class="logomobile" vspace="2" />
+        </div>
+        <a href="#" data-icon="search" data-iconpos="notext" class="ui-btn-right"></a>
+        <a onclick="goBack();" data-icon="back" data-iconpos="notext" class="ui-btn-left"></a>
+    </div>
+
+}
+
+@section PageTitle{
+    <div class="page_heading">
+        <span class="detail_title">@Html.Raw(Model.ad_title)</span>
+</div>
+
+}
+
+
+    <!--Slide-->
+    <div id="Glide" class="glide">
+ 
+
+        <!--Photos-->
+        <div class="glide__wrapper">
+            <ul class="glide__track">
+                @{
+                    int slide = 1;
+                    foreach (var item in Model.tb_ad_image)
+                    {
+
+                        if (slide == 1)
+                        {
+                            <li class="glide__slide" data-slide-number="@slide">
+                                <img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + (string.IsNullOrEmpty(item.image_filename) ? "default-img.jpg" : item.image_filename) + "?width=300&height=225")" class="img-responsive" />
+                            </li>
+                        }
+                        else
+                        {
+
+                            <li class="glide__slide" data-slide-number="@slide">
+                                <img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + (string.IsNullOrEmpty(item.image_filename) ? "default-img.jpg" : item.image_filename) + "?width=300&height=225")" class="img-responsive" />
+                            </li>
+                        }
+                        slide++;
+                    }
+}
+            </ul>
+        </div>
+    </div>
+   
+      <!--Detail de l'annonce-->
+    <div>
+        <h4>DETAIL DE L'ANNONCE</h4>  
+            <ul data-role="listview" data-inset="true">    
+                <li>Prix :  <span class="detail_ads_data">@HttpUtility.HtmlDecode(Model.tb_devise.symbole) @Html.DisplayFor(x => x.ad_price)</span> </li>   
+               <li>Code Annonce :
+                 <span class="detail_ads_data"> @Html.Label(Model.ad_code.ToString()) </span>
+                </li> 
+               <li>Catégorie : <span class="detail_ads_data">@Html.Label(Model.tb_category.category_title)</span> </li>
+               <li>Annonce crée le : <span class="detail_ads_data">@Html.Encode(Model.ad_date_created.Value.ToShortDateString())</span> </li>
+               <li>Commune : <span class="detail_ads_data">@Html.Label(Model.tb_commune.commune)</span> </li>
+               <li>Département : <span class="detail_ads_data">@Html.Label(Model.tb_departement.departement)</span> </li>
+             </ul>
+    </div>
+
+
+    <div>
+        @if (Model.id_category == 1 || Model.id_category == 2)
+        {
+            <div class="row">
+                <div class="col-md-3 table-responsive">
+                    <table class="table table-condensed table-borderless">
+                        <tbody>
+                            @foreach (var c in Model.tb_ad_vehicule)
+                            {
+                                <tr>
+                                    <td> Marque</td>
+                                    <td class="detail-font-size">@Html.Raw(c.marque)</td>
+                                </tr>
+                                <tr>
+                                    <td>Modèle</td>
+                                    <td class="detail-font-size">@Html.Raw(c.modele)</td>
+                                </tr>
+                                <tr>
+                                    <td>Annee</td>
+                                    <td class="detail-font-size">@Html.Raw(c.annee)</td>
+                                </tr>
+                                <tr>
+                                    <td>Transmission</td>
+                                    <td class="detail-font-size">
+                                        @if (c.id_transmission == 1)
+                                        {  @Html.Raw("Manuelle")}
+                                        else if (c.id_transmission == 2)
+                                        { @Html.Raw("Automatique") }
+                                        else
+                                        {  @Html.Raw("NA")}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Carburant</td>
+                                    <td class="detail-font-size">
+                                        @if (c.id_carburant == 1)
+                                        {  @Html.Raw("Gazoline")}
+                                        else if (c.id_carburant == 2)
+                                        { @Html.Raw("Diesel") }
+                                        else if (c.id_carburant == 3)
+                                        { @Html.Raw("Propane") }
+                                        else
+                                        {  @Html.Raw("NA")}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Kilometrage</td>
+                                    <td class="detail-font-size">@Html.Raw(c.mileage) Km</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+        @if (Model.id_section == 2)
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <table class="table table-condensed table-borderless">
+                        <tbody>
+                            @foreach (var c in Model.tb_ad_immobilier)
+                            {
+                            <tr>
+                                <td> Pièce(s)</td>
+                                <td class="detail-font-size">@Html.Raw(c.id_nb_pieces) pièce(s)</td>
+                            </tr>
+                            <tr>
+                                <td>Chambre(s)</td>
+                                <td class="detail-font-size">@Html.Raw(c.id_nb_pieces) chambre(s)</td>
+                            </tr>
+                            <tr>
+                                <td>Surface</td>
+                                <td class="detail-font-size">@Html.Raw(c.surface) m&sup2;</td>
+                            </tr>
+                            <tr>
+                                <td>Loyer</td>
+                                <td class="detail-font-size">@Html.Raw(c.loyer) USD</td>
+                            </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+    <!--Description-->
+    <div data-role="collapsible" data-iconpos="left">
+            <h6>DESCRIPTION</h6>
+            <p>
+                @Html.Raw(Model.ad_description)
+            </p>
+</div>
+
+
+    <!--Contacter Annonceur-->
+    <div data-role="collapsible" data-iconpos="left">
+        <h6>CONTACTER L'ANNONCEUR</h6>
+        <div>
+            @using (Ajax.BeginForm("contact", "Annonces", new AjaxOptions { InsertionMode = InsertionMode.Replace, LoadingElementDuration = 1000, UpdateTargetId = "contact-message", HttpMethod = "Post", LoadingElementId = "load", OnSuccess = "onSuccessContact" }, new { id = "contactAnnonceur" }))
+            {
+            <div class="form-group">
+                @Html.Hidden("idad", (object)Model.id_ad)
+                @Html.Hidden("Emailaccount", (object)Model.tb_account.email)
+                @Html.Hidden("ad_code", (object)Model.ad_code)
+                @Html.Hidden("ad_title", (object)Model.ad_title.ToSeoUrl())
+            </div>
+            <div id="contact-message" class="contact-message">
+
+            </div>
+            <div id="load" class="" style="display:none;">
+                <img src="~/Content/img/ajax-loader.gif" />
+            </div>
+            <div class="form-group">
+                <label for="InputEmail">Email* </label>
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="Votre email">
+            </div>
+            <div class="form-group">
+                <label for="InputEmail">Telephone(facultatif) </label>
+                <input type="text" class="form-control" id="Telephone" name="telephone" placeholder="Votre telephone">
+            </div>
+            <div class="form-group">
+                <label for="InputText">Votre message* :</label>
+                <textarea class="form-control" id="message" name="message" rows="7" style="margin-bottom:10px;"> Bonjour, J'aimerais avoir plus de renseignements sur votre annonce déposée sur toutokazz.com. Merci de me contacter à cet effet. Cordialement</textarea>
+            </div>
+            <button class="btn btn-info" id="btnContact" type="submit">Envoyer</button>
+            }
+
+        </div>
+    </div>
+
+
+   <!--Menu-->
+<div id="menu_botom" style="margin-top:25px;">
+    <ul data-role="listview" data-inset="true">
+        <li> <a href="@Url.Action("Index","Home")">Accueil</a></li>
+        <li><a href="@Url.Action("create","account")">Créer Compte</a></li>
+        <li><a href="@Url.Action("SearchKeywords", "annonces")">Recherche</a></li>
+    </ul>
+
+</div>
+@section AdsSame{
+    <div class="page_heading">
+        <span>Annonces Similaires</span>
+    </div>
+    @{ Html.RenderAction("_GetSimilarAds", "Annonces", new { id = Model.id_ad });}
+ 
+
+}
+
+
+

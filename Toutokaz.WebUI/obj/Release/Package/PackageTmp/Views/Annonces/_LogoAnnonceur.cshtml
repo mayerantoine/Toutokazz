@@ -1,0 +1,11 @@
+﻿@model Toutokaz.Domain.Models.tb_account
+	<div class="row">
+			<div class="col-lg-11">
+              <div class="thumbnail">
+                 <img  src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + "default-img.jpg?width=400&height=300")"  class="img-responsive" />
+                <div class="caption">
+                  <p><strong>@Html.Label(Model.nom_entreprise)</strong></p>
+                </div>
+              </div>
+            </div>
+	</div>

@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+ <div class="row">
+    <div class="span12">
+      <div class="hero-unit center">
+          <h1>OOps!,Desolee<small><font face="Tahoma" color="red">Error</font></small></h1>
+          <br />
+          <p>Une Erreur a ete detectee, either contact your webmaster or try again. Use your browsers <b>Back</b> button to navigate to the page you have prevously come from</p>
+          <p><b>Or you could just press this neat little button:</b></p>
+          <a href="@Url.Action( "Index", "Home")" class="btn btn-large btn-info"><i class="icon-home icon-white"></i> Retour a l'accueil</a>
+        </div>
+        <br />
+      <div class="thumbnail">
+        <center><h2>Recent Content :</h2></center>
+      </div>
+  
+    </div>
+  </div>

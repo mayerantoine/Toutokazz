@@ -1,0 +1,114 @@
+﻿@model Toutokaz.WebUI.Models.AccountViewModel
+
+@{
+    ViewBag.Title = "Toutokazz - Compte Professionnel";
+    ViewBag.description = "Bienvenue sur Toutokazz, Créer votre compte professionnel et déposer vos annonces";
+    ViewBag.motscles = "toutokazz,toutokaz, annonces,compte,deposer,particulier,professionnel, haiti, classified ads, ads,site annonce, site annonces, petites";
+    ViewBag.page_description = "Bienvenue sur Toutokazz, Créer votre compte professionnel et déposer vos annonces";
+    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/slide-positive-women.jpg");
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@section open_graph_tags{
+    @Html.Partial("_OpenGraphTag")
+}
+
+
+
+
+<div class="col-lg-12">
+    <div class="row">
+        <div class="col-lg-6">
+            <h3> CRÉATION DE VOTRE COMPTE PROFESSIONNEL</h3>
+            <p>
+                Ce service vous permet de retrouver toutes vos annonces au même endroit.
+                Déposez à présent plus simplement et plus rapidement vos annonces et améliorez leur gestion.
+            </p>
+           <div style="margin-top:20px;margin-bottom:30px;">
+                <h4><span class="glyphicon glyphicon-ok"></span> Solution efficace de publicité en ligne  à moindre cout</h4>
+                <h4><span class="glyphicon glyphicon-ok"></span> Service  professionnelle dédié</h4>
+                <h4><span class="glyphicon glyphicon-ok"></span>  Vitrine en ligne</h4>
+                <h4><span class="glyphicon glyphicon-ok"></span> Publicité rapide et efficace</h4>
+            </div>
+
+            <p>Vous avez dejà un compte:</p>
+            <p><a class="btn btn-medium btn-warning" href="@Url.Action("Moncompte","account")" role="button">CONNEXION</a></p>
+        </div>
+
+        <div class="col-lg-6">       
+            <div class="well">
+                <div>
+                    @Html.Raw(@ViewBag.Message)
+                </div>
+                <form class="form-horizontal" action="@Url.Action("CreatePro","account")" role="form" method="post">
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+
+                        <label for="lblNomEntreprise" class="col-sm-3 control-label">Nom de l'entreprise</label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(model => model.nom_entreprise, new { @class = "form-control", id = "nom_entreprise", placeholder = "Nom  de l'entreprise" })
+                            @Html.ValidationMessageFor(m => m.nom_entreprise)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lblNom" class="col-sm-3 control-label">Nom du responsable</label>
+                        <div class="col-sm-9">
+                            @Html.TextBoxFor(model => model.Nom, new { @class = "form-control", id = "Nom", placeholder = "Nom" })
+                            @Html.ValidationMessageFor(m => m.Prenom)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lblPrenom" class="col-sm-3 control-label">Prenom du responsable</label>
+                        <div class="col-sm-9">
+
+                            @Html.TextBoxFor(model => model.Prenom, new { @class = "form-control", id = "Prenom", placeholder = "Prenom" })
+                            @Html.ValidationMessageFor(m => m.Prenom)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail" class="col-sm-3 control-label">Email </label>
+                        <div class="col-sm-9">
+
+                            @Html.TextBoxFor(model => model.Email, new { type = "email", @class = "form-control", id = "Email", placeholder = "Votre Email" })
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword" class="col-sm-3 control-label">Mot de Passe</label>
+                        <div class="col-sm-9">
+
+                            @Html.PasswordFor(model => model.password, new { @class = "form-control", id = "password", placeholder = "Mot de passe" })
+                            <span class="help-block">8 caractères minimum avec 1 alphanumerique et 1 special </span>
+                            @Html.ValidationMessageFor(m => m.password)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPasswordConfirm" class="col-sm-3 control-label">Confirmer  mot de passe</label>
+                        <div class="col-sm-9">
+
+                            @Html.PasswordFor(model => model.confirmPassword, new { @class = "form-control", id = "confirmPassword", placeholder = "Mot de passe" })
+                            @Html.ValidationMessageFor(m => m.confirmPassword)
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    En cliquant sur "Inscription", vous acceptez nos <a href="@Url.Action("conditionsdutilisation","Home")">conditions d'utilisation</a>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <button type="submit" class="btn btn-primary btn-md">Inscription</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            </div>
+
+        </div>
+    </div>

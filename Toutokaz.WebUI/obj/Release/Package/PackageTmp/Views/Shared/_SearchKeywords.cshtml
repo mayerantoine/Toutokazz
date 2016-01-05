@@ -1,0 +1,37 @@
+﻿@using Toutokaz.WebUI.Helpers 
+          <div class="well well-sm">
+               @using (Ajax.BeginForm("recherche", "Annonces", new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "main-right"
+
+               }, new { id="frmSearch"}))
+               {
+                @Html.AntiForgeryToken()
+                 <div class="form-group">
+                    @Html.TextBox("keywords", null, new { @class = "form-control", placeholder = "Que recherchez-vous?" })
+                    </div>    
+                 <div class="form-group">
+                    <label for="Type">Type</label>
+                     @Html.DropDownList("typeannonce", @ViewBag.typeannonce as SelectList, "Tous les types", new { @class = "form-control" }) 
+                </div>
+                 <div class="form-group">
+                    <label for="Categorie">Commune</label>
+                     @Html.DropDownList("ad_city", @ViewBag.ad_city as IDictionary<string, IEnumerable<SelectListItem>>, "Toutes les communes", new { @class = "form-control" }) 
+                </div>
+                <div class="form-group"> 
+                    <label for="Categorie">Catégorie</label>
+                    @Html.DropDownList("id_category", @ViewBag.CategoryList as IDictionary<string, IEnumerable<SelectListItem>>, "Toutes les categories", new { @class = "form-control" })
+                </div>
+   
+                <div class="form-group">
+                    <input type="submit" class="btn btn-warning btn-lg" value="Rechercher" />
+                </div>
+                   
+                   <div class="form-group">
+                    @Html.ActionLink("Toutes les annonces", "touteslesannonces", "Annonces")
+                </div>
+             
+               }
+       </div>

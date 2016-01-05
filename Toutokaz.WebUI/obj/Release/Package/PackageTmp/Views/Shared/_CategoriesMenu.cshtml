@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Toutokaz.Domain.Models.tb_section>
+<h4>Categories</h4>
+<div class="list-group categories">
+    @foreach (var item in Model)
+    {
+   
+            <a href="javascript:void(0)" class="list-group-item">@Html.DisplayName(item.section_title)<span class="glyphicon glyphicon-chevron-right"></span></a>
+            <div class="list-subgroups">
+                @foreach (var subitem in item.tb_category.ToList())
+                {
+                    <a href="@Url.Action("category", "Annonces", new { id_category=subitem.id_category})" class="list-subgroup-item">@Html.DisplayName(subitem.category_title)</a>
+                }
+            </div>
+  
+    }
+</div>

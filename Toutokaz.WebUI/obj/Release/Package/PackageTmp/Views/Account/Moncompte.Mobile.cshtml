@@ -1,0 +1,35 @@
+﻿@model Toutokaz.WebUI.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Moncompte";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+
+<div id="moncompteMobile">
+        <div class="col-lg-6">      
+            <div class="well well-lg">
+                <h4 style="font-weight:bold">Vous avez déja un compte?</h4>
+                @Html.Action("ExternalLoginButton", "account", new { ReturnUrl = ViewBag.ReturnUrl })
+                <h4 style="font-weight:bold">ou</h4>
+                <form role="form" method="post">
+                    @Html.ValidationSummary(false)
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email </label>
+                        @Html.TextBoxFor(model => model.Email, new { type = "email", @class = "form-control", id = "Email", placeholder = "Votre Email" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mot de passe</label>
+                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "Password", placeholder = "Mot de passe" })
+
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-medium btn-success">Valider</button>
+
+                    </div>
+                    <div class="form-group">
+                        <div style="display:inline-block"><a class="btn btn-small btn-default pull-right" href="@Url.Action("forgotpassword","account")">Mot de passe oublié</a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>

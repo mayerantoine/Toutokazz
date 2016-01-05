@@ -1,0 +1,14 @@
+﻿@using Toutokaz.WebUI.Helpers
+@using (Html.BeginForm())
+{
+<div id="searchbox">
+    <table>
+        <tr><td> <span>mots-cles</span>@Html.TextBox("keywords",null,null, new { @class="form-control"})</td>
+            <td><span>dans</span>  @Html.DropDownList("id_category", @ViewBag.CategoryList as IDictionary<string , IEnumerable<SelectListItem> > ,"Toutes les categories", new { @class="form-control" })</td>
+            <td><span>ou</span>  @Html.DropDownList("id_commune", @ViewBag.ad_city as SelectList,"Toutes les communes", new { @class="form-control"}) </td>
+            <td> <span></span><button type="submit" class="btn">Cherche</button></td>
+        </tr>
+    </table>
+</div>
+
+}

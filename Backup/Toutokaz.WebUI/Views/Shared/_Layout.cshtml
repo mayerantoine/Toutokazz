@@ -1,0 +1,46 @@
+<html>
+	<head>
+        <title>Toutokazz-Petites annonces pour toutes les occasions</title>
+        <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+        <link href="~/Content/css/czsale.css" rel="stylesheet" />
+        <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+        <link href="~/Content/css/admin.css" rel="stylesheet" />
+       
+	</head>
+	<body style="padding: 0px 20px 10px 20px;">
+        <div id="containerEmail"  style="width:600px;height:315px; margin:auto; background:#fff; background-color:#fff; border:1px solid black; -moz-box-shadow: 0 0 2px 2px #888;
+            -webkit-box-shadow: 0 0 2px 2px#888; box-shadow: 0 0 2px 2px #888;" class="wrapper shadow">
+            <div class="row content">
+                   <div id="mailheader" style="margin-bottom:10px; padding-left:15px;">
+                               <div id="logo" style="height:60px; padding-bottom:15px;"><span style="font-family: 'Crimson Text', serif;color:#f99146;font-size:65px;  font-weight:bold; font-style:italic;
+                                   text-shadow: 0 1px 1px rgba(0,0,0,.4);">toutokazz</span><span>(Beta)</span>
+                             <div style="font-size:medium;font-style:italic;margin-top:0px;">Petites annonces, pour toutes les occasions</div>       
+                   
+                        </div>
+                    </div>
+                    <div id="EmailTitle" style="margin:0px; background-color:blue; color:#fff;padding:5px; margin-top:0px; margin-bottom:10px;  height:35px;
+                                             vertical-align:middle;  text-align:left; font-weight:bold;">
+                        <span>Concernant Votre annonce :  @ViewBag.annonceCode  sur Toutokazz </span>
+                    </div>
+                <div>
+
+                    <div id="mainEmail" style=" padding:10px">
+		                @RenderBody()
+                    </div>
+                    <div style="padding:10px">
+                        <p style="font-style:italic;font-size:15px;text-align:left;">  Merci de votre confiance et a tres bientot sur notre site.
+                            Cordialement, L'equipe de Toutokazz.com
+                        </p>
+                    </div>
+                    <div class="clearfix">&nbsp;</div>
+                    <div id="EmailFooter" style="margin:15px;">
+                      <div class="pull-right">
+                        <p style="color: #999999;"><small>Copyright &copy; 2013-2014, Toutokaz </small></p>
+                    </div>
+                    </div>
+                 </div>
+             </div>
+        </div>
+
+	</body>
+</html>

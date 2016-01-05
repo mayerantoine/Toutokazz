@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="toutokaz_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tb_account">
+    <Key>
+      <PropertyRef Name="id_account" />
+    </Key>
+    <Property Name="id_account" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_account_type" Type="int" />
+    <Property Name="id_user" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="lastname" Type="nvarchar" MaxLength="50" />
+    <Property Name="firstname" Type="nvarchar" MaxLength="50" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" />
+    <Property Name="pseudo" Type="nvarchar" MaxLength="50" />
+    <Property Name="nom_entreprise" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="telephone" Type="nvarchar" MaxLength="50" />
+    <Property Name="adresse" Type="nvarchar" MaxLength="500" />
+    <Property Name="role" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_account_type">
+    <Key>
+      <PropertyRef Name="id_account_type" />
+    </Key>
+    <Property Name="id_account_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="account_type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_ad_chaussure">
+    <Key>
+      <PropertyRef Name="id_ad_chaussure" />
+    </Key>
+    <Property Name="id_ad_chaussure" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_ad" Type="int" />
+    <Property Name="taille" Type="int" />
+    <Property Name="marque" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tb_ad_condition">
+    <Key>
+      <PropertyRef Name="id_item_condition" />
+    </Key>
+    <Property Name="id_item_condition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="item_condition" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tb_ad_image">
+    <Key>
+      <PropertyRef Name="id_image" />
+    </Key>
+    <Property Name="id_image" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_ad" Type="int" />
+    <Property Name="ad_code" Type="nvarchar" MaxLength="150" />
+    <Property Name="image_filename" Type="nvarchar" MaxLength="500" />
+    <Property Name="image_path" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tb_ad_immobilier">
+    <Key>
+      <PropertyRef Name="id_ad_immobilier" />
+    </Key>
+    <Property Name="id_ad_immobilier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_ad" Type="int" />
+    <Property Name="id_nb_pieces" Type="int" />
+    <Property Name="id_nb_chambre" Type="int" />
+    <Property Name="surface" Type="int" />
+    <Property Name="loyer" Type="float" />
+  </EntityType>
+  <EntityType Name="tb_ad_option">
+    <Key>
+      <PropertyRef Name="id_option" />
+    </Key>
+    <Property Name="id_option" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad_option" Type="nvarchar" MaxLength="50" />
+    <Property Name="payant" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_ad_reference">
+    <Key>
+      <PropertyRef Name="id_ref" />
+    </Key>
+    <Property Name="id_ref" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ref_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ref_item" Type="nvarchar" MaxLength="50" />
+    <Property Name="ref_item_id" Type="int" />
+    <Property Name="ref_input_type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_ad_status">
+    <Key>
+      <PropertyRef Name="id_ad_status" />
+    </Key>
+    <Property Name="id_ad_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_ad_vehicule">
+    <Key>
+      <PropertyRef Name="id_ad_vehicule" />
+    </Key>
+    <Property Name="id_ad_vehicule" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_ad" Type="int" />
+    <Property Name="annee" Type="int" />
+    <Property Name="mileage" Type="int" />
+    <Property Name="id_transmission" Type="int" />
+    <Property Name="id_carburant" Type="int" />
+    <Property Name="marque" Type="nvarchar" MaxLength="150" />
+    <Property Name="modele" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tb_ads">
+    <Key>
+      <PropertyRef Name="id_ad" />
+    </Key>
+    <Property Name="id_ad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_section" Type="int" />
+    <Property Name="id_category" Type="int" />
+    <Property Name="ad_title" Type="nvarchar" MaxLength="150" />
+    <Property Name="ad_description" Type="text" />
+    <Property Name="ad_status" Type="int" />
+    <Property Name="ad_is_published" Type="int" />
+    <Property Name="ad_name" Type="nvarchar" MaxLength="150" />
+    <Property Name="ad_email" Type="nvarchar" MaxLength="150" />
+    <Property Name="ad_phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="ad_date_created" Type="datetime" />
+    <Property Name="ad_date_expired" Type="datetime" />
+    <Property Name="id_item_condition" Type="int" />
+    <Property Name="ad_price" Type="float" />
+    <Property Name="ad_type" Type="int" />
+    <Property Name="id_commune" Type="int" />
+    <Property Name="id_departement" Type="int" />
+    <Property Name="id_account" Type="int" />
+    <Property Name="id_devise" Type="int" />
+    <Property Name="id_user" Type="uniqueidentifier" />
+    <Property Name="ad_code" Type="varchar" MaxLength="8000" StoreGeneratedPattern="Computed" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_ads_type">
+    <Key>
+      <PropertyRef Name="id_ad_type" />
+    </Key>
+    <Property Name="id_ad_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ad_type" Type="nvarchar" MaxLength="50" />
+    <Property Name="description" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_category">
+    <Key>
+      <PropertyRef Name="id_category" />
+    </Key>
+    <Property Name="id_category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_section" Type="int" />
+    <Property Name="category_title" Type="nvarchar" MaxLength="150" />
+    <Property Name="category_desctiption" Type="nvarchar" MaxLength="150" />
+    <Property Name="category_order" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_commune">
+    <Key>
+      <PropertyRef Name="id_commune" />
+    </Key>
+    <Property Name="id_commune" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_departement" Type="int" />
+    <Property Name="commune" Type="nvarchar" MaxLength="50" />
+    <Property Name="district" Type="int" />
+    <Property Name="order_commune" Type="int" />
+  </EntityType>
+  <EntityType Name="tb_contact">
+    <Key>
+      <PropertyRef Name="id_contact" />
+    </Key>
+    <Property Name="id_contact" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="150" />
+    <Property Name="nom" Type="varchar" MaxLength="150" />
+    <Property Name="prenom" Type="varchar" MaxLength="150" />
+    <Property Name="sujet" Type="varchar" MaxLength="500" />
+    <Property Name="message" Type="varchar" MaxLength="5000" />
+    <Property Name="telephone" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_departement">
+    <Key>
+      <PropertyRef Name="id_departement" />
+    </Key>
+    <Property Name="id_departement" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="departement" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_devise">
+    <Key>
+      <PropertyRef Name="id_devise" />
+    </Key>
+    <Property Name="id_devise" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="description" Type="nvarchar" MaxLength="50" />
+    <Property Name="symbole" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tb_message">
+    <Key>
+      <PropertyRef Name="id_message" />
+    </Key>
+    <Property Name="id_message" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_ad" Type="int" Nullable="false" />
+    <Property Name="message" Type="nvarchar(max)" />
+    <Property Name="email_from" Type="nvarchar" MaxLength="50" />
+    <Property Name="date_received" Type="datetime" />
+    <Property Name="id_user" Type="int" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tb_section">
+    <Key>
+      <PropertyRef Name="id_section" />
+    </Key>
+    <Property Name="id_section" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="section_title" Type="nvarchar" MaxLength="150" />
+    <Property Name="section_description" Type="text" />
+    <Property Name="section_order" Type="int" />
+    <Property Name="icon_image" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tb_user_profile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_tb_account_tb_account_type">
+    <End Role="tb_account_type" Type="Self.tb_account_type" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tb_account" Type="Self.tb_account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_account_type">
+        <PropertyRef Name="id_account_type" />
+      </Principal>
+      <Dependent Role="tb_account">
+        <PropertyRef Name="id_account_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ad_image_tb_ads">
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="0..1" />
+    <End Role="tb_ad_image" Type="Self.tb_ad_image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_ads">
+        <PropertyRef Name="id_ad" />
+      </Principal>
+      <Dependent Role="tb_ad_image">
+        <PropertyRef Name="id_ad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_account">
+    <End Role="tb_account" Type="Self.tb_account" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_account">
+        <PropertyRef Name="id_account" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_ad_condition">
+    <End Role="tb_ad_condition" Type="Self.tb_ad_condition" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_ad_condition">
+        <PropertyRef Name="id_item_condition" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_item_condition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_ad_status">
+    <End Role="tb_ad_status" Type="Self.tb_ad_status" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_ad_status">
+        <PropertyRef Name="id_ad_status" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="ad_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_ads_type">
+    <End Role="tb_ads_type" Type="Self.tb_ads_type" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_ads_type">
+        <PropertyRef Name="id_ad_type" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="ad_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_category">
+    <End Role="tb_category" Type="Self.tb_category" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_category">
+        <PropertyRef Name="id_category" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_commune">
+    <End Role="tb_commune" Type="Self.tb_commune" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_commune">
+        <PropertyRef Name="id_commune" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_commune" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_departement">
+    <End Role="tb_departement" Type="Self.tb_departement" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_departement">
+        <PropertyRef Name="id_departement" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_departement" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_devise">
+    <End Role="tb_devise" Type="Self.tb_devise" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_devise">
+        <PropertyRef Name="id_devise" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_devise" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_section">
+    <End Role="tb_section" Type="Self.tb_section" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_section">
+        <PropertyRef Name="id_section" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="id_section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ads_tb_user_profile">
+    <End Role="tb_user_profile" Type="Self.tb_user_profile" Multiplicity="0..1" />
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_user_profile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tb_ads">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_category_tb_section">
+    <End Role="tb_section" Type="Self.tb_section" Multiplicity="0..1" />
+    <End Role="tb_category" Type="Self.tb_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_section">
+        <PropertyRef Name="id_section" />
+      </Principal>
+      <Dependent Role="tb_category">
+        <PropertyRef Name="id_section" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_commune_tb_departement">
+    <End Role="tb_departement" Type="Self.tb_departement" Multiplicity="0..1" />
+    <End Role="tb_commune" Type="Self.tb_commune" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_departement">
+        <PropertyRef Name="id_departement" />
+      </Principal>
+      <Dependent Role="tb_commune">
+        <PropertyRef Name="id_departement" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_message_tb_ads">
+    <End Role="tb_ads" Type="Self.tb_ads" Multiplicity="1" />
+    <End Role="tb_message" Type="Self.tb_message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_ads">
+        <PropertyRef Name="id_ad" />
+      </Principal>
+      <Dependent Role="tb_message">
+        <PropertyRef Name="id_ad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="toutokaz_dbModelStoreContainer">
+    <EntitySet Name="tb_account" EntityType="Self.tb_account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_account_type" EntityType="Self.tb_account_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_ad_chaussure" EntityType="Self.tb_ad_chaussure" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_ad_condition" EntityType="Self.tb_ad_condition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_ad_image" EntityType="Self.tb_ad_image" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_ad_immobilier" EntityType="Self.tb_ad_immobilier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_ad_option" EntityType="Self.tb_ad_option" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_ad_reference" EntityType="Self.tb_ad_reference" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_ad_status" EntityType="Self.tb_ad_status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_ad_vehicule" EntityType="Self.tb_ad_vehicule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_ads" EntityType="Self.tb_ads" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_ads_type" EntityType="Self.tb_ads_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_category" EntityType="Self.tb_category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_commune" EntityType="Self.tb_commune" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_contact" EntityType="Self.tb_contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_departement" EntityType="Self.tb_departement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_devise" EntityType="Self.tb_devise" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_message" EntityType="Self.tb_message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_section" EntityType="Self.tb_section" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_user_profile" EntityType="Self.tb_user_profile" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tb_account_tb_account_type" Association="Self.FK_tb_account_tb_account_type">
+      <End Role="tb_account_type" EntitySet="tb_account_type" />
+      <End Role="tb_account" EntitySet="tb_account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ad_image_tb_ads" Association="Self.FK_tb_ad_image_tb_ads">
+      <End Role="tb_ads" EntitySet="tb_ads" />
+      <End Role="tb_ad_image" EntitySet="tb_ad_image" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_account" Association="Self.FK_tb_ads_tb_account">
+      <End Role="tb_account" EntitySet="tb_account" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_ad_condition" Association="Self.FK_tb_ads_tb_ad_condition">
+      <End Role="tb_ad_condition" EntitySet="tb_ad_condition" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_ad_status" Association="Self.FK_tb_ads_tb_ad_status">
+      <End Role="tb_ad_status" EntitySet="tb_ad_status" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_ads_type" Association="Self.FK_tb_ads_tb_ads_type">
+      <End Role="tb_ads_type" EntitySet="tb_ads_type" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_category" Association="Self.FK_tb_ads_tb_category">
+      <End Role="tb_category" EntitySet="tb_category" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_commune" Association="Self.FK_tb_ads_tb_commune">
+      <End Role="tb_commune" EntitySet="tb_commune" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_departement" Association="Self.FK_tb_ads_tb_departement">
+      <End Role="tb_departement" EntitySet="tb_departement" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_devise" Association="Self.FK_tb_ads_tb_devise">
+      <End Role="tb_devise" EntitySet="tb_devise" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_section" Association="Self.FK_tb_ads_tb_section">
+      <End Role="tb_section" EntitySet="tb_section" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ads_tb_user_profile" Association="Self.FK_tb_ads_tb_user_profile">
+      <End Role="tb_user_profile" EntitySet="tb_user_profile" />
+      <End Role="tb_ads" EntitySet="tb_ads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_category_tb_section" Association="Self.FK_tb_category_tb_section">
+      <End Role="tb_section" EntitySet="tb_section" />
+      <End Role="tb_category" EntitySet="tb_category" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_commune_tb_departement" Association="Self.FK_tb_commune_tb_departement">
+      <End Role="tb_departement" EntitySet="tb_departement" />
+      <End Role="tb_commune" EntitySet="tb_commune" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_message_tb_ads" Association="Self.FK_tb_message_tb_ads">
+      <End Role="tb_ads" EntitySet="tb_ads" />
+      <End Role="tb_message" EntitySet="tb_message" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

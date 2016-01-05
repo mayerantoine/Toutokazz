@@ -1,0 +1,17 @@
+﻿<meta  name="description" content="@ViewBag.description"/>
+<meta name="keywords" content="@ViewBag.motscles" />
+<meta property="og:title" content="@ViewBag.Title" />
+<meta property="og:description" content="@ViewBag.page_description" />
+<meta property="og:type" content="website" />
+@if(ViewBag.ImageUrl== null)
+{
+
+    <meta property="og:image" content="@Url.Content("~/Content/img/slides/slide-positive-women.jpg")" />
+}
+else
+{
+    <meta property="og:image" content="@ViewBag.ImageUrl" />
+}
+<meta property="og:site_name" content="Toutokazz" />
+<meta property="fb:admins" content="@WebConfigurationManager.AppSettings["FacebookAdmins"]" />
+<meta property="og:url" content="@Request.Url" />

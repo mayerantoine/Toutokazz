@@ -1,0 +1,85 @@
+﻿body {
+  padding: 0px 20px 10px 20px;
+  background:url("/Content/img/pat2.jpg");
+}
+
+a {
+  color: #777777;
+}
+
+.label,.glyphicon { margin-right:5px; }
+a:hover {
+  color: #000;
+}
+
+.wrapper {
+  position: relative;
+  margin-top:80px;
+  padding-top: 10px;
+}
+
+#maincontainer.shadow{
+     background-color:#fff;
+    -moz-box-shadow: 0 0 3px 3px #888;
+    -webkit-box-shadow: 0 0 3px 3px#888;
+    box-shadow: 0 0 3px 3px #888;
+ 
+}
+#logo {
+   height:85px;
+   padding-bottom:15px;
+}
+
+
+.site-logo {
+    font-family: 'Crimson Text', serif;
+    color:#f99146;
+    font-size:65px;
+    font-weight:bold;
+    font-style:italic;
+    text-shadow: 0 1px 1px rgba(0,0,0,.4);
+
+
+}
+
+.breadcrumb {
+  background: none;
+  border-radius: 0;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.field-validation-error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    display:block;
+    padding:10px;
+    margin-top:10px;
+    margin-left:15px;
+    border-radius:4px;
+     border: 1px solid transparent;
+     font-weight: bold;
+
+}
+
+.imgpreview {
+    width:125px;
+    height:125px;
+    margin:10px;
+    padding:3px;
+    border:1px solid #EEE;
+}
+
+.preview {
+}
+
+
+.imgads {
+    width:72px;
+    height:72px;
+}
+
+     .validation-summary-errors li {
+            color:red;
+            font-weight:bold;
+        }

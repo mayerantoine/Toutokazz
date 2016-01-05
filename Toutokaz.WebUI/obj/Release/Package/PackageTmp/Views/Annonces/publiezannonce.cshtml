@@ -1,0 +1,52 @@
+﻿@model Toutokaz.WebUI.Models.HomePageModel
+@{
+    ViewBag.Title = "Toutokazz - Publiez vos annonces gratuites et sans commission en Haïti";
+    ViewBag.description = "Toutokazz - Publiez vos annonces gratuites en Haïti, sans frais ni commission";
+    ViewBag.motscles = "toutokazz,toutokaz, Déposer,annonces, annonces gratuites haiti, classified ads, ads,site annonce, site annonces, petites";
+    ViewBag.page_description = "Toutokazz - Publiez vos annonces gratuites en Haïti, sans frais ni commission";
+    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/Banner2a.jpg");
+    
+    Layout = "~/Views/Shared/_LayoutLanding.cshtml";
+}
+
+
+<!---<div id="main-jumbotron" class="jumbotron hidden-xs">
+    <div><a class="btn btn-lg btn-warning" href="@Url.Action("touteslesannonces","Annonces")" role="button">Voir toutes les annonces</a></div>
+
+</div>-->
+
+
+<div id="main-carousel" class="carousel">
+    <!-- class of slide for animation -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="@Url.Content("~/Content/img/slides/Promo_Page2.jpg")" alt="Toutokazz-Trouver la bonne affaire pour toutes les occasions" />
+
+            <div class="col-lg-5 carousel-caption-landing">
+                  <div class="btn-toolbar" style="margin-top:300px;">
+                      <a class="btn btn-lg btn-danger round" href="@Url.Action("Create", "account")" role="button">Compte Particulier</a>
+                      <a class="btn btn-lg btn-success round" href="@Url.Action("CreatePro", "account")" role="button">Compte Pro</a>
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /.carousel-inner -->
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-lg-9">
+            @Html.Partial("_CategoryBySection", Model.sectionList)
+        </div>
+        <div class="col-lg-3">
+            <blockquote class="testimonial">
+                <p style="font-size:small;">Toutokazz.com c'est la référence dans le monde des affaires. Vous vendez??!!... placez votre annonce gratuitement. Mon article a été vendu dans la semaine ou je l'ai publié. Merci Toutokazz.com</p>
+            </blockquote>
+            <div class="arrow-down"></div>
+            <p class="testimonial-author">Reginald Noisette </p>
+        </div>
+    </div>
+</div>
+<div class="col-lg-9 col-lg-offset-1">
+    @{Html.RenderAction("_VillesPrincipales", "annonces");
+    }
+</div>

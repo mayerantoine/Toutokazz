@@ -1,0 +1,20 @@
+﻿@model Toutokaz.WebUI.Models.CategoryPageModel
+@using Toutokaz.WebUI.Helpers
+@using MvcSiteMapProvider.Web.Html
+@using PagedList.Mvc
+
+<div class="col-lg-9">          
+        @Html.MvcSiteMap().SiteMapPath()
+      <h3>@Html.Label(Model.CategoryName)</h3>
+     <div class="row classifieds-table">
+           <div class="col-lg-12">
+               @Html.Partial("_SearchFilter")
+               @if(ViewBag.currentDisplay == 2) {
+                    @Html.Partial("_annoncesBlock",Model.AdsList)
+                }
+               else {
+                   @Html.Partial("_annoncesList",Model.AdsList)
+               }
+          </div>
+    </div>
+</div>

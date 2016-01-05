@@ -1,0 +1,19 @@
+﻿@if (Request.IsAuthenticated) {
+    <text>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                    class="glyphicon glyphicon-user"></span>  @User.Identity.Name
+               <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Votre Profil  </a></li>
+                        <li class="divider"></li>
+                           <li><a href="#"><span class="glyphicon glyphicon-lock"></span>Changer mot de passe</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("LogOut", "Account", new { area=""})"><span class="glyphicon glyphicon-off"></span>Deconnexion</a></li>
+                    </ul>      
+    </text>
+} else {
+    <ul>
+        <li>@Html.ActionLink("Mon Compte", "Create", "Account", new { area=""}, null)</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", new { area=""}, null)</li>
+    </ul>
+}

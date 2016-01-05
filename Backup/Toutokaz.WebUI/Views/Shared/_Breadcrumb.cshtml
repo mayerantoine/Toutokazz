@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Toutokaz.WebUI.Models.BreadcrumbNode>
+  <ol class="breadcrumb">
+      @foreach(var item in Model) {
+            <li><a href="@Url.Content(item.Url)">@Html.Label(item.Title)</a></li>
+      }
+          </ol>

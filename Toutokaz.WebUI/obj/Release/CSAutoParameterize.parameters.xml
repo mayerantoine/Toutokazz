@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="SecurityConnection-Web.config Connection String" description="SecurityConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=L313315;Initial Catalog=toutokaz_db;Integrated Security=True;MultipleActiveResultSets=True;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\webdev\\Toutokaz\\Toutokaz\.WebUI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SecurityConnection']/@connectionString" />
+  </parameter>
+  <parameter name="toutokaz_dbEntities-Web.config Connection String" description="toutokaz_dbEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.toutokazzmodel.csdl|res://*/Models.toutokazzmodel.ssdl|res://*/Models.toutokazzmodel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=L313315;initial catalog=toutokaz_db;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\webdev\\Toutokaz\\Toutokaz\.WebUI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='toutokaz_dbEntities']/@connectionString" />
+  </parameter>
+</parameters>

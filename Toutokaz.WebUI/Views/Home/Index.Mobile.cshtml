@@ -1,0 +1,9 @@
+﻿@model Toutokaz.WebUI.Models.HomePageModel
+
+@{
+    ViewBag.Title = "Toutokazz";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+    }
+
+
+ @{  Html.RenderAction("GetCategoryMenu", "Annonces");}

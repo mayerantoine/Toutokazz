@@ -1,0 +1,36 @@
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Data.dll.config
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Data.dll
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Data.pdb
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.dll
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Domain.dll
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Domain.pdb
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.xml
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\obj\Debug\Toutokaz.Data.csprojResolveAssemblyReference.cache
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\obj\Debug\Toutokaz.Data.dll
+C:\Users\Mayer\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\obj\Debug\Toutokaz.Data.pdb
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Data.dll.config
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Data.dll
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Data.pdb
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.dll
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Domain.dll
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Domain.pdb
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.xml
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\obj\Debug\Toutokaz.Data.csprojResolveAssemblyReference.cache
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\obj\Debug\Toutokaz.Data.dll
+C:\Users\antoinem\Documents\Visual Studio 2012\Projects\Toutokaz\Toutokaz.Data\obj\Debug\Toutokaz.Data.pdb
+C:\webdev\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Data.dll.config
+C:\webdev\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Data.dll
+C:\webdev\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Data.pdb
+C:\webdev\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.dll
+C:\webdev\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\webdev\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Domain.dll
+C:\webdev\Toutokaz\Toutokaz.Data\bin\Debug\Toutokaz.Domain.pdb
+C:\webdev\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.xml
+C:\webdev\Toutokaz\Toutokaz.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\webdev\Toutokaz\Toutokaz.Data\obj\Debug\Toutokaz.Data.csprojResolveAssemblyReference.cache
+C:\webdev\Toutokaz\Toutokaz.Data\obj\Debug\Toutokaz.Data.dll
+C:\webdev\Toutokaz\Toutokaz.Data\obj\Debug\Toutokaz.Data.pdb

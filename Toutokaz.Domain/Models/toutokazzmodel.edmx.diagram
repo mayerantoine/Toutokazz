@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="848e80afe6f544fba8cebdf1c0da4914" Name="Diagram1">
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_account_type" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_ad_image" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_ads_type" Width="1.5" PointX="1.875" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_category" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_commune" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_departement" Width="1.5" PointX="0.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_devise" Width="1.5" PointX="5.625" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_message" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_section" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_category_tb_section" ManuallyRouted="false" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_commune_tb_departement" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_ad_condition" Width="1.5" PointX="7.875" PointY="13.875" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_ad_status" Width="1.5" PointX="7" PointY="5.125" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_contact" Width="1.5" PointX="6" PointY="1.25" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_account" Width="1.5" PointX="2.625" PointY="3.625" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_user_profile" Width="1.5" PointX="5.125" PointY="4" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_account_tb_account_type" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_account_tb_user_profile" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_departement_tb_departement" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_ads" Width="1.5" PointX="4.75" PointY="8.5" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ads_tb_account" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ads_tb_ad_condition" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ad_image_tb_ads" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ads_tb_ad_status" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ads_tb_ads_type" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ads_tb_category" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ads_tb_commune" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ads_tb_departement" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ads_tb_devise" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ads_tb_section" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ads_tb_user_profile" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_message_tb_ads" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ads_tb_ads" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_ad_reference" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_ad_vehicule" Width="1.5" PointX="7.125" PointY="19" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ad_vehicule_tb_ads" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_ad_chaussure" Width="1.5" PointX="2.75" PointY="20.125" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ad_chaussure_tb_ads" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_ad_immobilier" Width="1.5" PointX="7.875" PointY="15.75" />
+        <AssociationConnector Association="toutokaz_dbModel.FK_tb_ad_immobilier_tb_ads" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

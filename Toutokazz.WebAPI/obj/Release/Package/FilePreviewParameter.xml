@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="service-toutokazz" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\webdev\\Toutokaz\\Toutokazz\.WebAPI\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\webdev\\Toutokaz\\Toutokazz\.WebAPI\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="SecurityConnection-Web.config Connection String" description="" value="data source=tcp:luhhwsk568.database.windows.net,1433;initial catalog=toutokazz_db;user id=touto_root@luhhwsk568;password=Sup3rStr0ngPa@$$2014;MultipleActiveResultSets=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\webdev\\Toutokaz\\Toutokazz\.WebAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='SecurityConnection']/@connectionString" />
+  </parameter>
+  <parameter name="toutokaz_dbEntities-Web.config Connection String" description="" value="metadata=res://*/Models.toutokazzmodel.csdl|res://*/Models.toutokazzmodel.ssdl|res://*/Models.toutokazzmodel.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=tcp:luhhwsk568.database.windows.net,1433;Initial Catalog=toutokazz_db;User ID=touto_root@luhhwsk568;Password=Sup3rStr0ngPa@$$2014&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\webdev\\Toutokaz\\Toutokazz\.WebAPI\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='toutokaz_dbEntities']/@connectionString" />
+  </parameter>
+</parameters>

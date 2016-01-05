@@ -1,0 +1,203 @@
+﻿@model PagedList.IPagedList<Toutokaz.Domain.Models.tb_ads>
+@using Toutokaz.WebUI.Helpers
+@using PagedList.Mvc 
+@{
+    ViewBag.Title = "Toutokazz - MesAnnonces";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@section categories_menu {
+          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
+}
+	<div class="row" style="margin-bottom:20px;">
+		<div class="col-md-12">
+    		  <h2>Mes Annonces
+    		  </h2>
+           <div>@TempData["Error"]</div>
+		</div>
+	</div>
+
+<div  id="modalDeleteAds"  class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Supprimer une annonce</h4>
+      </div>
+      <div class="modal-body">
+               <p>Vous etes sur le point de supprimer une annonce.</p>
+        <p>Voulez-vous continuer et supprimer l'annonce?</p>
+      </div>
+      <div class="modal-footer">
+      <a  id="btnYes" class="btn btn-primary danger" role="button">Oui</a>
+      <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-primary" role="button">Non</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div  id="modalPublishedAds"  class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Publier une annonce</h4>
+      </div>
+      <div class="modal-body">
+               <p>Vous etes sur le point de publier une annonce.</p>
+        <p>Voulez-vous continuer et publier l'annonce?</p>
+      </div>
+      <div class="modal-footer">
+      <a  id="btnPublierYes" class="btn btn-primary danger" role="button">Oui</a>
+      <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-primary" role="button">Non</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div  id="modalDesactiverAds"  class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Desactiver une annonce</h4>
+      </div>
+      <div class="modal-body">
+               <p>Vous etes sur le point de desactiver une annonce.</p>
+        <p>Voulez-vous continuer et desactiver l'annonce?</p>
+      </div>
+      <div class="modal-footer">
+      <a  id="btnDesactiverYes" class="btn btn-primary danger" role="button">Oui</a>
+      <a  href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-primary" role="button">Non</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div  id="modalVenduAds"  class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Marquer Vendu</h4>
+      </div>
+      <div class="modal-body">
+               <p>Vous etes sur le point de marquer cette annonce comme vendu.</p>
+        <p>Voulez-vous continuer?</p>
+      </div>
+      <div class="modal-footer">
+      <a  id="btnVenduYes" class="btn btn-primary danger" role="button">Oui</a>
+      <a  href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-primary" role="button">Non</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="col-lg-12">        
+     <form class="form-inline" role="form" style="margin:10px">
+                      <div class="form-group">
+                        <input type="text" class="form-control" id="titlekeyword"  name="titlekeyword" placeholder="Titre">
+                      </div>
+                      <div class="form-group">
+                        @Html.DropDownList("id_category", @ViewBag.id_category as IDictionary<string , IEnumerable<SelectListItem> > ,"(categorie de l'annonce)", new {  @class="col-sm-3 form-control"})
+                      </div>
+                        <div class="form-group">
+                              @Html.DropDownList("id_ad_status",@ViewBag.id_ad_status as SelectList,"(select status)",new  { @class="form-control"})
+                      </div>
+                      <button type="submit" class="btn btn-primary">Filtrer</button>
+                    </form>
+     <table class="table table-condensed table-striped table-hover table-bordered">
+                <tr>
+                    <th><input type="checkbox"  id="chkall"/></th>
+                    <th>
+                        @Html.DisplayName("Details")
+
+                   </th>
+                      <th>
+                        @Html.DisplayName("Categorie")
+                    </th>
+
+                    <th>
+                        @Html.DisplayName("Publiée le")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Expire le")
+                    </th>
+
+                           <th>
+                        @Html.DisplayName("Statut")
+                    </th>
+
+                </tr>
+
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        <input type="checkbox" id="ad_@item.id_ad" data-ads="@item.id_ad" class="chkbox"/>
+                    </td>
+                     <td>
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="@Url.Action("details","MesAnnonces",new { id= item.id_ad})">
+                                <img class="media-objet" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+item.tb_ad_image.FirstOrDefault().image_filename+"?width=100&height=100")" />
+                            </a>
+                          <div class="media-body">
+                          <h5 class="media-heading">@Html.ActionLink(item.ad_title, "details","MesAnnonces", new { id= item.id_ad},null)</h5>    
+                              <p>
+                                       <a href="@Url.Action("Details","MesAnnonces",new { id = item.id_ad})">Voir mon annonce</a> 
+                             
+                                      | <a href="@Url.Action("modifier","mesAnnonces",new { id = item.id_ad})">Modifier</a> 
+                                    @if(item.ad_status== 1) {
+                                      @:| <a href="@Url.Action("Desactiver","MesAnnonces",new { id = item.id_ad})" class="confirm-desactiver"  data-ads="@item.id_ad" >Desactiver</a> 
+                                    }
+                                      @if(item.ad_status== 2) {
+                                       @: | <a href="@Url.Action("Publier","MesAnnonces",new { id = item.id_ad})" class="confirm-publier"  data-ads="@item.id_ad">Publier</a> 
+                                    }
+                                       @if (item.ad_status == 2 || item.ad_status == 1)
+                                       {
+                                       @: | <a href="@Url.Action("Vendu","MesAnnonces",new { id = item.id_ad})" class="confirm-vendu"  data-ads="@item.id_ad">Vendu</a> 
+                                    }
+                                      | <a href="@Url.Action("Supprimer","MesAnnonces",new { id = item.id_ad})" class="confirm-delete" data-ads="@item.id_ad" >Supprimer</a> 
+                               </p>           
+                        </div>    
+          
+                        </div>
+                  
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tb_category.category_desctiption)
+                    </td>
+                      <td>
+                        @Html.Encode(item.ad_date_created.Value.ToShortDateString())
+                    </td>
+  
+                     <td>
+                        @Html.Encode(item.ad_date_expired.Value.ToShortDateString())
+                    </td>
+                    <td>
+                        @if(item.ad_status== 1) {
+                            @Html.Label(item.tb_ad_status.status, new { @class="label label-success" })
+                        }
+                           @if(item.ad_status== 2) {
+                            @Html.Label(item.tb_ad_status.status,new { @class="label label-danger" })
+                        }
+                           @if(item.ad_status== 3) {
+                            @Html.Label(item.tb_ad_status.status,new { @class="label label-info" })
+                        }
+                          @if(item.ad_status== 4) {
+                            @Html.Label(item.tb_ad_status.status,new { @class="label label-danger" })
+                        }
+
+                    </td>
+                </tr>
+            }
+
+            </table>
+         
+      <div>
+            <div> @Html.PagedListPager(Model, page => @Url.Action("Index", new { page}))</div>
+        </div>
+        
+ </div>
+
+

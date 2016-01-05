@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "ContactToutokazz";
+    Layout = "~/Views/Shared/_LayoutMail.cshtml";
+}
+
+<table align="center" border="0" cellpadding="10" cellspacing="0" width="600" style="margin-top:10px;margin-bottom:10px;"> 
+    <tr>
+        <td  bgcolor="#fff" style="padding: 10px 0 10px 0;">
+
+            <table align="center"  border="0" cellpadding="0" cellspacing="0" width="80%">
+                <tr>
+                    <td align="center">  <span style="font-family: 'Crimson Text', serif;color:#f99146;font-size:65px;  font-weight:bold; font-style:italic;
+                                   text-shadow: 0 1px 1px rgba(0,0,0,.4);">toutokazz</span><span>(Beta)</span></td>
+                </tr>
+                <tr>
+                    <td align="center"  style="font-size:large;font-style:italic;">
+                        Petites annonces, pour toutes les occasions</td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+    <tr>
+        <td height="30" bgcolor="blue" style="color:#fff; margin-bottom:20px ;font-family: Arial, sans-serif; font-size: 16px;" valign="center" >
+            Message de  : @ViewBag.Email 
+        </td>
+
+    </tr>
+    <tr>
+        <td bgcolor="#fffff">
+            
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:30px; margin-top:20px;font-family: Arial, sans-serif; font-size: 16px;">
+                <tr>
+                    <td style="font-weight:bold">
+                        Message
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @ViewBag.Message
+                    </td>
+                </tr>
+            </table>
+
+            <table border="0" cellpadding="1" cellspacing="0" width="100%" style="margin-bottom:30px;font-family: Arial, sans-serif; font-size: 16px;">
+                <tr>
+                    <td style="font-weight:bold">
+                        Coordonnees
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p> Nom:   @ViewBag.nom <br/>
+                            Prenom:   @ViewBag.prenom <br/>
+                            Email : @ViewBag.Email<br />
+                            Telephone: @ViewBag.Telephone
+                            
+                            </p>
+                       
+                    </td>
+                </tr>
+
+            </table>
+
+        </td></tr>
+    <tr>
+        <td  height="20" bgcolor="blue" style="color:#fff">
+               <small>Copyright &copy; 2013-2014, Toutokaz </small>
+        </td></tr>
+</table>
+

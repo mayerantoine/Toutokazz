@@ -1,0 +1,34 @@
+﻿@model Toutokaz.Domain.Models.tb_ad_immobilier
+@using Toutokaz.WebUI.Helpers
+
+<div class="form-group" id="nbpieces">
+    <label class="col-sm-2 control-label">Nbre de pièces</label>
+    <div class="col-sm-3">
+        @Html.DropDownList("id_nb_pieces", @ViewBag.id_nb_piece as SelectList, "Choisir", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.id_nb_pieces)
+    </div>
+</div>
+
+<div class="form-group" id="nbchambre">
+    <label class="col-sm-2 control-label">Nbre de chambres</label>
+    <div class="col-sm-3">
+        @Html.DropDownList("id_nb_chambre", @ViewBag.id_nb_chambre as SelectList, "Choisir", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.id_nb_chambre)
+    </div>
+</div>
+
+<div class="form-group" id="surface">
+    <label class="col-sm-2 control-label">Surface</label>
+    <div class="col-sm-4 input-group">
+        @Html.TextBoxFor(model => model.surface, new { @class = "form-control" })
+        <div class="input-group-addon">m&sup2;</div>
+    </div>
+</div>
+<div  id="loyer" class="form-group">
+    <label class="col-sm-2 control-label">Loyer</label>
+    <div class="col-sm-4 input-group">
+        @Html.TextBoxFor(model => Model.loyer, new { @class = "form-control" })
+        <div class="input-group-addon">USD</div>
+    </div>
+</div>
+

@@ -1,0 +1,45 @@
+﻿@if (Request.IsAuthenticated) {
+    <text>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                    class="glyphicon glyphicon-user"></span>  @User.Identity.Name
+               <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="@Url.Action("EditProfile", "Account")"><span class="glyphicon glyphicon-user"></span>Votre Profil  </a></li>
+                        <li class="divider"></li>
+                           <li><a href="@Url.Action("ChangePassword", "Account")"><span class="glyphicon glyphicon-lock"></span>Changer mot de passe</a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("LogOut", "Account")"><span class="glyphicon glyphicon-off"></span>Deconnexion</a></li>
+                    </ul>      
+    </text>
+} else {
+       <a href="@Url.Action("login","account")" class="dropdown-toggle" data-toggle="dropdown">Connexion<b class="caret"></b></a>
+              <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                <li>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <form class="form" role="form" method="post" action="@Url.Action("login","Account")" accept-charset="UTF-8" id="login-nav">
+                        <div class="form-group">
+                          <label class="sr-only" for="exampleInputEmail">Adresse Email</label>
+                          <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                          <label class="sr-only" for="exampleInputPassword">Password</label>
+                          <input type="password" class="form-control" id="Password" name="Password" placeholder="Mot de Passe" required>
+                        </div>
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-success btn-block">Connexion</button>
+                        </div>
+                         <div style="font-size:12px;">
+                         @Html.ActionLink("Créer compte particulier","Create", "Account")<br />
+                         @Html.ActionLink("Créer compte pro","CreatePro", "Account")
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    @Html.Action("ExternalLoginButton","account", new { ReturnUrl = ViewBag.ReturnUrl })
+                </li>
+              </ul>
+}

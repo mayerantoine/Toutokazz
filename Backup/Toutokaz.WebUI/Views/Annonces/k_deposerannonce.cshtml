@@ -1,0 +1,164 @@
+﻿@{
+    ViewBag.Title = "k_deposerannonce";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@section categories_menu {
+    @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
+}
+
+<div id="deposerannonce" class="col-lg-12">
+    <h2>Déposer une annonce gratuite</h2>
+    <div>
+        <p>
+            Déposer une annonce sur le site toutokazz est gratuit, elle sera vérifiée par notre équipe de modération avant sa publication sur le site Internet. Par la suite, votre annonce restera en ligne pendant une durée de 60 jours.
+            Consultez nos <a class="slink" href="@Url.Action("conditionsdutilisation","Home")">conditions générales</a> de vente. Si vous êtes nouveau sur Toutokazz,  <a class="slink" href="@Url.Action("create","account")">cliquer pour creer votre compte</a>
+        </p>
+    </div>
+    <form id="frmdeposer" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Catégorie</label>
+            <div class="col-sm-5">
+                <select class="col-sm-8 form-control" data-bind="foreach: categoryBySection, value: selected_section">
+                    <optgroup data-bind="attr: {label: section_title}, foreach: categories">
+                        <option data-bind="text: category_title, option: $data"></option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- Appears when you select something -->
+            <label class="col-sm-2">You have selected</label>
+            <span data-bind="text: selected_category"></span>.<br />
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Vous etes</label>
+            <div class="col-sm-5">
+                <select class="form-control" data-bind="options: account_type ,optionsText :'account_title', optionsCaption:'Choisir',value:selected_account_type"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Departement</label>
+            <div class="col-sm-5">
+                <select class="form-control" data-bind="options: departments ,optionsText :'departement', optionsCaption:'Sélectionnez..',value:selected_department"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Ville</label>
+            <div class="col-sm-5">
+                <select class="form-control" data-bind="options: communesByDepartment, optionsText :'commune', optionsCaption:'Sélectionnez..',value:selected_commune"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Titre</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Description de l'annonce*</label>
+            <div class="col-sm-5">
+                <textarea class="form-control" cols="8" rows="7"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Prix</label>
+            <div class="col-sm-3">
+                <input class="form-control" type="text" />
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" data-bind="options:devise, optionsText:'devise',optionsCaption:'(Devise)', value:selected_devise"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Type</label>
+            <div class="col-sm-3">
+                <select class="form-control" data-bind="options: ads_type ,optionsText :'description', optionsCaption:'(Choisir type )',value:selected_ads_type"></select>
+            </div>
+        </div>
+
+       
+        <div class="form-group" data-bind="if: selected_category() < 2">
+            <label class="col-sm-2 control-label">Marque</label>
+            <div class="col-sm-3">
+                <input class="form-control" type="text" />
+            </div>
+        </div>
+        <div class="form-group" data-bind="if: selected_category() < 2">
+            <label class="col-sm-2 control-label">Modèle</label>
+            <div class="col-sm-3">
+                <input class="form-control" type="text" />
+            </div>
+        </div>
+        <div class="form-group" data-bind="if: selected_category() < 2">
+            <label class="col-sm-2 control-label">Année</label>
+            <div class="col-sm-3">
+                <input class="form-control" type="text" />
+            </div>
+        </div>
+
+        <div class="form-group" data-bind="if: selected_category() < 2">
+            <label class="col-sm-2 control-label">Transmission</label>
+            <div class="col-sm-3">
+                <select class="form-control" data-bind="options: transmission ,optionsText :'transmission', optionsCaption:'(Choisir)',value:selected_transmission"></select>
+            </div>
+        </div>
+
+        <div class="form-group" data-bind="if: selected_category() < 2">
+            <label class="col-sm-2 control-label">Carburant</label>
+            <div class="col-sm-3">
+                <select class="form-control" data-bind="options: carburant ,optionsText :'carburant', optionsCaption:'(Choisir Carburabt)',value:selected_carburant"></select>
+            </div>
+        </div>
+
+        <div class="form-group" data-bind="if: selected_category() < 2">
+            <label class="col-sm-2 control-label">Mileage/km</label>
+            <div class="col-sm-3">
+                <input class="form-control" type="text" data-bind="text:mileage_vehicule" />
+            </div>
+        </div>
+        <div class="form-group" data-bind="if: selected_category() < 2">
+            <label class="col-sm-2 control-label">Condition de l'article</label>
+            <div class="col-sm-3">
+                <select class="form-control" data-bind="options: condition ,optionsText :'condition', optionsCaption:'(Choisir)',value:selected_condition"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Telephone</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Mot de passe</label>
+            <div class="col-sm-5">
+                <input class="form-control" type="password" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+                <div class="checkbox">
+                    <label>
+                        En cliquant sur Valider, vous acceptez nos <a class="slink" href="@Url.Action("conditionsdutilisation","Home")">conditions d'utilisation</a>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+                <button class="btn btn-primary btn-lg" data-bind="click: saveUserAds">Valider la création de votre annonce</button>
+            </div>
+        </div> 
+    </form>
+    </div>

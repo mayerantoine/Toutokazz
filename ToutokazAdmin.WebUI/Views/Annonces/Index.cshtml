@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ToutokazAdmin.WebUI.Models.AnnoncesViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdminPage.cshtml";
+}
+
+ <div class="row"> 
+        <div class="col-lg-offset-8 col-lg-4">
+             <a class="btn btn-primary btn-outline btn-sm" href="@Url.Action("Create","Annonces")"><span class="glyphicon glyphicon-plus"></span>Nouveau</a>
+           
+                       </div>           
+    </div>
+ <div class="col-lg-12"> 
+  <fieldset>
+     <legend>Liste des Annonces</legend>
+ </fieldset> 
+     </div>
+<div class="col-lg-12">
+<table class="table table-condensed table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayName("ID")
+        </th>
+        <th>
+            @Html.DisplayName("Image")
+        </th>
+          <th>
+            @Html.DisplayName("Titre")
+        </th>
+          <th>
+            @Html.DisplayName("Categorie")
+        </th>
+
+        <th>
+            @Html.DisplayName("Creer le")
+        </th>
+        <th>
+            @Html.DisplayName("Expire le")
+        </th>
+
+               <th>
+            @Html.DisplayName("Satus")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id_ad)
+        </td>
+         <td>
+           @* @Html.DisplayFor(modelItem => item.image_path)*@
+             <img  class="imgads" src="@Url.Content(item.image_path)" width="72" height="72" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ad_title)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.category)
+        </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.ad_date_created)
+        </td>
+  
+         <td>
+            @Html.DisplayFor(modelItem => item.ad_date_expired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ad_status)
+        </td>
+        <td>
+            <a class="btn btn-primary btn-outline btn-xs" href="@Url.Action("Details","Annonces",new { id = item.id_ad})"><span class="glyphicon glyphicon-edit"></span> Voir</a>
+            <a class="btn btn-danger btn-outline btn-xs" href="@Url.Action("Delete","Annonces",new { id = item.id_ad})"><span class="glyphicon glyphicon-remove"></span> Supprimer</a>
+                        
+        </td>
+    </tr>
+}
+
+</table>
+ </div>
+

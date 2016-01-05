@@ -1,0 +1,110 @@
+﻿@model Toutokaz.Domain.Models.tb_ads
+@using Toutokaz.WebUI.Helpers
+@{
+    ViewBag.Title = "details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage.cshtml";
+}
+
+@section categories_menu {
+          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
+}
+ <div class="col-lg-12 content-right">
+    <h4>@Html.ActionLink("Retour Mes Annonces","Index","MesAnnonces")</h4>
+    
+  <h3>@Html.Label(Model.ad_title)</h3>
+ <div class="row">
+    <div class="col-md-9">
+         <div class="row">
+                <div class="col-md-12" id="slider">
+                  <div class="col-md-12" id="carousel-bounding-box" style="padding: 0;">
+                    <div id="detailCarousel" class="carousel slide">
+                      <div class="carousel-inner">
+                        <div class="active item" data-slide-number="0">
+                          <img src="@Url.Content(System.Web.Configuration.WebConfigurationManager.AppSettings["PhotosDir"]+ Model.tb_ad_image.FirstOrDefault().image_filename + "?width=800&height=500")" class="img-responsive" />
+                        </div>
+                          @foreach( var item in Model.tb_ad_image) {
+                              var slide = 1;
+                            <div class="item" data-slide-number="@slide">
+                              <img src="@Url.Content(System.Web.Configuration.WebConfigurationManager.AppSettings["PhotosDir"] + item.image_filename + "?width=800&height=500")" class="img-responsive" />
+                            </div>
+                              slide++;
+                          }
+                      </div>
+                      <a class="carousel-control left" href="#detailCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                      <a class="carousel-control right" href="#detailCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+         <div class="row">
+                <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
+                  <ul class="list-inline">
+                        <li><a id="carousel-selector-0" class="selected"><img src="@Url.Content(System.Web.Configuration.WebConfigurationManager.AppSettings["PhotosDir"] + Model.tb_ad_image.FirstOrDefault().image_filename + "?width=80&height=60")" class="img-responsive" /></a></li>
+                           @for(int i=1;i<Model.tb_ad_image.Count;i++){
+                               var ads = Model.tb_ad_image.ElementAt(i);
+                               <li><a id="carousel-selector-@i"><img src="@Url.Content(System.Web.Configuration.WebConfigurationManager.AppSettings["PhotosDir"]+ ads.image_filename + "?width=80&height=60")" class="img-responsive" /></a></li>
+                          }
+                  </ul>    
+                </div> 
+              </div> 
+    </div>
+     <div class="col-md-3">
+    <!--Detail de l'annonce-->
+      <div class="panel panel-info">
+            <div class="panel-heading">
+                <h6>DETAIL DE L'ANNONCE</h6>
+            </div>
+            <div class="panel-body">
+              <table class="table table-condensed table-hover">
+                <tbody style="font-size: 14px;">
+                     <tr>
+                    <td>Code Annonce</td>
+                    <td>@Html.Label(Model.ad_code.ToString())</td>
+                  </tr>
+                  <tr>
+                    <td>Prix</td>
+                    <td><strong>@HttpUtility.HtmlDecode(Model.tb_devise.symbole) @Html.DisplayFor(x=>x.ad_price)</strong></td>
+                  </tr>
+                  <tr>
+                    <td>Status</td>
+                    <td>@Html.Label(Model.tb_ad_status.status)</td>
+                  </tr>
+
+                  <tr>
+                    <td>Catégorie</td>
+                    <td>@Html.Label(Model.tb_category.category_title)</td>
+                  </tr>
+                    <tr>
+                    <td>Annonce crée le </td>
+                    <td>@Html.Encode(Model.ad_date_created.Value.ToShortDateString())</td>
+                  </tr>    
+                      <tr>
+                    <td>Commune</td>
+                    <td>@Html.Label(Model.tb_commune.commune)</td>
+                  </tr>  
+                       <tr>
+                    <td>Département</td>
+                    <td>@Html.Label(Model.tb_departement.departement)</td>
+                  </tr> 
+                </tbody>
+        </table>
+            </div>
+     
+        </div>    
+  
+     </div>
+  </div>
+ <div class="row">
+            <div class="col-md-9">
+              <h4>Description</h4>
+              <p style="text-align: justify;">
+                  @Html.Raw(Model.ad_description)
+              </p>
+            </div>
+          </div>          
+ 
+    
+ 
+ 
+ </div>
+

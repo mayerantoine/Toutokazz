@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Toutokaz.Domain.Models.tb_category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage.cshtml";
+}
+
+ <div class="row"> 
+        <div class="col-lg-offset-8 col-lg-4">
+             <a class="btn btn-primary btn-outline btn-sm" href="@Url.Action("Create","Category")"><span class="glyphicon glyphicon-plus"></span>Nouveau</a>
+           
+                       </div>           
+    </div>
+ <div class="col-lg-10"> 
+  <fieldset>
+     <legend>Liste des Categories</legend>
+ </fieldset> 
+<table class="table table-condensed table-bordered table-striped">
+    <tr>
+        <th>
+            @Html.DisplayName("Section")
+        </th>
+        <th>
+            @Html.DisplayName("Category")
+        </th>
+        <th>
+            @Html.DisplayName("Description")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tb_section.section_title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category_title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.category_desctiption)
+        </td>
+        <td>
+            <a class="btn btn-primary btn-outline btn-xs" href="@Url.Action("Edit","Category",new { id = item.id_category})"><span class="glyphicon glyphicon-edit"></span> Editer</a>
+            <a class="btn btn-danger btn-outline btn-xs" href="@Url.Action("Delete","Category",new { id = item.id_category})"><span class="glyphicon glyphicon-remove"></span> Supprimer</a>
+                        
+        </td>
+    </tr>
+}
+
+</table>
+ </div>

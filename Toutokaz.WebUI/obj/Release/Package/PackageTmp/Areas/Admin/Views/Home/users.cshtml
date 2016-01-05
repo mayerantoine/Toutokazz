@@ -1,0 +1,31 @@
+﻿@model IEnumerable<MembershipUser>
+@{
+    ViewBag.Title = "users";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<div id="userList">
+     <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th></th>      
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {               
+                        <tr>
+                        <td>
+                        </td>
+
+                      </tr>
+                        }
+                        </tbody>
+                 </table>
+
+
+</div>

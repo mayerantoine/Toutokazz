@@ -1,0 +1,39 @@
+﻿@model Toutokaz.WebUI.Models.AccountViewModel
+
+@{
+    ViewBag.Title = "Create.Mobile";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+
+@section Header{
+    <div data-role="header">
+        <div align="center">
+            <img src="~/Content/img/logo-revamp.png" class="logomobile" vspace="2" />
+        </div>
+        <a href="#" data-icon="search" data-iconpos="notext" class="ui-btn-right"></a>
+        <a href="@Url.Action("Index","Home")" data-icon="back" data-iconpos="notext" class="ui-btn-left"></a>
+    </div>
+
+}
+
+<div>
+    <div id="creer-compte">
+        <div style="margin-bottom:25px; margin-top:25px;">
+            @Html.Action("ExternalLoginButtonBig", new { ReturnUrl = ViewBag.ReturnUrl })
+        </div>
+        <div>
+            <h5> LA CRÉATION DE VOTRE COMPTE EST GRATUITE</h5>
+            <p>
+                Ce service vous permet de retrouver toutes vos annonces au même endroit.
+                Déposez à présent plus simplement et plus rapidement vos annonces et améliorez leur gestion.
+            </p>
+
+            <div style="margin-top:20px;margin-bottom:30px;">
+                <h4><span class="glyphicon glyphicon-ok"></span> Pas de frais d’affichage</h4>
+                <h4><span class="glyphicon glyphicon-ok"></span> Pas de commissions</h4>
+                <h4><span class="glyphicon glyphicon-ok"></span> Facile à utiliser</h4>
+                <h4><span class="glyphicon glyphicon-ok"></span> Publicité rapide et efficace</h4>
+            </div>
+        </div>
+    </div>
+</div>

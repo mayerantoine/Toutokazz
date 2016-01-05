@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Toutokaz.Domain.Models.tb_ads>
+@using Toutokaz.WebUI.Helpers
+@using MvcSiteMapProvider.Web.Html
+
+
+     <div class="well well-sm" style="background-color: #FCF8E3;">
+                <div class="row top-classifieds">
+                  @foreach(var item in Model) {
+                    <div class="col-md-2 top-classified">
+                    <div class="thumbnail">
+                      <img  src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+ item.tb_ad_image.FirstOrDefault().image_filename + "?width=250&height=200")" />
+                      <div class="caption">
+                        <p><small>@Html.ActionLink(Html.TruncateDescription(item.ad_title,12).ToString(), "details","Annonces", new { id= item.id_ad},null)</small><br />
+                        <small><strong>@Html.Label(item.ad_price +" ")</strong><span>@Html.Label(item.tb_devise.symbole)</span></small></p>
+                      </div>
+                    </div>
+                        </div>
+                        }
+                  </div>       
+         </div>

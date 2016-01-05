@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "_SearchPage.Mobile";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+
+@using Toutokaz.WebUI.Helpers 
+
+<script type="text/javascript">
+
+    function goBack() {
+   
+        window.history.back();
+    }
+
+</script>
+
+@section Header{
+    <div data-role="header" style="margin-bottom:0">
+        <div align="center">
+            <img src="~/Content/img/logo-revamp.png" class="logomobile" vspace="2" />
+        </div>
+        <a href="@Url.Action("SearchKeywords","annonces")" data-icon="search" data-iconpos="notext" class="ui-btn-right"></a>
+        <a onclick="goBack();" data-icon="back" data-iconpos="notext" class="ui-btn-left"></a>
+    </div>
+
+}
+<div>
+    @using (Ajax.BeginForm("recherche", "Annonces", new AjaxOptions
+               {
+                   InsertionMode = InsertionMode.Replace,
+                   HttpMethod = "GET",
+                   UpdateTargetId = "main-right"
+
+               }, new { id = "frmSearch" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.TextBox("keywords", null, new { @class = "form-control", placeholder = "Que recherchez-vous?" })
+        </div>
+        <div class="form-group">
+            <label for="Categorie">Commune</label>
+            @Html.DropDownList("ad_city", @ViewBag.ad_city as IDictionary<string, IEnumerable<SelectListItem>>, "Toutes les communes", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <label for="Categorie">Catégorie</label>
+            @Html.DropDownList("id_category", @ViewBag.CategoryList as IDictionary<string, IEnumerable<SelectListItem>>, "Toutes les categories", new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-warning btn-lg" value="Rechercher" />
+        </div>
+
+    }
+</div>
+
+<div class="form-group">
+    <a href="@Url.Action("touteslesannonces","annonces")" data-role="button" style="background: #f99146;">Toutes les annonces</a>
+</div>
+

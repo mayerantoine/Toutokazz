@@ -1,0 +1,131 @@
+﻿@model Toutokaz.Domain.Models.tb_ads
+@{
+    ViewBag.Title = " Toutokazz - Details";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@section categories_menu {
+          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
+}
+ <div class="col-lg-12 content-right">
+    <h4>@Html.ActionLink("Retour Mes Annonces","Index","MesAnnonces")</h4>
+    
+  <h3>@Html.Label(Model.ad_title)</h3>
+ <div class="row">
+    <div class="col-md-8">
+         <div class="row">
+                <div class="col-md-12" id="slider">
+                  <div class="col-md-12" id="carousel-bounding-box" style="padding: 0;">
+                    <div id="detailCarousel" class="carousel slide thumbnail">
+                      <div class="carousel-inner">
+ 
+                          @{
+                              int slide = 1;
+                              foreach( var item in Model.tb_ad_image) 
+                              {
+                                  
+                                   if(slide == 1 ) {
+                                      <div class="active item details" data-slide-number="@slide">
+                                          <img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+ (string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" :item.image_filename)+ "?width=800&height=500")" class="img-responsive" />
+                                        </div>                               
+                                   }
+                                   else {
+                                  
+                                <div class="item details" data-slide-number="@slide">
+                                  <img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + (string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename) + "?width=800&height=500")" class="img-responsive" />
+                                </div>
+                                   }
+                                  slide++;
+                              }
+                          }
+                      </div>
+                      <a class="carousel-control left" href="#detailCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                      <a class="carousel-control right" href="#detailCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+         <div class="row">
+                <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
+                  <ul class="list-inline">
+                           @{
+                              int cnt =0; 
+                               foreach(var item in Model.tb_ad_image)
+                               {
+                                   
+                                   if( cnt == 0) {
+                                     <li><a id="carousel-selector-@cnt"  class="selected"><img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + item.image_filename + "?width=80&height=60")" class="img-responsive" /></a></li>
+                                   }
+                                   else{
+          
+                                   <li><a id="carousel-selector-@cnt" ><img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+ item.image_filename + "?width=80&height=60")" class="img-responsive" /></a></li>
+                                }
+                                   cnt++;
+                              }
+                          }
+                  </ul>    
+                </div> 
+          </div>  
+         <div class="row">
+            <div class="col-md-9">
+              <h4>Description</h4>
+              <p style="text-align: justify;">
+                  @Html.Raw(Model.ad_description)
+              </p>
+            </div>
+          </div>      
+    </div>
+     <div class="col-md-4">
+    <!--Detail de l'annonce-->
+      <div class="panel panel-info">
+            <div class="panel-heading">
+                <h6>DETAIL DE L'ANNONCE</h6>
+            </div>
+            <div class="panel-body">
+              <table class="table table-condensed table-hover">
+                <tbody style="font-size: 14px;">
+                     <tr>
+                    <td>Code Annonce</td>
+                    <td>@Html.Label(Model.ad_code.ToString())</td>
+                  </tr>
+                    @if (Model.id_section != 9 && Model.id_section != 19)
+                      {
+                  <tr>
+                    <td>Prix</td>
+                    <td><strong>@HttpUtility.HtmlDecode(Model.tb_devise.symbole) @Html.DisplayFor(x=>x.ad_price)</strong></td>
+                  </tr>
+                    }
+                  <tr>
+                    <td>Status</td>
+                    <td>@Html.Label(Model.tb_ad_status.status)</td>
+                  </tr>
+
+                  <tr>
+                    <td>Catégorie</td>
+                    <td>@Html.Label(Model.tb_category.category_title)</td>
+                  </tr>
+                    <tr>
+                    <td>Annonce crée le </td>
+                    <td>@Html.Encode(Model.ad_date_created.Value.ToShortDateString())</td>
+                  </tr>    
+                      <tr>
+                    <td>Commune</td>
+                    <td>@Html.Label(Model.tb_commune.commune)</td>
+                  </tr>  
+                       <tr>
+                    <td>Département</td>
+                    <td>@Html.Label(Model.tb_departement.departement)</td>
+                  </tr> 
+                </tbody>
+        </table>
+            </div>
+     
+        </div>    
+  
+     </div>
+  </div>
+    
+ 
+    
+ 
+ 
+ </div>

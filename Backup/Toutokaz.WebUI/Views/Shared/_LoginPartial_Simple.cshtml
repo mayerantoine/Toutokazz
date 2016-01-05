@@ -1,0 +1,12 @@
+﻿
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-user"></span>  @User.Identity.Name
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="@Url.Action("EditProfile", "Account")"><span class="glyphicon glyphicon-user"></span>Votre Profil  </a></li>
+        <li class="divider"></li>
+        <li><a href="@Url.Action("ChangePassword", "Account")"><span class="glyphicon glyphicon-lock"></span>Changer mot de passe</a></li>
+        <li class="divider"></li>
+        <li><a href="@Url.Action("LogOut", "Account")"><span class="glyphicon glyphicon-off"></span>Deconnexion</a></li>
+    </ul>

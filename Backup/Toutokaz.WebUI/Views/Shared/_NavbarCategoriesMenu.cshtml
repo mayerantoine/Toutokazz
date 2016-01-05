@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Toutokaz.Domain.Models.tb_section>
+@using Toutokaz.WebUI.Helpers; 
+
+<nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#czsale-navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="czsale-navbar">
+             <ul class="nav navbar-nav ">
+               @foreach(var item in Model){                  
+                <li class="dropdown"><a href="@Url.Action("allannonce", "Annonces", new { id_section=item.id_section, section_title= item.section_title.ToSeoUrl()})" class="dropdown-toggle" >@Html.DisplayName(item.section_title)</a> 
+                             <ul class="dropdown-menu">
+                        @foreach( var subitem in item.tb_category.ToList()) {
+                               <li><a href="@Url.Action("allannonce", "Annonces", new {  id_section=item.id_section, section_title = item.section_title.ToSeoUrl() , id_category=subitem.id_category, category_title= subitem.category_title.ToSeoUrl()})">@Html.DisplayName(subitem.category_title)</a></li>
+                                       
+                        }
+                          </ul>
+                    </li>
+              }                   
+             
+             </ul>  
+        </div>
+      </nav>

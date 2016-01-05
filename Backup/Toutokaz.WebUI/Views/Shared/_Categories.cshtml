@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Toutokaz.Domain.Models.tb_category>
+ @using Toutokaz.WebUI.Helpers; 
+   
+    @foreach (var item in Model) {
+        @Html.ActionLink(item.category_title, "allannonce", "annonces", new { id_category = item.id_category, category_title = item.category_title.ToSeoUrl() }, null)
+             
+    }
+  

@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "confirmationEmail";
+    Layout = "~/Views/Shared/_LayoutMail.cshtml";
+}
+
+<table align="center" border="0" cellpadding="10" cellspacing="0" width="600" style="margin-top:10px;margin-bottom:10px;"> 
+    <tr>
+        <td  bgcolor="#fff" style="padding: 10px 0 10px 0;">
+
+            <table align="center"  border="0" cellpadding="0" cellspacing="0" width="80%">
+                <tr>
+                    <td align="center">   <span style="font-family: 'Crimson Text', serif;color:#f99146;font-size:65px;  font-weight:bold; font-style:italic;
+                                   text-shadow: 0 1px 1px rgba(0,0,0,.4);">toutokazz</span><span>(Beta)</span></td>
+                </tr>
+                <tr>
+                    <td align="center"  style="font-size:large;font-style:italic;">
+                        Petites annonces, pour toutes les occasions</td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+    <tr>
+        <td height="10" bgcolor="blue" style="color:#fff; margin-bottom:20px ;font-family: Arial, sans-serif; font-size: 16px;" valign="center" >
+        </td>
+
+    </tr>
+    <tr>
+        <td bgcolor="#fffff">
+            
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:30px; margin-top:20px;font-family: Arial, sans-serif; font-size: 16px;">
+                <tr>
+                    <td>
+                  
+                        <p> Bonjour,
+
+                         Pour activer votre compte, merci de bien vouloir cliquer sur le lien ci dessous.
+                            @{
+                                //  string adrconfirm = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + "/account/registration/" + ViewBag.token;
+                                string adrconfirm = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + Url.Action("registration", "account", new  { token = ViewBag.token });
+                               string test = adrconfirm;
+                             }
+                                 <a href="@adrconfirm">Activer mon compte</a>
+                            </p>
+                        <p>
+                           Une fois que vous avez active votre compte, vous pourrez, vous connecter ,
+                             rechercher et deposer gratuitement vos annonces!
+                              
+                        </p>
+                           
+                    </td>
+                </tr>
+            </table>
+
+
+            <table  border="0" cellpadding="0" cellspacing="0" width="100%" >
+                <tr>
+                    <td style="font-style:italic;font-size:15px;text-align:left;font-family: Arial, sans-serif;">
+                              
+                        Merci de votre confiance et a tres bientot sur notre site. Cordialement, L'equipe de Toutokazz.com
+                    </td>
+                </tr>
+            </table>
+        </td></tr>
+    <tr>
+        <td  height="20" bgcolor="blue" style="color:#fff">
+               <small>Copyright &copy; 2013-2014, Toutokaz </small>
+        </td></tr>
+</table>
+

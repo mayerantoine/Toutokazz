@@ -1,0 +1,106 @@
+﻿@model Toutokaz.Domain.Models.tb_contact
+@{
+    ViewBag.Title = "Toutokazz - Contactez-nous";
+    ViewBag.page_description = "Toutokazz, Contactez-nous";
+    ViewBag.description = "Toutokazz, Contactez-nous";
+    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/slide-positive-women.jpg");
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@section categories_menu {
+          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
+}
+<script type="text/javascript">
+    function onSuccessContact() {
+        var form = $('#frmContact');
+        form.find("input[type=text], textarea").val("");
+        $('#load').hide();
+    };
+        
+</script>
+
+<div class="col-lg-12">
+    <h3>Contactez-nous</h3>
+    <hr />
+    <div class="col-lg-8">
+     @using (Ajax.BeginForm("contact","Contact", new AjaxOptions { InsertionMode = InsertionMode.Replace, LoadingElementDuration = 1000, UpdateTargetId = "contactmessage", HttpMethod = "Post", LoadingElementId = "load", OnSuccess = "onSuccessContact" }, new { @class = "form-horizontal", id="frmContact" }))
+     {
+           @Html.AntiForgeryToken()
+           @Html.ValidationSummary(true)  
+           <div id="contactmessage" class="contactmessage" style="margin:15px;">
+
+           </div>
+           <div id="load" class="" style="display:none; margin:15px;">
+                 <img src="~/Content/img/toutokazz-loader.gif" />
+           </div>
+               
+           <div class="form-group">
+                @Html.LabelFor(model => model.email, "Votre email*", new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.email, new { @class = "form-control", placeholer="email" })
+                @Html.ValidationMessageFor(model => model.email)
+            </div>
+           </div>
+      
+           <div class="form-group">
+                @Html.LabelFor(model => model.nom, "Votre nom", new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.nom, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.nom)
+            </div>
+           </div>
+         
+           <div class="form-group">
+                @Html.LabelFor(model => model.prenom, "Votre prenom", new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.prenom, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.prenom)
+            </div>
+           </div>
+                  
+           <div class="form-group">
+                @Html.LabelFor(model => model.sujet, "Sujet*", new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.sujet, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.sujet)
+            </div>
+           </div>
+        
+           <div class="form-group">
+                @Html.LabelFor(model => model.message, "Message*", new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextAreaFor(model => model.message, new { @class = "form-control", rows = "8" })
+                @Html.ValidationMessageFor(model => model.message)
+            </div>
+                 </div>
+       
+           <div class="form-group">
+                @Html.LabelFor(model => model.telephone, "Telephone", new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.telephone, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.telephone)
+            </div>
+                </div>
+     
+           <div class="form-group">  
+                      <div class="col-sm-offset-2 col-sm-6">
+                         <input type="submit" value="Envoyer le message" class="btn btn-primary btn-mdd" />
+                           </div>
+                  </div>  
+     }
+     </div>
+</div>
+<div class="col-lg-12">
+    <hr />
+        <h3>A propos de toutokazz</h3>
+    <hr />
+<p>Qui sommes nous?<strong>Toutokazz.com est un site de petites annonces gratuites et généralistes</strong> ciblant les haïtiens vivants en Haïti et ceux de la diaspora. 
+    Son objectif est de mettre en relation ceux qui ont un bien ou service à vendre et ceux qui sont à la recherche de ce bien ou service.</p>
+<p>Le site est créé par un groupe de professionnel haïtien, enregistré au ministère du commerce sous le nom commercial toutokazz appartenant 
+    à l’entreprise Virtual Advertising.
+</p>
+<p>
+    Le site est conçu de manière à ce que vous puissiez déposer une nouvelle annonce en moins de 3 minutes.
+     Il est aussi très facile de retrouver le produit que vous recherchez soit en navigant à travers nos différentes catégories d'annonces ou en utilisant notre moteur de recherche.
+</p>
+</div>

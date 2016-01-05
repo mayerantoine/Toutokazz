@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Toutokaz.Domain.Models.tb_ads>
+ @using Toutokaz.WebUI.Helpers
+
+ <h4>Nouvelles Annonces</h4>
+          <div class="newest-classifieds">
+              @foreach( var ads in Model) {
+            <div class="media">
+              <a class="pull-left" href="#">
+                <img class="media-object" src="@Url.Content(System.Web.Configuration.WebConfigurationManager.AppSettings["PhotosDir"] +ads.tb_ad_image.FirstOrDefault().image_filename  + "?width=72&height=72")"/>
+              </a>
+              <div class="media-body">
+                <p>@Html.ActionLink(ads.ad_title, "details","Annonces", new { id= ads.id_ad},null)</p>
+                <p>@Html.TruncateDescription(ads.ad_description,40)</p>
+              </div>
+            </div>
+              }
+            <p class="text-right show-more"><a href="#">Voir plus &rarr;</a></p>
+          </div>

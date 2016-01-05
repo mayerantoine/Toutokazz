@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="toutokaz_dbModelStoreContainer" CdmEntityContainer="toutokaz_dbEntities">
+    <EntitySetMapping Name="tb_account">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_account">
+        <MappingFragment StoreEntitySet="tb_account">
+          <ScalarProperty Name="id_account" ColumnName="id_account" />
+          <ScalarProperty Name="id_account_type" ColumnName="id_account_type" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="id_commune" ColumnName="id_commune" />
+          <ScalarProperty Name="id_departement" ColumnName="id_departement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_account_type">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_account_type">
+        <MappingFragment StoreEntitySet="tb_account_type">
+          <ScalarProperty Name="id_account_type" ColumnName="id_account_type" />
+          <ScalarProperty Name="account_type" ColumnName="account_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_ad_image">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_ad_image">
+        <MappingFragment StoreEntitySet="tb_ad_image">
+          <ScalarProperty Name="id_image" ColumnName="id_image" />
+          <ScalarProperty Name="id_ad" ColumnName="id_ad" />
+          <ScalarProperty Name="ad_code" ColumnName="ad_code" />
+          <ScalarProperty Name="image_filename" ColumnName="image_filename" />
+          <ScalarProperty Name="image_path" ColumnName="image_path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_ad_option">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_ad_option">
+        <MappingFragment StoreEntitySet="tb_ad_option">
+          <ScalarProperty Name="id_option" ColumnName="id_option" />
+          <ScalarProperty Name="ad_option" ColumnName="ad_option" />
+          <ScalarProperty Name="payant" ColumnName="payant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_ads">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_ads">
+        <MappingFragment StoreEntitySet="tb_ads">
+          <ScalarProperty Name="id_ad" ColumnName="id_ad" />
+          <ScalarProperty Name="id_section" ColumnName="id_section" />
+          <ScalarProperty Name="id_category" ColumnName="id_category" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="ad_title" ColumnName="ad_title" />
+          <ScalarProperty Name="ad_code" ColumnName="ad_code" />
+          <ScalarProperty Name="ad_description" ColumnName="ad_description" />
+          <ScalarProperty Name="ad_status" ColumnName="ad_status" />
+          <ScalarProperty Name="ad_is_published" ColumnName="ad_is_published" />
+          <ScalarProperty Name="ad_name" ColumnName="ad_name" />
+          <ScalarProperty Name="ad_email" ColumnName="ad_email" />
+          <ScalarProperty Name="ad_phone" ColumnName="ad_phone" />
+          <ScalarProperty Name="ad_date_created" ColumnName="ad_date_created" />
+          <ScalarProperty Name="ad_date_expired" ColumnName="ad_date_expired" />
+          <ScalarProperty Name="id_item_condition" ColumnName="id_item_condition" />
+          <ScalarProperty Name="ad_price" ColumnName="ad_price" />
+          <ScalarProperty Name="ad_type" ColumnName="ad_type" />
+          <ScalarProperty Name="id_commune" ColumnName="id_commune" />
+          <ScalarProperty Name="id_account" ColumnName="id_account" />
+          <ScalarProperty Name="id_departement" ColumnName="id_departement" />
+          <ScalarProperty Name="id_devise" ColumnName="id_devise" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_ads_type">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_ads_type">
+        <MappingFragment StoreEntitySet="tb_ads_type">
+          <ScalarProperty Name="id_ad_type" ColumnName="id_ad_type" />
+          <ScalarProperty Name="ad_type" ColumnName="ad_type" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_category">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_category">
+        <MappingFragment StoreEntitySet="tb_category">
+          <ScalarProperty Name="id_category" ColumnName="id_category" />
+          <ScalarProperty Name="id_section" ColumnName="id_section" />
+          <ScalarProperty Name="category_title" ColumnName="category_title" />
+          <ScalarProperty Name="category_desctiption" ColumnName="category_desctiption" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_commune">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_commune">
+        <MappingFragment StoreEntitySet="tb_commune">
+          <ScalarProperty Name="id_commune" ColumnName="id_commune" />
+          <ScalarProperty Name="id_departement" ColumnName="id_departement" />
+          <ScalarProperty Name="commune" ColumnName="commune" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_departement">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_departement">
+        <MappingFragment StoreEntitySet="tb_departement">
+          <ScalarProperty Name="id_departement" ColumnName="id_departement" />
+          <ScalarProperty Name="departement" ColumnName="departement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_devise">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_devise">
+        <MappingFragment StoreEntitySet="tb_devise">
+          <ScalarProperty Name="id_devise" ColumnName="id_devise" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="symbole" ColumnName="symbole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_message">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_message">
+        <MappingFragment StoreEntitySet="tb_message">
+          <ScalarProperty Name="id_message" ColumnName="id_message" />
+          <ScalarProperty Name="id_ad" ColumnName="id_ad" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="email_from" ColumnName="email_from" />
+          <ScalarProperty Name="date_received" ColumnName="date_received" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_section">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_section">
+        <MappingFragment StoreEntitySet="tb_section">
+          <ScalarProperty Name="id_section" ColumnName="id_section" />
+          <ScalarProperty Name="section_title" ColumnName="section_title" />
+          <ScalarProperty Name="section_description" ColumnName="section_description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_user_profile">
+      <EntityTypeMapping TypeName="toutokaz_dbModel.tb_user_profile">
+        <MappingFragment StoreEntitySet="tb_user_profile">
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="pseudo" ColumnName="pseudo" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

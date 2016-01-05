@@ -1,0 +1,30 @@
+﻿@model  IEnumerable<Toutokaz.Domain.Models.tb_commune>
+@using MvcSiteMapProvider.Web.Html
+@using PagedList.Mvc
+
+<hr />
+<div class="row bottom-menu" style="background-color:#eeeeee;padding:10px;">
+    <h5 style="margin-left:10px;"><strong>Villes Principales :</strong> </h5>
+    <div class="col-md-12">
+        <div class="col-md-3">
+            @{
+
+                int cnt = 0;
+                foreach (var commune in Model)
+                {
+
+                    if (cnt++ % 4 == 0 && cnt > 1)
+                    {
+                        @:</div><div class="col-md-3">
+                     }
+
+                    <span>@Html.ActionLink(commune.commune, "allannonce", "annonces", new { ad_city = commune.id_commune, commune_title = commune.commune},null)</span>
+
+
+                }
+
+            }
+        </div>
+
+    </div>
+</div>

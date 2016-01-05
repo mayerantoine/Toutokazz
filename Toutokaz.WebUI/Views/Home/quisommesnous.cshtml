@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Toutokazz - Qui sommes nous";
+    ViewBag.description = "Toutokazz, qui sommes nous";
+    ViewBag.motscles = "toutokazz, toutokaz, annonces, haiti, classified ads, ads,site annonce, site annonces, petites, annonces,gratuites";
+    ViewBag.page_description = "Toutokazz, qui sommes nous";
+    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/slide-positive-women.jpg");
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@section open_graph_tags{
+    @Html.Partial("_OpenGraphTag")
+}
+
+@section categories_menu {
+          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
+}
+
+<div class="col-lg-12">
+    <h3>Qui sommes nous?</h3>
+    <hr />
+<p><strong>Toutokazz.com est un site de petites annonces gratuites et généralistes</strong> ciblant les haïtiens vivants en Haïti et ceux de la diaspora. 
+    Son objectif est de mettre en relation ceux qui ont un bien ou service à vendre et ceux qui sont à la recherche de ce bien ou service.</p>
+<p>Le site est créé par un groupe de professionnel haïtien, enregistré au ministère du commerce sous le nom commercial toutokazz appartenant 
+    à l’entreprise Virtual Advertising Group.
+</p>
+<p>
+    Le site est conçu de manière à ce que vous puissiez déposer une nouvelle annonce en moins de 3 minutes.
+     Il est aussi très facile de retrouver le produit que vous recherchez soit en navigant à travers nos différentes catégories d'annonces ou en utilisant notre moteur de recherche.
+</p>
+<p>
+    Sur Toutokazz.com, nous permettons de déposer des annonces dans plus de<strong> 40 catégories et sous catégories</strong> . Les annonces sont révisées avant mise en ligne afin de s'assurer de leur qualité et du respect des règles de diffusion.
+</p>
+
+   <h4> Catégories</h4>
+    <ul>
+        <li>Véhicules</li>
+        <li>Immobilier</li>
+        <li>Vêtements et accessoires</li>
+        <li>Maison et Mode</li>
+        <li>Multimédia</li>
+        <li>Loisirs</li>
+        <li>Enfance</li>
+        <li>Matériels professionnels</li>
+        <li>Cours et Formation</li>
+        <li>Service d’aide à la personne</li>
+    </ul>
+
+<p>Notre ambition est d’être <strong> le meilleur service de petites annonces en ligne </strong>pour les particuliers, 
+    les vendeurs indépendants et les entreprises en Haïti, à travers<strong> un site simple, personnalisable et conviviale.</strong> </p> 
+<p><strong>Pour les particuliers</strong> nous offrons la possibilité de rentabiliser tous les objets d’occasions en bonne état que vous avez à la maison, 
+    il suffit de prendre une photo avec votre téléphone et poster une annonce gratuite sur toutokazz.com pour trouver un acheteur.</p>
+<p><strong>Pour les vendeurs indépendants</strong>, démarcheurs, spécialiste en marketing de réseau  
+    toutokazz.com offre l’opportunité d’exposer les produits que vous vendez ou démarché a un large public  et d’avoir une vitrine gratuite sur le net.</p>
+<p>
+<strong>Pour les entreprises (dealers, magasins, store, concessionnaires, spécialiste de l’immobilier)</strong> 
+    toutokazz offre l’interface idéale sur le net pour présenter les nouveaux produits, les produits à la mode et les spéciaux rabais avec un service dédié vous permettant de mettre à jour votre vitrine.</p>
+
+<p>Nous vous remercions de visiter notre site et souhaitons vous retrouvez parmi nos membres.
+     L’équipe de toutokazz vous souhaite bonne navigation et espère que le site va améliorer vote expérience d’achat et de vente en Haïti.
+</p>
+
+<i><strong>A bientôt sur toutokazz.com</strong></i>
+</div>
+
+

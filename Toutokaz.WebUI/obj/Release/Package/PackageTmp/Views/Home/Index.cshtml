@@ -1,0 +1,67 @@
+﻿@model Toutokaz.WebUI.Models.HomePageModel
+
+@{
+    ViewBag.Title = "Toutokazz - Site de petites annonces gratuites, le meilleur d'Haiti";
+    ViewBag.description = "Bienvenue sur Toutokazz, le meilleur site de petites annonces d'Haiti";
+    ViewBag.motscles = "toutokazz,toutokaz, haiti, classified ads,site annonces, petites, annonces, annonces gratuites, immobilier, voiture, auto, moto, annonces immobilier, vêtements";
+    ViewBag.page_description = "Toutokazz, le meilleur site de petites annonces d'Haiti. Avec toutokazz, vendez facilement et rapidement vos biens et objet d''occasions sur internet";
+    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/Banner1a.jpg");
+    
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@section open_graph_tags{
+    @Html.Partial("_OpenGraphTag")
+}
+
+@section categories_menu {
+    @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
+}
+
+@section left{
+    @{  Html.RenderAction("_GetSearchAds", "Annonces");}
+
+    <div id="fblike" class="fb-like-box hidden-xs" data-href="https://facebook.com/toutokazz" data-width="250" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+    <div style="margin-top:20px;" class="hidden-xs">
+        <a href="@Url.Action("Moncompte","account")">
+            <img src="@Url.Content("~/Content/img/decouvir-sites.png?width=250&height=250")" alt="Decouvrez le meilleur site d'annonces' toutokazz" />
+        </a>
+    </div>
+}
+<div id="main-right">
+    <div class="col-lg-9 content-right">
+        <div id="main-carousel" class="carousel slide hidden-xs">
+            <!-- class of slide for animation -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="@Url.Content("~/Content/img/slides/Banner1a.jpg")" alt="Toutokazz-Trouver la bonne affaire pour toutes les occasions.slide-positive-women" />
+                    <div class="carousel-caption-slide1">
+                        <div><a class="btn btn-lg round btn-warning btn-slide" href="@Url.Action("touteslesannonces","Annonces")" role="button">Voir toutes les annonces</a></div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="@Url.Content("~/Content/img/slides/Banner2a.jpg")" alt="Toutokazz-Vendez facilement et rapidemnet vos biens et objet d'occasions sur internet.slide-particulier-solution" />
+                    <div class="carousel-caption-slide2">
+                        <p><a class="btn btn-lg round btn-warning btn-slide" href="@Url.Action("Create","account")" role="button">Créer un compte particulier</a></p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="@Url.Content("~/Content/img/slides/Banner3a.jpg")" alt="Toutokazz-Services et espaces professionnels dedies pour exposer vos produits sur internet.slide-pro-businessman" />
+                    <div class="carousel-caption-slide3">
+                        <p><a class="btn btn-lg round btn-warning btn-slide" href="@Url.Action("CreatePro","account")" role="button">Créer un compte professionnel</a></p>
+
+                    </div>
+                </div>
+            </div><!-- /.carousel-inner -->
+            <!--  Next and Previous controls below
+                  href values must reference the id for this carousel -->
+            <a class="carousel-control left" href="#main-carousel" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#main-carousel" data-slide="next">&rsaquo;</a>
+        </div>
+
+        @Html.Partial("_RecommendedAnnonces", Model.ImgNew)
+
+        @Html.Partial("_CategoryBySection", Model.sectionList)
+
+    </div>
+</div>

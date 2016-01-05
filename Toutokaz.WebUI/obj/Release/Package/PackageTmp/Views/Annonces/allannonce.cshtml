@@ -1,0 +1,35 @@
+﻿@model Toutokaz.WebUI.Models.CategoryPageModel
+
+@{
+    ViewBag.description = "Toutes les annonces gratuites  Haïti";
+    ViewBag.motscles = "toutokazz,toutokaz, Déposer,annonces, annonces gratuites, haiti, classified ads, ads,site annonce, site annonces, petites annonces";
+    ViewBag.page_description = "Toutokazz - Toutes les annonces gratuites  Haïti";
+    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/slide-positive-women.jpg");
+    
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@section open_graph_tags{
+
+    @Html.Partial("_OpenGraphTag")
+}
+
+@section categories_menu {
+
+          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
+}
+
+@section left{
+
+       @Html.Partial("_SearchKeywords") 
+    
+    <div style="margin-top:20px;" class="hidden-xs">
+        <a href="@Url.Action("publiezannonce","annonces")">
+            <img src="@Url.Content("~/Content/img/jedepose-annonce.png?width=250&height=250")" alt="Decouvrez le meilleur site d'annonces em Haiti toutokazz" />
+        </a>
+    </div>
+}
+
+<div id="main-right">
+   @Html.Partial("_contentRight",Model)
+</div>
