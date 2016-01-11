@@ -16,10 +16,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <!--[if lt IE 9]
-        <script src="~/Scripts/html5shiv.js"  type="text/javascript"></script>"></script>
+        <script src="~/Scripts/html5shiv.js"  type="text/javascript"></script>"
         <script src="~/Scripts/respond.min.js" type="text/javascript"></script>
     <![endif]-->
-     @RenderSection("open_graph_tags", false)><link href="~/Content/css/czsale.css" rel="stylesheet" />
+    @RenderSection("open_graph_tags", false)
+    <link href="~/Content/css/czsale.css" rel="stylesheet" />
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/css/czsale-carousel.css" rel="stylesheet" />
     <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
@@ -30,10 +31,6 @@
     <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
     <link rel="icon" href="~/favicon.ico" type="image/x-icon">
 
-    <noscript>
-        For full functionality of this site it is necessary to enable JavaScript.
-        Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.
-    </noscript>
     @RenderSection("conversion_script", false)
 </head>
 <body>
@@ -193,7 +190,7 @@
              src="https://www.facebook.com/tr?id=406551896208739&ev=PageView&noscript=1" />
     </noscript>
     <!-- End Facebook Pixel Code -->
-    <script src="~/Scripts/jquery-2.0.3.js"></script>
+    <script src="~/Scripts/jquery-2.0.3.min.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>

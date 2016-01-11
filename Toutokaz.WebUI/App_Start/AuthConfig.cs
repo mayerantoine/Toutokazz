@@ -25,20 +25,21 @@ namespace Toutokaz.WebUI
             FacebooksocialData.Add("Icon", "~/Content/img/facebook_connect2.jpg");
            
             
-     OAuthWebSecurity.RegisterFacebookClient(
+   /*  OAuthWebSecurity.RegisterFacebookClient(
                appId: "330628387121240",
                appSecret: "5e2bf8fc2bdcb4aff090fe693c42f0db",
                 displayName: "Facebook",
                 extraData: FacebooksocialData
-               );
+               );*/
+
 
             //staging-touokazz
-       /*      OAuthWebSecurity.RegisterFacebookClient(
+       OAuthWebSecurity.RegisterFacebookClient(
                     appId: "796936470401242",
                     appSecret: "0ad53c54cccc914787dd43aedbe0d351",
                      displayName: "Facebook",
                      extraData: FacebooksocialData
-                    );*/
+                    );
 
             // production toutokazz
          /*  OAuthWebSecurity.RegisterFacebookClient(

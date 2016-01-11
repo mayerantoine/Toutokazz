@@ -25,6 +25,6 @@ C:\webdev\Toutokaz\Toutokaz.Domain\bin\Debug\EntityFramework.dll
 C:\webdev\Toutokaz\Toutokaz.Domain\bin\Debug\EntityFramework.SqlServer.dll
 C:\webdev\Toutokaz\Toutokaz.Domain\bin\Debug\EntityFramework.xml
 C:\webdev\Toutokaz\Toutokaz.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\webdev\Toutokaz\Toutokaz.Domain\obj\Debug\Toutokaz.Domain.csprojResolveAssemblyReference.cache
 C:\webdev\Toutokaz\Toutokaz.Domain\obj\Debug\Toutokaz.Domain.dll
 C:\webdev\Toutokaz\Toutokaz.Domain\obj\Debug\Toutokaz.Domain.pdb
-C:\webdev\Toutokaz\Toutokaz.Domain\obj\Debug\Toutokaz.Domain.csprojResolveAssemblyReference.cache

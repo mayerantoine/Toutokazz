@@ -238,7 +238,6 @@ C:\webdev\Toutokaz\Toutokaz.WebUI\bin\EntityFramework.xml
 C:\webdev\Toutokaz\Toutokaz.WebUI\bin\EntityFramework.SqlServer.xml
 C:\webdev\Toutokaz\Toutokaz.WebUI\bin\ImageResizer.xml
 C:\webdev\Toutokaz\Toutokaz.WebUI\bin\ImageResizer.Mvc.xml
-C:\webdev\Toutokaz\Toutokaz.WebUI\bin\Microsoft.Web.WebPages.OAuth.xml
 C:\webdev\Toutokaz\Toutokaz.WebUI\bin\Newtonsoft.Json.xml
 C:\webdev\Toutokaz\Toutokaz.WebUI\bin\Ninject.pdb
 C:\webdev\Toutokaz\Toutokaz.WebUI\bin\Ninject.xml
@@ -258,8 +257,6 @@ C:\webdev\Toutokaz\Toutokaz.WebUI\bin\System.Web.WebPages.Razor.xml
 C:\webdev\Toutokaz\Toutokaz.WebUI\bin\System.Net.Http.Formatting.xml
 C:\webdev\Toutokaz\Toutokaz.WebUI\bin\System.Web.Http.xml
 C:\webdev\Toutokaz\Toutokaz.WebUI\bin\System.Web.Http.WebHost.xml
-C:\webdev\Toutokaz\Toutokaz.WebUI\bin\WebMatrix.Data.xml
-C:\webdev\Toutokaz\Toutokaz.WebUI\bin\WebMatrix.WebData.xml
 C:\webdev\Toutokaz\Toutokaz.WebUI\bin\Org.Mentalis.Security.Cryptography.xml
 C:\webdev\Toutokaz\Toutokaz.WebUI\bin\Mono.Math.xml
 C:\webdev\Toutokaz\Toutokaz.WebUI\obj\Debug\Toutokaz.WebUI.csprojResolveAssemblyReference.cache

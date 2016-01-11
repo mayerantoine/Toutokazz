@@ -13,9 +13,6 @@
     @Html.Partial("_OpenGraphTag")
 }
 
-@section categories_menu {
-          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
-}
-@ViewBag.code
+
 
 @Html.Partial("_CreateAnnonce", Model)

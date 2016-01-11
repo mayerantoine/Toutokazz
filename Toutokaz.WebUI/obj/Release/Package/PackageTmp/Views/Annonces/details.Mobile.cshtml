@@ -25,8 +25,8 @@
         <div align="center">
             <img src="~/Content/img/logo-revamp-white.png" class="logomobile" vspace="2" />
         </div>
-        <a href="#" data-icon="search" data-iconpos="notext" class="ui-btn-right"></a>
-        <a onclick="goBack();" data-icon="back" data-iconpos="notext" class="ui-btn-left"></a>
+        <a href="@Url.Action("SearchKeywords","annonces")" data-icon="search" data-iconshadow="false" data-iconpos="notext" class="ui-btn-right ui-icon-nodisc"></a>
+        <a href="@Url.Action("index","home")" class="ui-btn ui-btn-left ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext"></a>
     </div>
 
 }

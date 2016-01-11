@@ -38,7 +38,7 @@ namespace Toutokaz.WebUI.Mailers
             ViewBag.adTitle = contact.ad_title;
             return Populate(x =>
             {
-                x.Subject = "Toutokazz- message de confirmation";
+                x.Subject = "Toutokazz - message de confirmation";
                 x.ViewName = "ContactVisiteurConfirmation";
                 x.To.Add("equipe@toutokazz.com");
                 x.To.Add(contact.Email);
