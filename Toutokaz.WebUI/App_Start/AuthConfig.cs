@@ -34,20 +34,20 @@ namespace Toutokaz.WebUI
 
 
             //staging-touokazz
-       OAuthWebSecurity.RegisterFacebookClient(
+      /* OAuthWebSecurity.RegisterFacebookClient(
                     appId: "796936470401242",
                     appSecret: "0ad53c54cccc914787dd43aedbe0d351",
                      displayName: "Facebook",
                      extraData: FacebooksocialData
-                    );
+                    );*/
 
             // production toutokazz
-         /*  OAuthWebSecurity.RegisterFacebookClient(
+          OAuthWebSecurity.RegisterFacebookClient(
                 appId: "755464477881775",
                 appSecret: "927e3101c3da4a113c92ea763eacbef7",
                  displayName: "Facebook",
                  extraData: FacebooksocialData
-                );*/
+                );
 
 
             //OAuthWebSecurity.RegisterGoogleClient();

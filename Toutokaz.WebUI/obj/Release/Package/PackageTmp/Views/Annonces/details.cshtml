@@ -125,13 +125,13 @@
                                                 <td>Carburant</td>
                                                 <td class="detail-font-size">
                                                     @if (c.id_carburant == 1)
-                                                    {  @Html.Display("Gazoline")}
+                                                    {  @Html.Label("Gazoline")}
                                                     else if (c.id_carburant == 2)
-                                                    { @Html.Display("Diesel") }
+                                                    { @Html.Label("Diesel") }
                                                     else if (c.id_carburant == 3)
-                                                    { @Html.Display("Propane") }
+                                                    { @Html.Label("Propane") }
                                                     else
-                                                    {  @Html.Display("NA")}
+                                                    {  @Html.Label("NA")}
                                                 </td>
                                             </tr>
                                             <tr>
@@ -165,9 +165,10 @@
                                                 <td>Surface</td>
                                                 <td class="detail-font-size">@Html.DisplayFor(m => c.surface)<label> m&sup2;</label></td>
                                             </tr>
+                                           
                                             <tr>
                                                 <td>Loyer</td>
-                                                <td class="detail-font-size">@Html.DisplayFor(m => c.loyer) <label> m&sup2;</label></td>
+                                                <td class="detail-font-size">@Html.DisplayFor(m => c.loyer) <label> USD </label></td>
                                             </tr>
 
                                         }

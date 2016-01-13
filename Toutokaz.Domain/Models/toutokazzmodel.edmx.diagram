@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="toutokaz_dbModel.tb_ad_image" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="toutokaz_dbModel.tb_ads_type" Width="1.5" PointX="1.875" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="toutokaz_dbModel.tb_category" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="toutokaz_dbModel.tb_commune" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="toutokaz_dbModel.tb_commune" Width="1.5" PointX="2.75" PointY="17" IsExpanded="true" />
         <EntityTypeShape EntityType="toutokaz_dbModel.tb_departement" Width="1.5" PointX="0.75" PointY="17" IsExpanded="true" />
         <EntityTypeShape EntityType="toutokaz_dbModel.tb_devise" Width="1.5" PointX="5.625" PointY="17" IsExpanded="true" />
         <EntityTypeShape EntityType="toutokaz_dbModel.tb_message" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />

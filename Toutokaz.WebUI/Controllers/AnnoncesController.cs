@@ -133,6 +133,7 @@ namespace Toutokaz.WebUI.Controllers
 
             if (!Request.IsAuthenticated)
             {
+                // si le visiteur est loggedin
                 if (!authProvider.Authenticate(deposer.login.Email, deposer.login.Password))
                 {
                     ModelState.AddModelError("", "Vous devez vous connecter pour deposer une annonce.Votre email ou mot de passe est invalide.");
@@ -260,7 +261,8 @@ namespace Toutokaz.WebUI.Controllers
                     imageRepository.Save();
 
                     /// ad vehicule
-                    if (deposer.vehicule != null)
+                    if (deposer.vehicule != null &&
+                            (deposer.modelannonce.id_category == 1 || deposer.modelannonce.id_category == 3 || deposer.modelannonce.id_category == 4))
                     {
                         tb_ad_vehicule ads_vehicule = new tb_ad_vehicule
                         {
@@ -278,7 +280,8 @@ namespace Toutokaz.WebUI.Controllers
                     }
 
                     /// ad immobilier
-                    if (deposer.immobilier != null)
+                    if (deposer.immobilier != null &&
+                            ((deposer.modelannonce.id_category >= 5 && deposer.modelannonce.id_category <= 9) || deposer.modelannonce.id_category == 63 || deposer.modelannonce.id_category == 64))
                     {
                         tb_ad_immobilier ads_immobilier = new tb_ad_immobilier
                         {
@@ -294,7 +297,8 @@ namespace Toutokaz.WebUI.Controllers
                     }
 
                     /// ad chassure
-                    if (deposer.chaussure != null)
+                    if (deposer.chaussure != null &&
+                            (deposer.modelannonce.id_category == 43))
                     {
                         tb_ad_chaussure ads_chaussure = new tb_ad_chaussure
                         {
@@ -332,7 +336,8 @@ namespace Toutokaz.WebUI.Controllers
                         imageRepository.Add(ads_photo);
                         imageRepository.Save();
 
-                        if (deposer.vehicule != null)
+                        if (deposer.vehicule != null &&
+                            (deposer.modelannonce.id_category == 1 || deposer.modelannonce.id_category == 3 || deposer.modelannonce.id_category == 4))
                         {
                             tb_ad_vehicule ads_vehicule = new tb_ad_vehicule
                             {
@@ -350,7 +355,8 @@ namespace Toutokaz.WebUI.Controllers
                         }
 
                         /// ad immobilier
-                        if (deposer.immobilier != null)
+                        if (deposer.immobilier != null &&
+                            ((deposer.modelannonce.id_category >= 5 && deposer.modelannonce.id_category <= 9) || deposer.modelannonce.id_category == 63 || deposer.modelannonce.id_category == 64))
                         {
                             tb_ad_immobilier ads_immobilier = new tb_ad_immobilier
                             {
@@ -366,7 +372,8 @@ namespace Toutokaz.WebUI.Controllers
                         }
 
                         /// ad chassure
-                        if (deposer.chaussure != null)
+                        if (deposer.chaussure != null &&
+                            (deposer.modelannonce.id_category == 43))
                         {
                             tb_ad_chaussure ads_chaussure = new tb_ad_chaussure
                             {
@@ -431,16 +438,16 @@ namespace Toutokaz.WebUI.Controllers
                         {
                             if (file.image != null)
                             {
-                            // String serverpath = WebConfigurationManager.AppSettings["ServerPath"]+"/large/";
-                            // String serverthumbnail = WebConfigurationManager.AppSettings["ServerPath"]+"/thumbnail/";
+                               //String serverpath = WebConfigurationManager.AppSettings["ServerPath"]+"/large/";
+                               //String serverthumbnail = WebConfigurationManager.AppSettings["ServerPath"]+"/thumbnail/";
                                var fileName = Path.GetFileName(file.image.FileName); 
                                var extension = Path.GetExtension(fileName);
                                var guid = Guid.NewGuid().ToString();
                              //var directory = "adsphotos";
-                               var filepathlarge = Path.Combine(Server.MapPath("~/Photos/large/"), fileName.ToSeoUrl() +guid + extension);
-                           //  var filepathlarge = Path.Combine(serverpath, fileName.ToSeoUrl() + guid + extension);
+                              var filepathlarge = Path.Combine(Server.MapPath("~/Photos/large/"), fileName.ToSeoUrl() +guid + extension);
+                            // var filepathlarge = Path.Combine(serverpath, fileName.ToSeoUrl() + guid + extension);
 
-                               var filepaththumbnail = Path.Combine(Server.MapPath("~/Photos/thumbnail/"), fileName.ToSeoUrl() +guid + extension);
+                              var filepaththumbnail = Path.Combine(Server.MapPath("~/Photos/thumbnail/"), fileName.ToSeoUrl() +guid + extension);
                             // var filepaththumbnail = Path.Combine(serverthumbnail, fileName.ToSeoUrl() + guid + extension);
 
                                 //var filepathlarge = Path.Combine(Server.MapPath("~/Photos/large/"), guid + extension);
@@ -482,9 +489,12 @@ namespace Toutokaz.WebUI.Controllers
                         }
 
 
-                        if (deposer.vehicule != null)
+                        if (deposer.vehicule != null &&
+                            (deposer.modelannonce.id_category == 1 || deposer.modelannonce.id_category == 3 || deposer.modelannonce.id_category == 4)
+                            )
                         {
                             tb_ad_vehicule ads_vehicule = new tb_ad_vehicule
+
                             {
                                 id_ad = deposer.modelannonce.id_ad,
                                 annee = deposer.vehicule.annee,
@@ -500,7 +510,9 @@ namespace Toutokaz.WebUI.Controllers
                         }
 
                         /// ad immobilier
-                        if (deposer.immobilier != null)
+                        if (deposer.immobilier != null && 
+                            ((deposer.modelannonce.id_category >=5 && deposer.modelannonce.id_category <=9) || deposer.modelannonce.id_category==63 || deposer.modelannonce.id_category== 64)
+                                )
                         {
                             tb_ad_immobilier ads_immobilier = new tb_ad_immobilier
                             {
@@ -516,7 +528,9 @@ namespace Toutokaz.WebUI.Controllers
                         }
 
                         /// ad chassure
-                        if (deposer.chaussure != null)
+                        if (deposer.chaussure != null &&
+                            (deposer.modelannonce.id_category == 43)
+                            )
                         {
                             tb_ad_chaussure ads_chaussure = new tb_ad_chaussure
                             {
@@ -531,7 +545,7 @@ namespace Toutokaz.WebUI.Controllers
                         }
 
                         //send email to toutokazz team
-                        _annonceMailer.deposerannonce(User.Identity.Name, deposer.modelannonce.ad_title, deposer.modelannonce.ad_description).Send();
+                      //  _annonceMailer.deposerannonce(User.Identity.Name, deposer.modelannonce.ad_title, deposer.modelannonce.ad_description).Send();
 
                         string errormsg1 = "OK";
                         return Json(errormsg1, JsonRequestBehavior.AllowGet);
@@ -560,7 +574,7 @@ namespace Toutokaz.WebUI.Controllers
 
                 ModelState.AddModelError("", raise.Message);
                 string errormsgval = "Une erreur a été détectée lors de la validation des données saisies.";
-                return Json(errormsgval, JsonRequestBehavior.AllowGet);
+                return Json(raise.Message + raise.StackTrace, JsonRequestBehavior.AllowGet);
             
             }
             catch (Exception exp)
@@ -568,7 +582,7 @@ namespace Toutokaz.WebUI.Controllers
          
                 ModelState.AddModelError("", exp.Message);
                 string errormsg3 = "Une erreur a été détectée  dans les valeurs saisies.";
-                return Json(errormsg3+";"+exp.Message, JsonRequestBehavior.AllowGet);
+                return Json(errormsg3+";"+exp.InnerException.Source+";"+exp.InnerException.StackTrace, JsonRequestBehavior.AllowGet);
             }
 
            
