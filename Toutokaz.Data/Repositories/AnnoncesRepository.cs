@@ -246,7 +246,7 @@ namespace Toutokaz.Data.Repositories
 
         public IEnumerable<tb_ads> GetAdsByAnnonceur(int id) 
         {
-            var query = _db.tb_ads.Where(x => x.id_account == id);
+            var query = _db.tb_ads.Where(x => x.id_account == id && x.ad_status == 1) ;
 
             return query.ToList();
         }
