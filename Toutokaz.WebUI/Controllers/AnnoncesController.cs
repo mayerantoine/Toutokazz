@@ -438,17 +438,17 @@ namespace Toutokaz.WebUI.Controllers
                         {
                             if (file.image != null)
                             {
-                               String serverpath = WebConfigurationManager.AppSettings["ServerPath"]+"/large/";
-                               String serverthumbnail = WebConfigurationManager.AppSettings["ServerPath"]+"/thumbnail/";
+                               //String serverpath = WebConfigurationManager.AppSettings["ServerPath"]+"/large/";
+                              // String serverthumbnail = WebConfigurationManager.AppSettings["ServerPath"]+"/thumbnail/";
                                var fileName = Path.GetFileName(file.image.FileName); 
                                var extension = Path.GetExtension(fileName);
                                var guid = Guid.NewGuid().ToString();
                              //var directory = "adsphotos";
-                              //var filepathlarge = Path.Combine(Server.MapPath("~/Photos/large/"), fileName.ToSeoUrl() +guid + extension);
-                            var filepathlarge = Path.Combine(serverpath, fileName.ToSeoUrl() + guid + extension);
+                              var filepathlarge = Path.Combine(Server.MapPath("~/Photos/large/"), fileName.ToSeoUrl() +guid + extension);
+                            //var filepathlarge = Path.Combine(serverpath, fileName.ToSeoUrl() + guid + extension);
 
-                             // var filepaththumbnail = Path.Combine(Server.MapPath("~/Photos/thumbnail/"), fileName.ToSeoUrl() +guid + extension);
-                            var filepaththumbnail = Path.Combine(serverthumbnail, fileName.ToSeoUrl() + guid + extension);
+                             var filepaththumbnail = Path.Combine(Server.MapPath("~/Photos/thumbnail/"), fileName.ToSeoUrl() +guid + extension);
+                            //var filepaththumbnail = Path.Combine(serverthumbnail, fileName.ToSeoUrl() + guid + extension);
 
                                 //var filepathlarge = Path.Combine(Server.MapPath("~/Photos/large/"), guid + extension);
                                 //var filepathmedium = Path.Combine(Server.MapPath("~/Photos/medium/"), guid + extension);

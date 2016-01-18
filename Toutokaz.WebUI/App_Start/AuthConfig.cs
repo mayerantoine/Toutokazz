@@ -25,12 +25,12 @@ namespace Toutokaz.WebUI
             FacebooksocialData.Add("Icon", "~/Content/img/facebook_connect2.jpg");
            
             
-   /*  OAuthWebSecurity.RegisterFacebookClient(
+     OAuthWebSecurity.RegisterFacebookClient(
                appId: "330628387121240",
                appSecret: "5e2bf8fc2bdcb4aff090fe693c42f0db",
                 displayName: "Facebook",
                 extraData: FacebooksocialData
-               );*/
+               );
 
 
             //staging-touokazz
@@ -42,12 +42,12 @@ namespace Toutokaz.WebUI
                     );*/
 
             // production toutokazz
-          OAuthWebSecurity.RegisterFacebookClient(
+         /* OAuthWebSecurity.RegisterFacebookClient(
                 appId: "755464477881775",
                 appSecret: "927e3101c3da4a113c92ea763eacbef7",
                  displayName: "Facebook",
                  extraData: FacebooksocialData
-                );
+                );*/
 
 
             //OAuthWebSecurity.RegisterGoogleClient();

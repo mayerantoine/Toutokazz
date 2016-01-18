@@ -894,7 +894,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Photos\large\" />
     <Folder Include="Photos\thumbnail\" />
-    <Folder Include="Views\Mobile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
