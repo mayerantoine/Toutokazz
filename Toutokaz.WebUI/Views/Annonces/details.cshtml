@@ -20,7 +20,8 @@
         var form = $('#contactAnnonceur');
         form.find("input[type=text], textarea").val("");
         $('#load').hide();
-    };
+    }; 
+
 
 </script>
 <div class="col-lg-12 content-right">
@@ -220,7 +221,18 @@
                 {
                         <span><a href="@Url.Action("vitrine", "annonces", new { id = Model.id_account , annonceurname = Model.tb_account.nom_entreprise.ToSeoUrl() })">Voir la vitrine de @Model.tb_account.nom_entreprise</a></span>
                 }
+
+            
             </div>
+                @if (!String.IsNullOrEmpty(Model.ad_phone))
+                {
+                    <div class="well" style="text-align:center;font-size:16px;font-weight:bold;">
+           
+                            <span><a  id="afficher" href="javascript:void(0)"><span  style="margin-right:10px;" class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>Afficher le téléphone</a></span>
+                            <span><a  id="ad_phone" style="display:none;" href="javascript:void(0)"><span style="margin-right:10px;" class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>@Html.Raw(Model.ad_phone)</a></span>
+               
+                    </div>
+                }
             <!--Detail de l'annonce-->
             <div class="panel panel-info">
                 <div class="panel-heading">

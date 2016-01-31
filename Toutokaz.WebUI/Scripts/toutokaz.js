@@ -637,4 +637,19 @@
         }
 
     });
+
+
+    //details page hide and show ad phone
+    $("#ad_phone").hide();
+    $("#afficher").on('click',function (e) {
+        e.preventDefault();
+
+        console.log("click afficher");
+        $("#ad_phone").show();
+        $("#afficher").hide();
+    });
+
+
+
+
 }); //end ready
