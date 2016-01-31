@@ -1,0 +1,142 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Toutokazz -jQuery File Upload Test </title>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Content/jquery.fileupload-ui.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="maincontainer" class="container wrapper">
+        <!-- The fileinput-button span is used to style the file input field as button -->
+        <span class="btn btn-success fileinput-button">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>Add files...</span>
+            <!-- The file input field used as target for the file upload widget -->
+            <input id="fileupload" type="file" name="files[]" multiple>
+        </span>
+        <br>
+        <br>
+        <!-- The global progress bar -->
+        <div id="progress" class="progress">
+            <div class="progress-bar progress-bar-success"></div>
+        </div>
+       
+        <!-- The table listing the files available for upload/download -->
+        <table  class="col-md-3" id="files" role="presentation" class="table table-striped files"><tr></tr></table>
+        <div class="row">
+            <div  id="PhotoList" class="col-md-9">
+
+            </div>
+
+        </div>
+        <br>
+  
+         
+    </div>
+    <script src="~/Scripts/jquery-2.0.3.min.js"></script>
+    <script src="~/Scripts/jquery.iframe-transport.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
+    <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+    <script src="~/Scripts/load-image.all.min.js"></script>
+    <!-- The Canvas to Blob plugin is included for image resizing functionality -->
+    <script src="~/Scripts/canvas-to-blob.min.js"></script>
+    <script src="~/Scripts/jquery.fileupload.js"></script>
+    <script src="~/Scripts/jquery.fileupload-process.js"></script>
+    <script src="~/Scripts/jquery.fileupload-validate.js"></script>
+    <script src="~/Scripts/jquery.fileupload-image.js"></script>
+   
+    <script>
+/*jslint unparam: true, regexp: true */
+/*global window, $ */
+$(function () {
+    'use strict';
+    console.log("start.....");
+
+    var dataTable = $('#files');
+    var PhotoList = $('#PhotoList');
+    // Change this to the location of your server-side upload handler:
+    var url = window.location.hostname === 'localhost:56713' ?
+                '//ImageUpload/' : 'UploadFiles/';
+
+
+    $('#fileupload').fileupload({
+        url: url,
+        dataType: 'json',
+        autoUpload: true,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        maxFileSize: 999000,
+        // Enable image resizing, except for Android and Opera,
+        // which actually support image resizing, but fail to
+        // send Blob objects via XHR requests:
+        disableImageResize: /Android(?!.*Chrome)|Opera/
+            .test(window.navigator.userAgent),
+        previewMaxWidth: 100,
+        previewMaxHeight: 100,
+        previewCrop: true
+    }).on('fileuploadadd', function (e, data) {
+        console.log("start add...");      
+        $.each(data.files, function (index, file) {
+           
+           
+        
+        });
+        console.log("end add..");
+    }).on('fileuploadprocessalways', function (e, data) {
+        var index = data.index,
+            file = data.files[index];
+        var cell = $('<div class="col-lg-2" \>');
+        console.log("always start..");
+        if (file.preview) {
+            var title = $('<span/>').text(file.name);
+        
+            PhotoList.append(cell.append($('<div class="thumbnail"/>').append(file.preview)));
+            title.appendTo(cell);
+            console.log(file.name + " " + file.type + " " + file.size);
+
+        }
+
+        if (file.error) {
+            cell
+                .append($('<span class="text-danger"/>').text(file.error));
+        }
+
+        console.log("always end.");
+    }).on('fileuploadprogressall', function (e, data) {
+        var progress = 0;
+        progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#progress .progress-bar').css(
+            'width',
+            progress + '%'
+        );
+    }).on('fileuploaddone', function (e, data) {
+        console.log("done start..");
+        console.log(data);
+        console.log(data.result.files);
+        $.each(data.files, function (index, file) {
+            
+            console.log(file.url);
+            console.log(file.error);
+        });
+        console.log("done end..");
+    }).on('fileuploadfail', function (e, data) {
+
+        console.log("fail start..");
+        $.each(data.files, function (index) {
+          
+
+        });
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+});
+    </script>
+</body>
+</html>

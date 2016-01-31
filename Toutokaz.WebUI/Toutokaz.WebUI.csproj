@@ -240,6 +240,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\SectionController.cs" />
+    <Compile Include="Controllers\ImageUploadController.cs" />
     <Compile Include="Controllers\MesAnnoncesController.cs" />
     <Compile Include="Controllers\SendMailController.cs" />
     <Compile Include="Controllers\ViewSwitcherController.cs" />
@@ -279,6 +280,7 @@
     <Compile Include="Models\ModifierAdsViewModel.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\UploadFileModel.cs" />
+    <Compile Include="Models\UploafFileResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\FormsAuthProvider.cs" />
     <Compile Include="Security\IAuthProvider.cs" />
@@ -548,6 +550,10 @@
     <Content Include="Content\img\slides\slide-pro-businessman.jpg" />
     <Content Include="Content\img\jedepose-annonce.png" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\jquery.fileupload-noscript.css" />
+    <Content Include="Content\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Content\jquery.fileupload-ui.css" />
+    <Content Include="Content\jquery.fileupload.css" />
     <Content Include="Content\jquery.mobile-1.4.5.css" />
     <Content Include="Content\jquery.mobile-1.4.5.min.css" />
     <Content Include="Content\jquery.mobile.external-png-1.4.5.css" />
@@ -565,6 +571,7 @@
     <Content Include="Content\jquery.mobile.theme-1.4.5.css" />
     <Content Include="Content\jquery.mobile.theme-1.4.5.min.css" />
     <Content Include="Content\Site.Mobile.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\img\favicon_ombre.png" />
     <Content Include="Content\img\logo_a.png" />
@@ -694,6 +701,7 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\canvas-to-blob.min.js" />
     <Content Include="Scripts\glide.min.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
@@ -720,6 +728,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\load-image.all.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\respond.min1.js" />
     <Content Include="Scripts\Select2-locales\select2_locale_ar.js" />
@@ -768,6 +778,7 @@
     <Content Include="Scripts\Select2-locales\select2_locale_zh-TW.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\tmpl.min.js" />
     <Content Include="Scripts\toutokaz.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -889,6 +900,8 @@
     <Content Include="Views\Account\ExternalLoginFailure.Mobile.cshtml" />
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
     <Content Include="Views\MesAnnonces\Index.Mobile.cshtml" />
+    <Content Include="Views\ImageUpload\Index.cshtml" />
+    <Content Include="Views\ImageUpload\Upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
