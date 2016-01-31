@@ -11,6 +11,13 @@
     
 }
 
+#tel_button.ui-btn{
+    background:#f05a2a;
+    color:#fff;
+    font-weight:normal;
+
+}
+
 .ui-page {
    
 }
@@ -160,6 +167,11 @@ div.ui-collapsible-content .ui-btn{
     font-weight:bold;
 }
 
+
+#ad_price{
+      color:#f05a2a;
+    font-weight:bold;
+}
 .detail_ads_data label{
     float:right;
     font-weight:bold;

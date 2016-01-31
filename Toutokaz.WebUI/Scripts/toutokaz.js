@@ -123,7 +123,7 @@
             $('#loading-msg h4').text("Votre annonce a été soumise avec succes.");
            // window.location.href = "http://localhost:56713/MesAnnonces/Index";
             window.location.href = "http://toutokazz.com/MesAnnonces/Index";
-            //    window.location.href = "http://staging-toutokazz.azurewebsites.net/MesAnnonces/Index";
+          //   window.location.href = "http://staging-toutokazz.azurewebsites.net/MesAnnonces/Index";
         }
         else {
             $('#loading-msg h4').text(data);

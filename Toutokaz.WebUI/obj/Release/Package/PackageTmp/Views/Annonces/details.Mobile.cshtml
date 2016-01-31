@@ -4,6 +4,7 @@
 
     Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
     List<Toutokaz.Domain.Models.tb_section> Menu = ViewBag.Menu;
+    string tel = "tel:" + Model.ad_phone;
 
 }
 
@@ -71,11 +72,19 @@
         </div>
     </div>
    
-      <!--Detail de l'annonce-->
+     <!--button Ad Phone-->
+    @if(!String.IsNullOrEmpty(Model.ad_phone)){ 
+    <div style="margin-top:30px;">
+        <a  id="tel_button" href="@tel" data-role="button" data-icon="phone">Téléphone</a>
+
+    </div>
+    }
+
+    <!--Detail de l'annonce-->
     <div>
-        <h4>DETAIL DE L'ANNONCE</h4>  
+
             <ul data-role="listview" data-inset="true">    
-                <li>Prix :  <span class="detail_ads_data">@HttpUtility.HtmlDecode(Model.tb_devise.symbole) @Html.DisplayFor(x => x.ad_price)</span> </li>   
+                <li>Prix :  <span id="ad_price" class="detail_ads_data">@HttpUtility.HtmlDecode(Model.tb_devise.symbole) @Html.DisplayFor(x => x.ad_price)</span> </li>   
                <li>Code Annonce :
                  <span class="detail_ads_data"> @Html.Label(Model.ad_code.ToString()) </span>
                 </li> 
