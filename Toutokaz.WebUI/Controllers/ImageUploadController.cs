@@ -65,5 +65,12 @@ namespace Toutokaz.WebUI.Controllers
             // Returns json
             return Content("{\"name\":\"" + r[0].Name + "\",\"type\":\"" + r[0].Type + "\",\"size\":\"" + string.Format("{0} bytes", r[0].Length) + "\"}", "application/json");
         }
+
+
+        [HttpGet]
+        public ActionResult Display()
+        {
+            return View();
+        }
     }
 }

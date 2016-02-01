@@ -1,0 +1,52 @@
+﻿@{
+    Layout = null;
+}
+
+<html lang="fr">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Toutokazz -Javascript Template Test </title>
+    <script src="~/Scripts/tmpl.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div id="result">
+
+        </div>
+    </div>
+ <script type="text/x-tmpl" id="tmpl-demo">
+        <h3>{%=o.title%}</h3>
+        <p>
+            Released under the
+            <a href="{%=o.license.url%}">{%=o.license.name%}</a>.
+        </p>
+        <h4>Features</h4>
+        <ul>
+            {% for (var i=0; i<o.features.length; i++) { %}
+    <li>{%=o.features[i]%}</li>
+{% }
+             %}
+        </ul>
+    </script>
+
+    <script type="text/javascript">
+        var data = {
+            "title": "JavaScript Templates",
+            "license": {
+                "name": "MIT license",
+                "url": "http://www.opensource.org/licenses/MIT"
+            },
+            "features": [
+                "lightweight & fast",
+                "powerful",
+                "zero dependencies"
+            ]
+        };
+
+        document.getElementById("result").innerHTML = tmpl("tmpl-demo", data);
+    </script>
+</body>
+</html>
+
+

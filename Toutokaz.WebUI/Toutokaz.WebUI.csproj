@@ -902,6 +902,7 @@
     <Content Include="Views\MesAnnonces\Index.Mobile.cshtml" />
     <Content Include="Views\ImageUpload\Index.cshtml" />
     <Content Include="Views\ImageUpload\Upload.cshtml" />
+    <Content Include="Views\ImageUpload\Display.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
