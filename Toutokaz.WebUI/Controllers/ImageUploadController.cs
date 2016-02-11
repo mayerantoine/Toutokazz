@@ -42,6 +42,14 @@ namespace Toutokaz.WebUI.Controllers
         }
 
         [HttpPost]
+        public ActionResult deposer(String Titre, String Description, ICollection<String>  photoname)
+        {
+            var f = Request.Files;
+            Console.WriteLine(Titre);
+            return View("Index","ImageUpload");
+        }
+
+        [HttpPost]
         public ContentResult UploadFiles()
         {
             var r = new List<UploadFilesResultModel>();

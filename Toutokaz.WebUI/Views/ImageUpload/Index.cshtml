@@ -15,30 +15,38 @@
 </head>
 <body>
     <div id="maincontainer" class="container wrapper">
-        <!-- The fileinput-button span is used to style the file input field as button -->
-        <span class="btn btn-success fileinput-button">
-            <i class="glyphicon glyphicon-plus"></i>
-            <span>Add files...</span>
-            <!-- The file input field used as target for the file upload widget -->
-            <input id="fileupload" type="file" name="files[]" multiple>
-        </span>
-        <br>
-        <br>
-        <!-- The global progress bar -->
-        <div id="progress" class="progress">
-            <div class="progress-bar progress-bar-success"></div>
-        </div>
-       
-        <!-- The table listing the files available for upload/download -->
-        <table  class="col-md-3" id="files" role="presentation" class="table table-striped files"><tr></tr></table>
-        <div class="row">
-            <div  id="PhotoList" class="col-md-9">
+        <form  id="frmImage" method="post" action="@Url.Action("deposer","ImageUpload")" enctype="multipart/form-data">
+            <div id="frmData">
+                <label>Titre</label>
+                <input type="text" name="Titre" id="Titre" />
 
+                <label>Description</label>
+                <input type="text" name="Description" id="Description" />
+            </div>
+            <!-- The fileinput-button span is used to style the file input field as button -->
+            <span class="btn btn-success fileinput-button">
+                <i class="glyphicon glyphicon-plus"></i>
+                <span>Add files...</span>
+                <!-- The file input field used as target for the file upload widget -->
+                <input id="fileupload" type="file" name="files[]" multiple>
+            </span>
+            <br>
+            <br>
+            <!-- The global progress bar -->
+            <div id="progress" class="progress">
+                <div class="progress-bar progress-bar-success"></div>
             </div>
 
-        </div>
-        <br>
-  
+            <!-- The table listing the files available for upload/download -->
+            <div class="row">
+                <div id="files" class="col-md-9">
+
+                </div>
+
+            </div>
+            <br>
+            <input type="submit" value="Submit"/>
+        </form>
          
     </div>
     <script src="~/Scripts/jquery-2.0.3.min.js"></script>
@@ -59,15 +67,27 @@
 /*global window, $ */
 $(function () {
     'use strict';
-    console.log("start.....");
-
-    var dataTable = $('#files');
-    var PhotoList = $('#PhotoList');
     // Change this to the location of your server-side upload handler:
     var url = window.location.hostname === 'localhost:56713' ?
-                '//ImageUpload/' : 'UploadFiles/';
-
-
+                 '//ImageUpload/' : 'UploadFiles/',
+        uploadButton = $('<button/>')
+            .addClass('btn btn-primary')
+            .prop('disabled', true)
+            .text('Processing...')
+            .on('click', function () {
+                var $this = $(this),
+                    data = $this.data();
+                $this
+                    .off('click')
+                    .text('Abort')
+                    .on('click', function () {
+                        $this.remove();
+                        data.abort();
+                    });
+                data.submit().always(function () {
+                    $this.remove();
+                });
+            });
     $('#fileupload').fileupload({
         url: url,
         dataType: 'json',
@@ -83,56 +103,65 @@ $(function () {
         previewMaxHeight: 100,
         previewCrop: true
     }).on('fileuploadadd', function (e, data) {
-        console.log("start add...");      
+        data.context = $('<div class=col-lg-2/>').appendTo('#files');
         $.each(data.files, function (index, file) {
-           
-           
-        
+            var node = $('<div class="thumbnail"/>')
+                    .append($('<span/>').text(file.name));
+
+            if (!index) {
+
+            }
+            node.appendTo(data.context);
+            var fileinput = $('<input type="hidden" name="photoname"/>').val(file.name);
+            $('#frmData').append(fileinput);
         });
-        console.log("end add..");
     }).on('fileuploadprocessalways', function (e, data) {
         var index = data.index,
-            file = data.files[index];
-        var cell = $('<div class="col-lg-2" \>');
-        console.log("always start..");
+            file = data.files[index],
+            node = $(data.context.children()[index]);
         if (file.preview) {
-            var title = $('<span/>').text(file.name);
-        
-            PhotoList.append(cell.append($('<div class="thumbnail"/>').append(file.preview)));
-            title.appendTo(cell);
-            console.log(file.name + " " + file.type + " " + file.size);
-
+            node
+                .prepend('<br>')
+                .prepend(file.preview);
+            
         }
-
         if (file.error) {
-            cell
+            node
+                .append('<br>')
                 .append($('<span class="text-danger"/>').text(file.error));
         }
-
-        console.log("always end.");
+        if (index + 1 === data.files.length) {
+            data.context.find('button')
+                .text('Upload')
+                .prop('disabled', !!data.files.error);
+        }
     }).on('fileuploadprogressall', function (e, data) {
-        var progress = 0;
-        progress = parseInt(data.loaded / data.total * 100, 10);
+        var progress = parseInt(data.loaded / data.total * 100, 10);
         $('#progress .progress-bar').css(
             'width',
             progress + '%'
         );
     }).on('fileuploaddone', function (e, data) {
-        console.log("done start..");
-        console.log(data);
-        console.log(data.result.files);
-        $.each(data.files, function (index, file) {
-            
-            console.log(file.url);
-            console.log(file.error);
+        $.each(data.result.files, function (index, file) {
+            if (file.url) {
+                var link = $('<a>')
+                    .attr('target', '_blank')
+                    .prop('href', file.url);
+                $(data.context.children()[index])
+                    .wrap(link);
+            } else if (file.error) {
+                var error = $('<span class="text-danger"/>').text(file.error);
+                $(data.context.children()[index])
+                    .append('<br>')
+                    .append(error);
+            }
         });
-        console.log("done end..");
     }).on('fileuploadfail', function (e, data) {
-
-        console.log("fail start..");
         $.each(data.files, function (index) {
-          
-
+            var error = $('<span class="text-danger"/>').text('File upload failed.');
+            $(data.context.children()[index])
+                .append('<br>')
+                .append(error);
         });
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
