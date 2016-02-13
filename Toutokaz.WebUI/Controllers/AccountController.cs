@@ -107,6 +107,13 @@ namespace Toutokaz.WebUI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
+        public ActionResult CreateLandingOne()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult CreatePro()
         {
             return View();

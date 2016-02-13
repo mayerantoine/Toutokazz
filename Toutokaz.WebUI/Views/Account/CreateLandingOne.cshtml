@@ -1,0 +1,144 @@
+﻿@model Toutokaz.WebUI.Models.AccountViewModel
+
+@{
+    ViewBag.Title = "Toutokazz - Compte Particulier";
+    ViewBag.description = "Bienvenue sur Toutokazz, Créer votre compte particulier et déposer une annonce";
+    ViewBag.motscles = "toutokazz,toutokaz, annonces,compte,deposer,particulier,professionnel, haiti, classified ads, ads,site annonce, site annonces, petites";
+    ViewBag.page_description = "Bienvenue sur Toutokazz, Créer votre compte particulier et déposer votre annonce";
+    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/Banner1a.jpg");
+
+    Layout = "~/Views/Shared/_LayoutOnePageWonder.cshtml";
+}
+
+
+@section header_image_view{
+    
+    <header class="header-image">
+    <div class="headline">
+        <div class="container">
+            <div class="col-lg-4 pull-left" style="margin-top:0px;">
+                <h2>"Déposez des annonces gratuites, sans frais, 
+                ni commisions pour toutes les occasions"</h2>
+            </div>
+            <div class="col-lg-4 pull-right">
+                <div id="creer-compte" class="well">
+                    <div style="margin-bottom:15px;">
+                        @Html.Action("ExternalLoginButton", new { ReturnUrl = ViewBag.ReturnUrl })
+                    </div>
+
+                    <h4>ou remplissez le formulaire</h4>
+                    <form class="form-horizontal" action="@Url.Action("create","account")" role="form" method="post">
+                        <div>
+                            @Html.Raw(@ViewBag.Message)
+                        </div>
+                        <div class="form-group">
+                            @Html.ValidationSummary(true)
+
+                            <div class="col-sm-12">
+
+                                @Html.TextBoxFor(model => model.Nom, new { @class = "form-control", id = "Nom", placeholder = "Nom" })
+                                @Html.ValidationMessageFor(m => m.Nom)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+
+                                @Html.TextBoxFor(model => model.Prenom, new { @class = "form-control", id = "Prenom", placeholder = "Prenom" })
+                                @Html.ValidationMessageFor(m => m.Prenom)
+                            </div>
+                        </div>
+                        <div class="form-group" id="type_utilisateur">
+                            <label for="lblParticulier" class="col-sm-6 control-label"> @Html.RadioButtonFor(model => model.account_type, 1, new { @class = "radio-inline", id = "account_type_1", name = "account_type" }) Particulier</label>
+                            <label for="lblProfessionel" class="col-sm-6 control-label"> @Html.RadioButtonFor(model => model.account_type, 2, new { @class = "radio-inline", id = "account_type_2", name = "account_type" }) Professionnel</label>
+                            @Html.ValidationMessageFor(m => m.account_type)
+                        </div>
+                        <div class="form-group" id="f_nom_entreprise">
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(model => model.nom_entreprise, new { @class = "form-control", id = "nom_entreprise", placeholder = "Nom  de l'entreprise" })
+                                @Html.ValidationMessageFor(m => m.nom_entreprise)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+
+                                @Html.TextBoxFor(model => model.Email, new { type = "email", @class = "form-control", id = "Email", placeholder = "Votre Email" })
+                                @Html.ValidationMessageFor(m => m.Email)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+
+                                @Html.PasswordFor(model => model.password, new { @class = "form-control", id = "password", placeholder = "Mot de passe" })
+                                <span class="help-block">8 carateres minimum,avec 1 alphanumerique et 1 special </span>
+                                @Html.ValidationMessageFor(m => m.password)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                @Html.PasswordFor(model => model.confirmPassword, new { @class = "form-control", id = "confirmPassword", placeholder = "Mot de passe" })
+                                @Html.ValidationMessageFor(m => m.confirmPassword)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        En cliquant sur "Inscription" , vous acceptez nos <a href="@Url.Action("conditionsdutilisation","Home")">conditions d'utilisation</a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button id="btnvalider" type="submit" class="btn btn-primary btn-lg">Inscription</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+        </div>
+</header>
+    
+    
+    }
+<hr class="featurette-divider">
+<!-- First Featurette -->
+<div class="featurette" id="about">
+    <img class="featurette-image img-circle img-responsive pull-right" src="@Url.Content("~/Content/img/FB_Post_500.jpg")">
+    <h2 class="featurette-heading">
+        Bénéficiez d'une visibilité unique !<br />
+        <span class="text-muted" style="font-size:30px;">Faites connaitre vos produits sur internet</span>
+    </h2>
+    <p class="lead">Toutokazz.com est un site de petites annonces gratuites et généralistes, qui vous permet de mettre
+        en avant vos produits et service sur internet dans près de 40 catégories et sous catégories. Particulier, Vendeurs Indépendants, 
+    Propriétaire de boutique ou magasin, vous pouvez poster vos produits sur toutokazz et 
+    jouir d'une visibilité exceptionnelle sur internet et les réseaux sociaux.
+    </p>
+</div>
+
+<hr class="featurette-divider">
+<!-- Second Featurette -->
+<div class="featurette" id="services">
+    <img class="featurette-image img-circle img-responsive pull-left" src="@Url.Content("~/Content/img/Falling-sales2.jpg")">
+    <h2 class="featurette-heading">
+        C'est Gratuit !<br />
+        <span class="text-muted" style="font-size:30px;">Toutokazz offre un service de base gratuit.</span>
+    </h2>
+    <p class="lead">Toutokazz est le site  de promotion idéal, vous permettant 
+    toucher le maximum de prospect gratuitement et minimisant vos coûts. La création de votre compte et le dépot d'un nombre limité d'annonce est gratuite.
+    Nous offrons des services complémentaires payant vous permettant de créer une présence en ligne facilement et rapidement.    
+    </p>
+</div>
+<hr class="featurette-divider">
+<!-- Third Featurette -->
+<div class="featurette" id="contact">
+    <img class="featurette-image img-circle img-responsive pull-right" src="@Url.Content("~/Content/img/shutterstock_108098483_500.jpg")">
+    <h2 class="featurette-heading">
+        Augmentez vos ventes !<br />
+        <span class="text-muted" style="font-size:30px;">C'est un retour sur investissement assuré</span>
+    </h2>
+    <p class="lead">Investissez le minimum et trouvez des prospects et des clients. Toutokazz est le canal le moins couteux vous permettant 
+    un retour sur investissement assuré  et l'explosion de votre nombre de client potentiels sur internet et à travers les réseaux sociaux.</p>
+</div>
+<hr class="featurette-divider">

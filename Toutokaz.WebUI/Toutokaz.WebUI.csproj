@@ -305,6 +305,7 @@
     <Content Include="Content\css\glide.core.min.css" />
     <Content Include="Content\css\glide.theme.css" />
     <Content Include="Content\css\glide.theme.min.css" />
+    <Content Include="Content\css\one-page-wonder.css" />
     <Content Include="Content\css\select2-spinner.gif" />
     <Content Include="Content\css\select2.css" />
     <Content Include="Content\css\select2.png" />
@@ -524,8 +525,13 @@
     <Content Include="Content\images\image-services.png" />
     <Content Include="Content\images\image-vehicules-32.png" />
     <Content Include="Content\images\image-vetement.png" />
+    <Content Include="Content\img\Falling-sales2.jpg" />
+    <Content Include="Content\img\FB_Post_500.jpg" />
     <Content Include="Content\img\logo-revamp-white.png" />
     <Content Include="Content\img\logo-revamp.png" />
+    <Content Include="Content\img\landing_page_1.jpg" />
+    <Content Include="Content\img\logo-revamp_51_navbar.png" />
+    <Content Include="Content\img\shutterstock_108098483_500.jpg" />
     <Content Include="Content\img\slides\Banner1a.jpg" />
     <Content Include="Content\img\slides\Banner2a.jpg" />
     <Content Include="Content\img\slides\Banner3a.jpg" />
@@ -889,6 +895,8 @@
     <Content Include="Views\Account\ExternalLoginFailure.Mobile.cshtml" />
     <Content Include="Views\Shared\_LayoutPage.cshtml" />
     <Content Include="Views\MesAnnonces\Index.Mobile.cshtml" />
+    <Content Include="Views\Shared\_LayoutOnePageWonder.cshtml" />
+    <Content Include="Views\Account\CreateLandingOne.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
