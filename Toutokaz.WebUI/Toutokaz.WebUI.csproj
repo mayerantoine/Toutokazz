@@ -687,6 +687,8 @@
     <Content Include="Content\fonts\lato-italic.woff" />
     <Content Include="Content\fonts\lato-regular.ttf" />
     <Content Include="Content\fonts\lato-regular.woff" />
+    <Content Include="Areas\Admin\Views\Account\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\RegistrationSuccess.cshtml" />
     <None Include="MvcSiteMapSchema.xsd" />
     <None Include="Properties\PublishProfiles\staging-toutokazz - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\staging-toutokazz - FTP.pubxml" />

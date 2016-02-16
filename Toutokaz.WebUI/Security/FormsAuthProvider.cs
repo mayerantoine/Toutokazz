@@ -146,7 +146,60 @@ namespace Toutokaz.WebUI.Security
 
             return token;
         }
-             
+
+        [AllowAnonymous]
+        public string CreateUserNoToken(string nom, string prenom, string password, string email)
+        {
+            string token = null;
+            try
+            {
+                // create account and profile
+                token = WebSecurity.CreateUserAndAccount(email, password, null, false);
+                try
+                {
+                    Roles.AddUserToRole(email, "annonceur");
+                }
+                catch (System.Configuration.Provider.ProviderException exp)
+                {
+                    throw exp;
+                }
+
+                using (toutokaz_dbEntities ctx = new toutokaz_dbEntities())
+                {
+                    int Id = WebSecurity.GetUserId(email);
+                    tb_account p = new tb_account
+                    {
+                        UserId = Id,
+                        firstname = prenom,
+                        lastname = nom,
+                        email = email,
+                        username = email,
+                        id_account_type = 1,
+                        role = "annonceur",
+                        status = "active",
+
+
+                    };
+
+                    ctx.tb_account.Add(p);
+                    ctx.SaveChanges();
+
+                }
+
+
+            }
+            catch (MembershipCreateUserException exp)
+            {
+                throw exp;
+            }
+            catch (InvalidOperationException exp)
+            {
+                throw exp;
+            }
+
+            return token;
+        }
+
         public MembershipCreateStatus CreateUserProMembership(string nom, string prenom, string nom_entreprise, string password, string email)
         {
             MembershipCreateStatus createStatus;
@@ -258,7 +311,63 @@ namespace Toutokaz.WebUI.Security
 
             return token;
         }
-        
+
+
+        [AllowAnonymous]
+        public string CreateUserProNoToken(string nom, string prenom, string nom_entreprise, string password, string email)
+        {
+            string notoken = null;
+            try
+            {
+                // create account and profile
+                notoken = WebSecurity.CreateUserAndAccount(email, password, null,false);
+
+                try
+                {
+                    Roles.AddUserToRole(email, "annonceur");
+                }
+                catch (System.Configuration.Provider.ProviderException exp)
+                {
+                    throw exp;
+                }
+
+                using (toutokaz_dbEntities ctx = new toutokaz_dbEntities())
+                {
+                    int Id = WebSecurity.GetUserId(email);
+                    tb_account p = new tb_account
+                    {
+                        UserId = Id,
+                        firstname = prenom,
+                        lastname = nom,
+                        email = email,
+                        username = email,
+                        nom_entreprise = nom_entreprise,
+                        id_account_type = 2,
+                        role = "annonceur",
+                        status = "active",
+
+
+                    };
+
+                    ctx.tb_account.Add(p);
+                    ctx.SaveChanges();
+
+                }
+
+
+            }
+            catch (MembershipCreateUserException exp)
+            {
+                throw exp;
+            }
+            catch (InvalidOperationException exp)
+            {
+                throw exp;
+            }
+
+            return notoken;
+        }
+
         public bool ChangeUserPasswordMembership(String username, String currentPassword, String newPassword)
         {
             MembershipUser user = Membership.GetUser(username);

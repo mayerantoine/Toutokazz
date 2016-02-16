@@ -15,8 +15,10 @@ namespace Toutokaz.WebUI.Security
         bool Authenticate(string email, string password);
         MembershipCreateStatus CreateUserMembership(string nom, string prenom, string password, string email);
         string CreateUser(string nom, string prenom, string password, string email);
+        string CreateUserNoToken(string nom, string prenom, string password, string email);
         MembershipCreateStatus CreateUserProMembership(string nom, string prenom,string nom_entrprise, string password, string email);
         string CreateUserPro(string nom, string prenom, string nom_entrprise, string password, string email);
+        string CreateUserProNoToken(string nom, string prenom, string nom_entrprise, string password, string email);
         bool ChangeUserPasswordMembership(String username, String currentPassword, String newPassword);
         bool ChangeUserPassword(String username, String currentPassword, String newPassword);
         IEnumerable<MembershipUser> GetAllUser();

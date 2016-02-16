@@ -163,6 +163,50 @@ namespace Toutokaz.WebUI.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult CreateNoToken(AccountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    string c;
+                    if (model.account_type == 1 && String.IsNullOrEmpty(model.nom_entreprise))
+                    {
+                        c = authProvider.CreateUserNoToken(model.Nom, model.Prenom, model.password, model.Email);
+                    }
+                    else
+                    {
+                        c = authProvider.CreateUserProNoToken(model.Nom, model.Prenom, model.nom_entreprise, model.password, model.Email);
+                    }
+                    //Succesfull page
+                    if (!String.IsNullOrEmpty(c))
+                    {
+                        WelcomeMailer.confirmationEmail(model.Email, c).Send();
+
+                        /*    if (authProvider.Authenticate(model.Email, model.password))
+                            {
+                                FormsAuthentication.SetAuthCookie(model.Email, false);
+                                 return RedirectToAction("index", "mesannonces");
+                            }*/
+                        return RedirectToAction("RegistrationSuccess", "Account");
+
+                    }
+                    else
+                    {
+                        @ViewBag.Message = "<div class=\"alert alert-danger\">Il y a erreur lors de la creation de votre compte</div>";
+                    }
+                }
+                catch (Exception exp)
+                {
+                    String message = exp.Message;
+                    @ViewBag.Message = "<div class=\"alert alert-danger\">Il y a erreur lors de la creation de votre compte: " + message + "</div>";
+
+                }
+            }
+            return View(model);
+        }
 
         [HttpPost]
         [AllowAnonymous]
@@ -218,6 +262,7 @@ namespace Toutokaz.WebUI.Controllers
                 return RedirectToAction("ConfirmationSuccess");
             }
             return RedirectToAction("ConfirmationFailure");
+            
   
         }
 
