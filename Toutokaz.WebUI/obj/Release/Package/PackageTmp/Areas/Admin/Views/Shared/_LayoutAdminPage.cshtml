@@ -6,10 +6,21 @@
 }
 
 <!DOCTYPE html>
-
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="nl"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="nl"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="nl"><![endif]-->
+<!--[if IE]><html class="no-js ie" lang="nl"><![endif]-->
+<!--[if !IE]><!-->
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <!--[if lt IE 9]
+        <script src="~/Scripts/html5shiv.js"  type="text/javascript"></script>"
+        <script src="~/Scripts/respond.min.js" type="text/javascript"></script>
+    <![endif]-->
+
     <title>@ViewBag.Title - Petites Annonces Gratuites, le meilleur d'Haiti</title>
     <link href='http://fonts.googleapis.com/css?family=Crimson+Text:700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
@@ -22,6 +33,7 @@
     <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/css/czsale-responsive.css" rel="stylesheet" />
     <link href="~/Content/css/select2.css" rel="stylesheet" />
+    @RenderSection("conversion_script", false)
 </head>
    
 
@@ -91,6 +103,7 @@
              <li><a href="@Url.Action("Index","Category",new {area ="Admin"})">Category</a></li>
               </ul>
                <ul class="nav navbar-nav navbar-right">
+                   <li><a href="@Url.Action("Create","Account",new {area ="Admin"})">Créer Compte</a></li>
                 <li><a href="@Url.Action("userlist","Account",new {area ="Admin"})">Utilisateurs</a></li>
               </ul>
         </div>
