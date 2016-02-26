@@ -702,6 +702,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\canvas-to-blob.min.js" />
+    <Content Include="Scripts\fileupload-main.js" />
     <Content Include="Scripts\glide.min.js" />
     <Content Include="Scripts\html5shiv.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
@@ -730,7 +731,6 @@
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
     <Content Include="Scripts\load-image.all.min.js" />
-    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\respond.min1.js" />
     <Content Include="Scripts\Select2-locales\select2_locale_ar.js" />
@@ -904,6 +904,7 @@
     <Content Include="Views\ImageUpload\Index.cshtml" />
     <Content Include="Views\ImageUpload\Upload.cshtml" />
     <Content Include="Views\ImageUpload\Display.cshtml" />
+    <Content Include="Views\Annonces\_CreateAnnonceUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

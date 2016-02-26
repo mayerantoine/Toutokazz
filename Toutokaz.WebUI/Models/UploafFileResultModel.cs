@@ -10,5 +10,9 @@ namespace Toutokaz.WebUI.Models
         public string Name { get; set; }
         public int Length { get; set; }
         public string Type { get; set; }
+        public string Error { get; set; }
+        public string url { get; set; }
+        public string deleteUrl { get; set; }
+        public string deleteType { get; set; }
     }
 }

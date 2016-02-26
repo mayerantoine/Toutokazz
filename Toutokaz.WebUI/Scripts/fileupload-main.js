@@ -1,75 +1,15 @@
-﻿@{
-    Layout = null;
-}
+﻿/*
+ * jQuery File Upload Plugin JS Example
+ * Code for CreateAnnonceUpdate
+**/
 
-<!DOCTYPE html>
-
-<html lang="fr">
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Toutokazz -jQuery File Upload Test </title>
-    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/style.css" rel="stylesheet" />
-    <link href="~/Content/jquery.fileupload.css" rel="stylesheet" />
-    <link href="~/Content/jquery.fileupload-ui.css" rel="stylesheet" />
-</head>
-<body>
-    <div id="maincontainer" class="container wrapper">
-        <form  id="frmImage" method="post" action="@Url.Action("deposer","ImageUpload")" enctype="multipart/form-data">
-            <div id="frmData">
-                <label>Titre</label>
-                <input type="text" name="Titre" id="Titre" />
-
-                <label>Description</label>
-                <input type="text" name="Description" id="Description" />
-            </div>
-            <!-- The fileinput-button span is used to style the file input field as button -->
-            <span class="btn btn-success fileinput-button">
-                <i class="glyphicon glyphicon-plus"></i>
-                <span>Add files...</span>
-                <!-- The file input field used as target for the file upload widget -->
-                <input id="fileupload" type="file" name="files[]" multiple>
-            </span>
-            <br>
-            <br>
-            <!-- The global progress bar -->
-            <div id="progress" class="progress">
-                <div class="progress-bar progress-bar-success"></div>
-            </div>
-
-            <!-- The table listing the files available for upload/download -->
-            <div class="row">
-                <div id="files" class="col-md-9">
-
-                </div>
-
-            </div>
-            <br>
-            <input type="submit" value="Submit"/>
-        </form>
-         
-    </div>
-    <script src="~/Scripts/jquery-2.0.3.min.js"></script>
-    <script src="~/Scripts/jquery.iframe-transport.js"></script>
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/jquery-ui-1.10.3.js"></script>
-    <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-    <script src="~/Scripts/load-image.all.min.js"></script>
-    <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-    <script src="~/Scripts/canvas-to-blob.min.js"></script>
-    <script src="~/Scripts/jquery.fileupload.js"></script>
-    <script src="~/Scripts/jquery.fileupload-process.js"></script>
-    <script src="~/Scripts/jquery.fileupload-validate.js"></script>
-    <script src="~/Scripts/jquery.fileupload-image.js"></script>
-   
-    <script>
 /*jslint unparam: true, regexp: true */
 /*global window, $ */
 $(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
     var url = window.location.hostname === 'localhost:56713' ?
-                 '//ImageUpload/' : 'UploadFiles/',
+                 '//Annonces/' : 'UploadFiles/',
         uploadButton = $('<button/>')
             .addClass('btn btn-primary')
             .prop('disabled', true)
@@ -105,14 +45,12 @@ $(function () {
     }).on('fileuploadadd', function (e, data) {
         data.context = $('<div class=col-lg-2/>').appendTo('#files');
         $.each(data.files, function (index, file) {
-            var node = $('<div class="thumbnail"/>')
-                    .append($('<span/>').text(file.name));
-
+            var node = $('<div class="thumbnail"/>');
             if (!index) {
 
             }
             node.appendTo(data.context);
-
+    
         });
     }).on('fileuploadprocessalways', function (e, data) {
         var index = data.index,
@@ -122,7 +60,7 @@ $(function () {
             node
                 .prepend('<br>')
                 .prepend(file.preview);
-            
+
         }
         if (file.error) {
             node
@@ -141,8 +79,9 @@ $(function () {
             progress + '%'
         );
     }).on('fileuploaddone', function (e, data) {
+        console.log("start done....");
         $.each(data.result.files, function (index, file) {
-            console.log("start done..."+file.name);
+            console.log(" result file done....");
             if (file.url) {
                 var link = $('<a>')
                     .attr('target', '_blank')
@@ -155,8 +94,9 @@ $(function () {
                     .append('<br>')
                     .append(error);
             }
+            console.log("done..."+file.name);
             var fileinput = $('<input type="hidden" name="photoname"/>').val(file.name);
-            $('#frmImage').append(fileinput);
+            $('#UploadForm').append(fileinput);
         });
     }).on('fileuploadfail', function (e, data) {
         $.each(data.files, function (index) {
@@ -168,6 +108,3 @@ $(function () {
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 });
-    </script>
-</body>
-</html>
