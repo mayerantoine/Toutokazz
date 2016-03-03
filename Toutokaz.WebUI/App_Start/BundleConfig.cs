@@ -19,7 +19,11 @@ namespace Toutokaz.WebUI
                         "~/Scripts/jquery.form.js",
                         "~/Scripts/jquery.iframe-transport.js",
                         "~/Scripts/jquery.slides.min.js",
-                        "~/Scripts/respond.min.js"                  
+                        "~/Scripts/respond.min.js" ,
+                        "~/assets/js/jquery.easing.1.3.js",
+                        "~/assets/js/jquery.matchHeight-min.js",
+                        "~/assets/js/jquery.parallax-1.1.js",
+                        "~/assets/js/jquery.scrollto.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
@@ -39,13 +43,22 @@ namespace Toutokaz.WebUI
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
 
+
+            bundles.Add(new ScriptBundle("~/bundles/js").Include(
+                      "~/assets/bootstrap/js/bootstrap.min.js",
+                      "~/assets/js/owl.carousel.min.js",
+                      "~/assets/js/hideMaxListItem-min.js",
+                      "~/assets/plugins/jquery.fs.scroller/jquery.fs.scroller.min.js",
+                      "~/assets/plugins/jquery.fs.selecter/jquery.fs.selecter.min.j",
+                      "~/assets/js/script.js"
+                      ));
+
             bundles.Add(new StyleBundle("~/Content/css/AllMyCss.css").Include(
-                            "~/Content/css/bootstrap.css",
-                            "~/Content/css/select.css",
-                            "~/Content/css/font-awesome.css",
-                            "~/Content/css/czsale-responsive.css",
-                            "~/Content/css/admin.css",
-                            "~/Content/css/czsale-carousel.css"
+                            "~/assets/bootstrap/css/bootstrap.css",
+                            "~/assets/bootstrap/css/bootstrap-theme.css",
+                            "~/assets/css/owl.carousel.css",
+                            "~/assets/css/owl.theme.css",
+                            "~/assets/css/style.css"
                             ));
 
             bundles.Add(new StyleBundle("~/Content/themes/base").Include(

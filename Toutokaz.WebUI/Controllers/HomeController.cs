@@ -47,6 +47,23 @@ namespace Toutokaz.WebUI.Controllers
             return View(model);
         }
 
+        public ActionResult Home()
+        {
+             HomePageModel model = new HomePageModel();
+
+            // Get Latest Ads
+            var newAds = annoncesRepository.GetNewAds();
+            if (newAds == null)
+                throw new HttpException(404, "Recommended Ads not found");
+
+            model.ImgNew = annoncesRepository.GetNewAds().ToList();
+            model.sectionList = sectionRepository.GetAll().OrderBy(x => x.section_order).ToList();
+            /* ViewBag.id_commune = new SelectList(communeRepository.GetAll(), "id_commune", "commune");
+             ViewBag.ad_user_type = null;
+             ViewBag.id_category = this.populateCategoryBySection();*/
+            return View(model);
+        }
+
         public ActionResult maintenance()
         {
             return View();

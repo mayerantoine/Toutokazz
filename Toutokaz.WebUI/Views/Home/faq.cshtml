@@ -3,90 +3,206 @@
     ViewBag.description = "Toutokazz, Foire aux questions";
     ViewBag.motscles = "toutokazz, toutokaz, annonces, haiti, classified ads, ads,site annonce, site annonces, petites, annonces,gratuites";
     ViewBag.page_description = "Toutokazz, Foire aux questions";
-    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/slide-positive-women.jpg");
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.ImageUrl = Url.Content("~/Content/images/bg_intro2.jpg");
+    Layout = "~/Views/Shared/_LayoutPagev2.cshtml";
 }
 
-@section open_graph_tags{
-    @Html.Partial("_OpenGraphTag")
-}
-@section categories_menu {
-          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
-}
+@section Intro{
+        <div class="intro-inner">
+            <div class="about-intro" style="background:url(/assets/images/bg2.jpg) no-repeat center;background-size:cover;">
+                <div class="dtable hw100">
+                    <div class="dtable-cell hw100">
+                        <div class="container text-center">
+                            <h1 class="intro-title animated fadeInDown"> Foire aux Questions  </h1>
 
-<div class="col-lg-12">
-      <h3>Aide</h3>
-    <hr />
-    <ul>
-        <li>
-            <h5><strong>C’est quoi Toutokazz.com?</strong></h5>
-            <p>
-   Toutokazz.com est un site de petites annonces généralistes ciblant les haïtiens vivants en Haïti et ceux de la diaspora. 
-Son objectif est de mettre en relation ceux qui ont un bien ou service à vendre et ceux qui sont à la recherche de ce bien ou service.
-            </p>
-        </li>
-         <li>
-            <h5><strong>Est-ce que je peux acheter et payer un produit directement sur Toutokazz.com ?</strong></h5>
-            <p>Non, on ne peut effectuer de transaction directement sur le site Toutokazz.com.</p>
-        </li>
-        <li>
-            <h5><strong>Que faire si je suis intéressé par un produit présenté sur Toutokazz.com ?</strong></h5>
-            <p>Si vous êtes intéressé par un produit ou service présenté sur Toutokazz.com, 
-    nous vous invitons à contacter l’annonceur en utilisant l’espace « Contacter l’annonceur » située à droite dans la page de l’annonce.</p>
-        </li>
-        <li>
-            <h5><strong>Qui peut déposer une annonce sur Toutokazz.com ?</strong></h5>
-            <p>Toute personne possédant une adresse email active peu s’enregistrer sur toutokazz.com pour y déposer des annonces. 
-                 Elle peut créer un compte particulier 
-                si elle compte déposer moins de  10 annonces par moi ou un compte professionnel si elle veut en déposer plus.</p>
-        </li>
-        <li>
-            <h5><strong>Dois-je payer pour déposer une annonce sur Toutokazz ?</strong></h5>
-            <p>Non, déposer une annonce sur Toutokazz est gratuit.</p>
-        </li>
-        <li>
-            <h5><strong>Comment m’enregistrer sur Toutokazz.com ?</strong></h5>
-            <p>Vous pouvez utiliser une des deux méthodes suivantes pour vous enregistrer sur Toutokazz.com :</p>
-            <ul>
-                <li> Cliquez sur le menu « Mon Compte» et dans la section « Vous n'avez pas encore de compte? », choisissez de créer un compte particulier ou un compte professionnel.</li>
-                <li>Cliquez sur le bouton « Déposer une annonce ». En remplissant la forme  de depot d’annonce, vous entrer votre adresse email et le mot de passe de votre choix. Une fois l’annonce soumît, le compte est aussi créé.</li>
-            </ul>
-        </li>
-        <li>
-            <h5><strong>Comment déposer une annonce ?</strong></h5>
-            <p>Vous pouvez utiliser une des trois methodes suivantes pour deposer une annonce :
-            </p>
-            
-                <ul>
-                    <li>Cliquez sur le bouton « Déposer une annonce » en haut, à droite, puis remplir le formulaire complétement avant de le soumettre.</li>
-                    <li>Cliquez sur le bouton « Déposer une annonce » en bas, à gauche, puis remplir le formulaire complétement avant de le soumettre.</li>
-                    <li>Allez à la page « Mes annonces » en cliquant sur le menu « Mes annonces ». De là, Cliquez sur le bouton « Déposer une annonce », puis remplir le formulaire complètement avant de le soumettre.</li>
-                </ul>
-        </li>
-                <li>
-            <h5><strong>Comment désactiver une annonce ?</strong></h5>
-            <p>Vous pouvez désactiver une  annonce déposee de la facon suivante :
-            </p>
-            
-                <ul>
-                    <li>Connectez-vous a partir du votre compte avec lequel vous avez deposé l'annonce.</li>
-                    <li>Allez à la page « Mes annonces » en cliquant sur le menu « Mes annonces ».</li>
-                     <li>De là, Filter l'annonce a désactiver , cliquer sur le lien "désactiver " et confimer votre choix</li>
-                </ul>
-        </li>
-        <li>
-            <h5><strong>Que dois-je faire si je voudrais poster un nombre important  d’annonces en même temps ?</strong></h5>
-            <p>
-                L’equipe de Toutokazz.com se fera un plaisir de télécharger vos annonces, aussi nombreux qu’ils 
-    peuvent etre pour vous. Veuillez nous contact à travers le site ou envoyez-nous un email à equipe@toutokazz.com.
-            </p>
-        </li>
-               <li>
-            <h5><strong>Comment contacter l’equipe de Toutokazz.com.</strong></h5>
-            <p>Pour nous joindre, vous pouvez cliquer sur le menu « Contactez-nous » en haut de page ou sur le lien « Contact » en bas de page.  
-    Apres il suffit de remplir le formulaire en n’oubliant pas de nous laisser vos coordonnées afin de pouvoir vous répondre.</p>
-        </li>
-    </ul>
-    
 
-</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!--/.about-intro -->
+
+        </div>
+        <!-- /.intro-inner -->
+}
+      <div class="section-content">
+                    <div class="row ">
+                        <h1 class="text-center title-1"> Toutokazz <strong>FAQ</strong> </h1>
+                        <hr class="center-block small text-hr">
+                    </div>
+                    <div class="faq-content">
+                        <div aria-multiselectable="true" role="tablist" id="accordion" class="panel-group faq-panel">
+
+                            <div class="panel">
+                                <div id="headingOne" role="tab" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a aria-controls="collapseOne" aria-expanded="true" href="#collapseOne" data-parent="#accordion" data-toggle="collapse">
+                                            C’est quoi Toutokazz.com?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div aria-labelledby="headingOne" role="tabpanel" class="panel-collapse collapse in" id="collapseOne">
+                                    <div class="panel-body">
+                                        Toutokazz.com est un site de petites annonces généralistes ciblant les haïtiens vivants en Haïti et ceux de la diaspora. Son objectif est de mettre en relation ceux qui ont un bien ou service à vendre et ceux qui sont à la recherche de ce bien ou service.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div id="headingTwo" role="tab" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a aria-controls="collapseTwo" aria-expanded="false" href="#collapseTwo" data-parent="#accordion" data-toggle="collapse" class="collapsed">
+                                            Qui peut déposer une annonce sur Toutokazz.com ?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div aria-labelledby="headingTwo" role="tabpanel" class="panel-collapse collapse" id="collapseTwo">
+                                    <div class="panel-body">
+                                        Toute personne possédant une adresse email active peu s’enregistrer sur toutokazz.com pour y déposer des annonces. Elle peut créer un compte particulier si elle compte déposer moins de 10 annonces par moi ou un compte professionnel si elle veut en déposer plus.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div id="headingThree" role="tab" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a aria-controls="collapseThree" aria-expanded="false" href="#collapseThree" data-parent="#accordion" data-toggle="collapse" class="collapsed">
+                                            Que faire si je suis intéressé par un produit présenté sur Toutokazz.com ?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div aria-labelledby="headingThree" role="tabpanel" class="panel-collapse collapse" id="collapseThree">
+                                    <div class="panel-body">
+                                        Si vous êtes intéressé par un produit ou service présenté sur Toutokazz.com, nous vous invitons à contacter l’annonceur en utilisant l’espace « Contacter l’annonceur » située à droite dans la page de l’annonce.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div id="heading_04" role="tab" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a aria-controls="collapse_04" aria-expanded="false" href="#collapse_04" data-parent="#accordion" data-toggle="collapse" class="collapsed">
+                                            Est-ce que je peux acheter et payer un produit directement sur Toutokazz.com ?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div aria-labelledby="heading_04" role="tabpanel" class="panel-collapse collapse" id="collapse_04">
+                                    <div class="panel-body">
+                                        Pour le moment, on ne peut effectuer de transaction directement sur le site Toutokazz.com.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div id="heading_05" role="tab" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a aria-controls="collapse_05" aria-expanded="false" href="#collapse_05" data-parent="#accordion" data-toggle="collapse" class="collapsed">
+                                            Dois-je payer pour déposer une annonce sur Toutokazz ?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div aria-labelledby="heading_05" role="tabpanel" class="panel-collapse collapse" id="collapse_05">
+                                    <div class="panel-body">
+                                        Non, déposer une annonce sur Toutokazz est gratuit.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div id="heading_06" role="tab" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a aria-controls="collapse_06" aria-expanded="false" href="#collapse_06" data-parent="#accordion" data-toggle="collapse" class="collapsed">
+                                            Comment m’enregistrer sur Toutokazz.com ?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div aria-labelledby="heading_06" role="tabpanel" class="panel-collapse collapse" id="collapse_06">
+                                    <div class="panel-body">
+                                      <p>  Vous pouvez utiliser une des deux méthodes suivantes pour vous enregistrer sur Toutokazz.com :</p>
+                                        <ul>
+                                           <li>Cliquez sur le menu « Mon Compte» et dans la section « Vous n'avez pas encore de compte? », choisissez de créer un compte particulier ou un compte professionnel.</li> 
+                                            <li>Cliquez sur le bouton « Déposer une annonce ». En remplissant la forme de depot d’annonce, vous entrer votre adresse email et le mot de passe de votre choix. Une fois l’annonce soumît, le compte est aussi créé</li>
+                                       </ul>
+
+                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div id="heading_07" role="tab" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a aria-controls="collapse_07" aria-expanded="false" href="#collapse_07" data-parent="#accordion" data-toggle="collapse" class="collapsed">
+                                            Comment déposer une annonce ?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div aria-labelledby="heading_07" role="tabpanel" class="panel-collapse collapse" id="collapse_07">
+                                    <div class="panel-body">
+                                        Vous pouvez utiliser une des trois methodes suivantes pour deposer une annonce :
+
+                                        Cliquez sur le bouton « Déposer une annonce » en haut, à droite, puis remplir le formulaire complétement avant de le soumettre.
+                                        Cliquez sur le bouton « Déposer une annonce » en bas, à gauche, puis remplir le formulaire complétement avant de le soumettre.
+                                        Allez à la page « Mes annonces » en cliquant sur le menu « Mes annonces ». De là, Cliquez sur le bouton « Déposer une annonce », puis remplir le formulaire complètement avant de le soumettre.
+                                     </div>
+                                </div>
+                            </div>
+                           
+                            <div class="panel">
+                                <div id="heading_08" role="tab" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a aria-controls="collapse_08" aria-expanded="false" href="#collapse_08" data-parent="#accordion" data-toggle="collapse" class="collapsed">
+                                            Comment désactiver une annonce ?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div aria-labelledby="heading_08" role="tabpanel" class="panel-collapse collapse" id="collapse_08">
+                                    <div class="panel-body">
+                                        Vous pouvez désactiver une annonce déposee de la facon suivante :
+
+                                        Connectez-vous a partir du votre compte avec lequel vous avez deposé l'annonce.
+                                        Allez à la page « Mes annonces » en cliquant sur le menu « Mes annonces ».
+                                        De là, Filter l'annonce a désactiver , cliquer sur le lien "désactiver " et confimer votre choix
+
+                                     </div>
+                                </div>
+                            </div>
+                            
+                            <div class="panel">
+                                <div id="heading_09" role="tab" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a aria-controls="collapse_09" aria-expanded="false" href="#collapse_09" data-parent="#accordion" data-toggle="collapse" class="collapsed">
+                                            Que dois-je faire si je voudrais poster un nombre important d’annonces en même temps ?
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div aria-labelledby="heading_09" role="tabpanel" class="panel-collapse collapse" id="collapse_09">
+                                    <div class="panel-body">
+                                        L’equipe de Toutokazz.com se fera un plaisir de télécharger vos annonces, aussi nombreux qu’ils peuvent etre pour vous. Veuillez nous contact à travers le site ou envoyez-nous un email à equipe@toutokazz.com
+
+                                     </div>
+                                </div>
+                            </div>
+                           
+                            <div class="panel">
+                                <div id="heading_10" role="tab" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a aria-controls="collapse_10" aria-expanded="false" href="#collapse_10" data-parent="#accordion" data-toggle="collapse" class="collapsed">
+                                            Comment contacter l’equipe de Toutokazz.com.
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div aria-labelledby="heading_10" role="tabpanel" class="panel-collapse collapse" id="collapse_10">
+                                    <div class="panel-body">
+                                        Pour nous joindre, vous pouvez cliquer sur le menu « Contactez-nous » en haut de page ou sur le lien « Contact » en bas de page. Apres il suffit de remplir le formulaire en n’oubliant pas de nous laisser vos coordonnées afin de pouvoir vous répondre.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+               </div>
+
+
+      

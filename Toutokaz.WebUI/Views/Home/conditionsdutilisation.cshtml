@@ -3,104 +3,120 @@
     ViewBag.description = "Toutokazz, les conditions d'utilisation";
     ViewBag.motscles = "toutokazz,conditions,comment,utilisation,aide, toutokaz, annonces, haiti, classified ads, ads,site annonce, site annonces, petites, annonces,gratuites";
     ViewBag.page_description = "Toutokazz, les conditions d'utilisation";
-    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/slide-positive-women.jpg");
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.ImageUrl = Url.Content("~/Content/images/bg_intro2.jpg");
+    Layout = "~/Views/Shared/_LayoutPagev2.cshtml";
 }
 
-@section open_graph_tags{
-    @Html.Partial("_OpenGraphTag")
+@section Intro{
+
+    <div class="intro-inner">
+        <div class="about-intro" style="background:url(assets/images/bg2.jpg) no-repeat center;background-size:cover;">
+            <div class="dtable hw100">
+                <div class="dtable-cell hw100">
+                    <div class="container text-center">
+                        <h1 class="intro-title animated fadeInDown"> Building a customer focus </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.about-intro -->
+
+    </div>
+    <!-- /.intro-inner -->
 }
+<div class="section-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="text-center title-1"> Conditions d'utilisation </h1>
+            <hr class="center-block small text-hr">
 
-@section categories_menu {
-          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
-}
+            <p>Ceci présente les conditions générales d'utilisation de toutokazz.com. Si vous avez des questions au sujet de ces conditions, merci de nous contacter.</p>
+            <h4>NOUS RECOMMENDONS DE LIRE AVEC ATTENTION CES CONDITIONS D'UTILISATION</h4>
+            <p>
+                En vous connectant sur toutokazz.com, vous acceptez les termes et les conditions de ces conditions d'utilisation, la protection de la vie privée et des données.
+            </p>
 
-<div class="col-lg-12">
-<h3>Conditions d'utilisation</h3>
-    <hr />
-<p>Ceci présente les conditions générales d'utilisation de toutokazz.com. Si vous avez des questions au sujet de ces conditions, merci de nous contacter.</p>
-<h4>NOUS RECOMMENDONS DE LIRE AVEC ATTENTION CES CONDITIONS D'UTILISATION</h4>
-<p>
-    En vous connectant sur toutokazz.com, vous acceptez les termes et les conditions de ces conditions d'utilisation, la protection de la vie privée et des données.
-</p>
-   
-   <h4>Acceptation des conditions</h4> 
-    <p>
-   En créant votre compte sur toutokazz.com ou en continuant à utiliser toutokazz.com, vous acceptez les termes et les conditions de ces conditions d'utilisation. Ces conditions peuvent être modifiées à tout moment par Toutokazz.com. Si vous n'acceptez pas les modifications, vous devriez demander la fermeture de votre compte.
-Si vous continuez à utiliser nos services, cela signifie que vous acceptez la mise à jour des conditions.
-    </p>
-    <h4>Rôle de toutokazz.com</h4>
-    <p>
-        toutokazz.com est un point de rencontre entre  personnes désireuses d'acheter, vendre, donner, échanger des biens et des services. Nous ne possédons donc pas, et ne nous occupons pas des biens et des services proposés dans les annonces. De ce fait, nous ne pouvons pas vérifier ou assurer la qualité, 
-        la sécurité, ou la légalité des annonces et du contenu publié sur toutokazz.com.
-    </p>
-    <h4>Contenu publié sur toutokazz.com</h4>
-    <p> Vous certifiez que les informations et les contenus que vous postez sur toutokazz.com sont :   </p>
-      <ul>
-          <li>Non interdits par toutokazz.com</li>
-          <li>Vrais, Conformes à la réalité et à jour ;</li>
-          <li>Ne concernent pas un bien volé et ne sont liés en aucune façon à une quelconque fraude;</li>
-          <li>Conformes à la loi en vigueur en Haiti ;</li>
-          <li>Non diffamatoires ;</li>
-          <li>Non obscènes et ne concernent pas de la pornographie infantile ;</li>
-          <li>En accord avec les divers guides et conditions fournies sur toutokazz.com ;</li>
-      </ul>
-    <h4>Annonces interdites</h4>
-    <p>
-        toutokazz.com n’est en aucune façon responsable du contenu des annonces.
-Cependant, afin de protéger les membres d'éventuelles fraudes ou de dénonciations judiciaires, les annonces avérées des types suivants sont interdites et peuvent donc être supprimées:
-    </p>
-    <ul>
-        <li>Les armes et munitions en infraction avec la loi haïtienne ;</li>
-        <li>Les biens ou services contrefaits ou de contrebande ;</li>
-        <li>Des parties de corps humains ou des fluides ou déjections humaines ;</li>
-        <li>Au contenu raciste, abusif, sexiste, de propagande, haineux, xénophobe, antisémite, etc. ;</li>
-        <li>Etant un message ;</li>
-        <li>Faisant la promotion d'activités illégales ;</li>
-        <li>La pornographie ;</li>
-        <li>Annonces érotiques impliquant des personnes de moins de 18 ans ;</li>
-        <li>Les drogues illégales ;</li>
-        <li>Les médicaments ;</li>
-        <li>Systèmes de régimes ou contrôle du poids ;</li>
-        <li>Voyance, tarot, etc. ;</li>
-        <li>Les contrats non transférables ;</li>
-        <li>Les biens volés ;</li>
-        <li>Vente d'alcool aux personnes en âge non légal ;</li>
-        <li>Vente de cigarettes aux personnes en âge non légal ;</li>
-        <li>Les ventes de type pyramidales, Ponzi ou matricielles offrant l'indépendance financière ou professionnel, 
-            des méthodes de gains d'argent rapide ;</li>
-    </ul>
-    <h4>Prix des produits</h4>
-    <p>
-        Les prix mentionnés dans les annonces sur toutokazz.com sont fixés par les annonceurs et peuvent être précisés en Gourdes Haïtiennes (HTG) ou en Dollars américains (USD). 
-        .com n’a aucune influence sur les prix.
-    </p>
-    <h4>Le désaccord entre membres</h4>
-    <p>
-        Toutokazz.com n'intervient pas lors de désaccords ou de conflits entre membres.
-    </p>
-    <h4>Blocage ou suppression de compte</h4>
-    <p>
-        En cas de non-respect de ces conditions d’utilisation ou des autres règlements de toutokazz.com par un membre, toutokazz.com se réserve le droit de lui adresser un avertissement, 
-        de suspendre temporairement ou supprimer son compte.  
-    </p>
-    <h4>Transfert des droits et obligations à des tiers</h4>
-    <p>
-        Toutokazz.com se réserve le droit de céder à une tierce partie ou de faire exécuter par une tierce partie, la totalité ou une partie des droits et obligations résultant de cette convention.
-Le statut de membre n'est pas transférable.
+            <h4>Acceptation des conditions</h4>
+            <p>
+                En créant votre compte sur toutokazz.com ou en continuant à utiliser toutokazz.com, vous acceptez les termes et les conditions de ces conditions d'utilisation. Ces conditions peuvent être modifiées à tout moment par Toutokazz.com. Si vous n'acceptez pas les modifications, vous devriez demander la fermeture de votre compte.
+                Si vous continuez à utiliser nos services, cela signifie que vous acceptez la mise à jour des conditions.
+            </p>
+            <h4>Rôle de toutokazz.com</h4>
+            <p>
+                toutokazz.com est un point de rencontre entre  personnes désireuses d'acheter, vendre, donner, échanger des biens et des services. Nous ne possédons donc pas, et ne nous occupons pas des biens et des services proposés dans les annonces. De ce fait, nous ne pouvons pas vérifier ou assurer la qualité,
+                la sécurité, ou la légalité des annonces et du contenu publié sur toutokazz.com.
+            </p>
+            <h4>Contenu publié sur toutokazz.com</h4>
+            <p> Vous certifiez que les informations et les contenus que vous postez sur toutokazz.com sont :   </p>
+            <ul>
+                <li>Non interdits par toutokazz.com</li>
+                <li>Vrais, Conformes à la réalité et à jour ;</li>
+                <li>Ne concernent pas un bien volé et ne sont liés en aucune façon à une quelconque fraude;</li>
+                <li>Conformes à la loi en vigueur en Haiti ;</li>
+                <li>Non diffamatoires ;</li>
+                <li>Non obscènes et ne concernent pas de la pornographie infantile ;</li>
+                <li>En accord avec les divers guides et conditions fournies sur toutokazz.com ;</li>
+            </ul>
+            <h4>Annonces interdites</h4>
+            <p>
+                toutokazz.com n’est en aucune façon responsable du contenu des annonces.
+                Cependant, afin de protéger les membres d'éventuelles fraudes ou de dénonciations judiciaires, les annonces avérées des types suivants sont interdites et peuvent donc être supprimées:
+            </p>
+            <ul>
+                <li>Les armes et munitions en infraction avec la loi haïtienne ;</li>
+                <li>Les biens ou services contrefaits ou de contrebande ;</li>
+                <li>Des parties de corps humains ou des fluides ou déjections humaines ;</li>
+                <li>Au contenu raciste, abusif, sexiste, de propagande, haineux, xénophobe, antisémite, etc. ;</li>
+                <li>Etant un message ;</li>
+                <li>Faisant la promotion d'activités illégales ;</li>
+                <li>La pornographie ;</li>
+                <li>Annonces érotiques impliquant des personnes de moins de 18 ans ;</li>
+                <li>Les drogues illégales ;</li>
+                <li>Les médicaments ;</li>
+                <li>Systèmes de régimes ou contrôle du poids ;</li>
+                <li>Voyance, tarot, etc. ;</li>
+                <li>Les contrats non transférables ;</li>
+                <li>Les biens volés ;</li>
+                <li>Vente d'alcool aux personnes en âge non légal ;</li>
+                <li>Vente de cigarettes aux personnes en âge non légal ;</li>
+                <li>
+                    Les ventes de type pyramidales, Ponzi ou matricielles offrant l'indépendance financière ou professionnel,
+                    des méthodes de gains d'argent rapide ;
+                </li>
+            </ul>
+            <h4>Prix des produits</h4>
+            <p>
+                Les prix mentionnés dans les annonces sur toutokazz.com sont fixés par les annonceurs et peuvent être précisés en Gourdes Haïtiennes (HTG) ou en Dollars américains (USD).
+                .com n’a aucune influence sur les prix.
+            </p>
+            <h4>Le désaccord entre membres</h4>
+            <p>
+                Toutokazz.com n'intervient pas lors de désaccords ou de conflits entre membres.
+            </p>
+            <h4>Blocage ou suppression de compte</h4>
+            <p>
+                En cas de non-respect de ces conditions d’utilisation ou des autres règlements de toutokazz.com par un membre, toutokazz.com se réserve le droit de lui adresser un avertissement,
+                de suspendre temporairement ou supprimer son compte.
+            </p>
+            <h4>Transfert des droits et obligations à des tiers</h4>
+            <p>
+                Toutokazz.com se réserve le droit de céder à une tierce partie ou de faire exécuter par une tierce partie, la totalité ou une partie des droits et obligations résultant de cette convention.
+                Le statut de membre n'est pas transférable.
 
-    </p>
-    <h4>Conformité aux lois haïtiennes</h4>
-    <p>
-        Toute opération ou publication sur toutokazz.com doit être en conformité avec les lois haïtiennes en vigueur.
-    </p>
-    <h4>Liens contractuels</h4>
-    <p>
-        Vous et toutokazz.com êtes indépendants. De ce fait, aucun partenariat, aucune joint-venture, aucune relation employé-employeur, 
-        franchisé-franchiseur n'est créée par ces conditions d'utilisation ou l'utilisation de toutokazz.com.
-    </p>
-    <h4>Version</h4>
-    <p>
-        Dernière mise à jour de ces conditions : 30 Août 2014
-    </p>
+            </p>
+            <h4>Conformité aux lois haïtiennes</h4>
+            <p>
+                Toute opération ou publication sur toutokazz.com doit être en conformité avec les lois haïtiennes en vigueur.
+            </p>
+            <h4>Liens contractuels</h4>
+            <p>
+                Vous et toutokazz.com êtes indépendants. De ce fait, aucun partenariat, aucune joint-venture, aucune relation employé-employeur,
+                franchisé-franchiseur n'est créée par ces conditions d'utilisation ou l'utilisation de toutokazz.com.
+            </p>
+            <h4>Version</h4>
+            <p>
+                Dernière mise à jour de ces conditions : 30 Août 2014
+            </p>
+        </div>
+    </div>
 </div>

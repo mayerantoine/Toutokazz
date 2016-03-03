@@ -95,7 +95,7 @@ namespace Toutokaz.WebUI.Controllers
         {
             FormsAuthentication.SignOut();
             WebSecurity.Logout();
-            return RedirectToAction("Moncompte", "Account", null);
+            return RedirectToAction("Login", "Account", null);
         }
 
         [HttpGet]
@@ -138,13 +138,13 @@ namespace Toutokaz.WebUI.Controllers
                     //Succesfull page
                     if (!String.IsNullOrEmpty(c))
                     {
-                        WelcomeMailer.confirmationEmail(model.Email,c).Send();
-
-                    /*    if (authProvider.Authenticate(model.Email, model.password))
-                        {
-                            FormsAuthentication.SetAuthCookie(model.Email, false);
-                             return RedirectToAction("index", "mesannonces");
-                        }*/
+                        //WelcomeMailer.confirmationEmail(model.Email,c).Send();
+                        WelcomeMailer.confirmationEmail("mayerantoine@gmail.com", c).Send();
+                        /*    if (authProvider.Authenticate(model.Email, model.password))
+                            {
+                                FormsAuthentication.SetAuthCookie(model.Email, false);
+                                 return RedirectToAction("index", "mesannonces");
+                            }*/
                         return RedirectToAction("RegistrationSuccess", "Account");
                      
                     }

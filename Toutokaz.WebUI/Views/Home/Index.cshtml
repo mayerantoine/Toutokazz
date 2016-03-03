@@ -1,67 +1,312 @@
 ﻿@model Toutokaz.WebUI.Models.HomePageModel
+@using Toutokaz.WebUI.Helpers
 
 @{
+
     ViewBag.Title = "Toutokazz - Site de petites annonces gratuites, le meilleur d'Haiti";
     ViewBag.description = "Bienvenue sur Toutokazz, le meilleur site de petites annonces d'Haiti";
     ViewBag.motscles = "toutokazz,toutokaz, haiti, classified ads,site annonces, petites, annonces, annonces gratuites, immobilier, voiture, auto, moto, annonces immobilier, vêtements";
     ViewBag.page_description = "Toutokazz, le meilleur site de petites annonces d'Haiti. Avec toutokazz, vendez facilement et rapidement vos biens et objet d''occasions sur internet";
-    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/Banner1a.jpg");
-    
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.ImageUrl = Url.Content("~/Content/images/bg_intro2.jpg");
+    Layout = "~/Views/Shared/_LayoutPagev2.cshtml";
+
 }
 
-@section open_graph_tags{
-    @Html.Partial("_OpenGraphTag")
-}
+@section Intro{
 
-@section categories_menu {
-    @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
-}
+    <div class="intro">
+        <div class="dtable hw100">
+            <div class="dtable-cell hw100">
+                <div class="container text-center">
+                    <h1 class="intro-title animated fadeInDown"> Recherchez vos annonces  </h1>
+                    <p class="sub animateme fittext3 animated fadeIn">Trouvez la bonne affaire pour toutes les occasions </p>
 
-@section left{
-    @{  Html.RenderAction("_GetSearchAds", "Annonces");}
+                    <div class="row search-row animated fadeInUp">
+                        <div class="col-lg-4 col-sm-4 search-col relative locationicon">
+                            <i class="icon-location-2 icon-append"></i>
+                            <input type="text" name="country" id="autocomplete-ajax" class="form-control locinput input-rel searchtag-input has-icon" placeholder="Commune..." value="">
 
-    <div id="fblike" class="fb-like-box hidden-xs" data-href="https://facebook.com/toutokazz" data-width="250" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
-    <div style="margin-top:20px;" class="hidden-xs">
-        <a href="@Url.Action("Moncompte","account")">
-            <img src="@Url.Content("~/Content/img/decouvir-sites.png?width=250&height=250")" alt="Decouvrez le meilleur site d'annonces' toutokazz" />
-        </a>
+                        </div>
+                        <div class="col-lg-4 col-sm-4 search-col relative">
+                            <i class="icon-docs icon-append"></i>
+                            <input type="text" name="ads" class="form-control has-icon" placeholder="Je Cherche ..." value="">
+                        </div>
+                        <div class="col-lg-4 col-sm-4 search-col">
+                            <button class="btn btn-primary btn-search btn-block"><i class="icon-search"></i><strong>Trouver</strong></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
-}
-<div id="main-right">
-    <div class="col-lg-9 content-right">
-        <div id="main-carousel" class="carousel slide hidden-xs">
-            <!-- class of slide for animation -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <img src="@Url.Content("~/Content/img/slides/Banner1a.jpg")" alt="Toutokazz-Trouver la bonne affaire pour toutes les occasions.slide-positive-women" />
-                    <div class="carousel-caption-slide1">
-                        <div><a class="btn btn-lg round btn-warning btn-slide" href="@Url.Action("touteslesannonces","Annonces")" role="button">Voir toutes les annonces</a></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="@Url.Content("~/Content/img/slides/Banner2a.jpg")" alt="Toutokazz-Vendez facilement et rapidemnet vos biens et objet d'occasions sur internet.slide-particulier-solution" />
-                    <div class="carousel-caption-slide2">
-                        <p><a class="btn btn-lg round btn-warning btn-slide" href="@Url.Action("Create","account")" role="button">Créer un compte particulier</a></p>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="@Url.Content("~/Content/img/slides/Banner3a.jpg")" alt="Toutokazz-Services et espaces professionnels dedies pour exposer vos produits sur internet.slide-pro-businessman" />
-                    <div class="carousel-caption-slide3">
-                        <p><a class="btn btn-lg round btn-warning btn-slide" href="@Url.Action("CreatePro","account")" role="button">Créer un compte professionnel</a></p>
 
-                    </div>
+}
+
+@section PageInfo{
+
+    <div class="page-info" style="background: url(/assets/images/bg.jpg); background-size:cover">
+        <div class="container text-center section-promo">
+            <div class="row">
+                <div class="col-sm-3 col-xs-6 col-xxs-12">
+                    <div class="iconbox-wrap">
+                        <div class="iconbox">
+                            <div class="iconbox-wrap-icon">
+                                <i class="icon  icon-group"></i>
+                            </div>
+                            <div class="iconbox-wrap-content">
+                                <h5><span>400</span> </h5>
+                                <div class="iconbox-wrap-text">Annonceurs</div>
+                            </div>
+                        </div>
+                        <!-- /..iconbox -->
+                    </div><!--/.iconbox-wrap-->
                 </div>
-            </div><!-- /.carousel-inner -->
-            <!--  Next and Previous controls below
-                  href values must reference the id for this carousel -->
-            <a class="carousel-control left" href="#main-carousel" data-slide="prev">&lsaquo;</a>
-            <a class="carousel-control right" href="#main-carousel" data-slide="next">&rsaquo;</a>
+
+                <div class="col-sm-3 col-xs-6 col-xxs-12">
+                    <div class="iconbox-wrap">
+                        <div class="iconbox">
+                            <div class="iconbox-wrap-icon">
+                                <i class="icon  icon-th-large-1"></i>
+                            </div>
+                            <div class="iconbox-wrap-content">
+                                <h5><span>40</span> </h5>
+                                <div class="iconbox-wrap-text">Catégories</div>
+                            </div>
+                        </div>
+                        <!-- /..iconbox -->
+                    </div><!--/.iconbox-wrap-->
+                </div>
+
+                <div class="col-sm-3 col-xs-6  col-xxs-12">
+                    <div class="iconbox-wrap">
+                        <div class="iconbox">
+                            <div class="iconbox-wrap-icon">
+                                <i class="icon  icon-map"></i>
+                            </div>
+                            <div class="iconbox-wrap-content">
+                                <h5><span>140</span> </h5>
+                                <div class="iconbox-wrap-text">Villes</div>
+                            </div>
+                        </div>
+                        <!-- /..iconbox -->
+                    </div><!--/.iconbox-wrap-->
+                </div>
+
+                <div class="col-sm-3 col-xs-6 col-xxs-12">
+                    <div class="iconbox-wrap">
+                        <div class="iconbox">
+                            <div class="iconbox-wrap-icon">
+                                <i class="icon icon-facebook"></i>
+                            </div>
+                            <div class="iconbox-wrap-content">
+                                <h5><span>10,000</span> </h5>
+                                <div class="iconbox-wrap-text"> Facebook Fans</div>
+                            </div>
+                        </div>
+                        <!-- /..iconbox -->
+                    </div><!--/.iconbox-wrap-->
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- /.page-info -->
+
+}
+
+
+<div class="col-lg-12 content-box ">
+    <div class="row row-featured row-featured-category">
+        <div class="col-lg-12  box-title no-border">
+            <div class="inner">
+                <h2>
+                    <span>Recherche par</span>
+                    Catégorie    <a href="category.html" class="sell-your-item">Toutes les Catégories <i class="  icon-th-list"></i> </a>
+                </h2>
+            </div>
         </div>
 
-        @Html.Partial("_RecommendedAnnonces", Model.ImgNew)
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/car-2.jpg" class="img-responsive" alt="img"> <h6> Voiture  </h6> </a>
+        </div>
 
-        @Html.Partial("_CategoryBySection", Model.sectionList)
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/laptop-2.jpg" class="img-responsive" alt="img"> <h6> Laptops  </h6> </a>
+        </div>
 
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/mobile.jpg" class="img-responsive" alt="img"> <h6> Téléphone  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/tv.jpg" class="img-responsive" alt="img"> <h6> Electronique  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/hdd.jpg" class="img-responsive" alt="img"> <h6> Accessoires Ordinateur  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/house.jpg" class="img-responsive" alt="img"> <h6> Immobilier  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/Home-Electronics-Appliances-2.jpg" class="img-responsive" alt="img"> <h6> Electroménager </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/camera.jpg" class="img-responsive" alt="img"> <h6>  Services </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/fashion.jpg" class="img-responsive" alt="img"> <h6> Chaussures et Sacs </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/toy.jpg" class="img-responsive" alt="img"> <h6> Montre et Bijoux   </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/jobs.jpg" class="img-responsive" alt="img"> <h6> Cours et Formation  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="category.html"><img src="~/assets/images/category/catalog.jpg" class="img-responsive" alt="img"> <h6> Ammeublement  </h6> </a>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<div style="clear: both"></div>
+
+<!-- Sponsored ads-->
+
+<div class="col-lg-12 content-box ">
+    <div class="row row-featured">
+        <div class="col-lg-12 box-title ">
+            <div class="inner">
+                <h2>
+                    <span>Sponsored </span>
+                    Products     <a href="category.html" class="sell-your-item"> View more <i class="  icon-th-list"></i> </a>
+                </h2>
+
+
+            </div>
+        </div>
+
+        <div style="clear: both"></div>
+
+        <div class=" relative  content featured-list-row clearfix">
+
+            <nav class="slider-nav has-white-bg nav-narrow-svg">
+                <a class="prev">
+                    <span class="nav-icon-wrap"></span>
+
+                </a>
+                <a class="next">
+                    <span class="nav-icon-wrap"></span>
+                </a>
+            </nav>
+
+            <div class="no-margin featured-list-slider ">
+                @foreach (var ads in Model.ImgNew)
+                {
+                    <div class="item">
+                        <a href="ads-details.html">
+                            <span class="item-carousel-thumb"> <img class="item-img" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + (string.IsNullOrEmpty(ads.tb_ad_image.FirstOrDefault().image_filename) ? "default-img.jpg" : ads.tb_ad_image.FirstOrDefault().image_filename) + "?width=120&height=100")" alt="img"> </span>
+                            <span class="item-name"> @Html.Label(ads.ad_title.ToSeoUrl())</span>
+                            <span class="price"><span>@Html.Raw(HttpUtility.HtmlDecode(ads.tb_devise.symbole))</span>@Html.Label(ads.ad_price + " ")</span>
+                        </a>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Ads  Category List-->
+
+<div class="row">
+    <div class="col-sm-9 page-content col-thin-right">
+        <div class="inner-box category-content">
+            <h2 class="title-2">Find Classified Ads World Wide </h2>
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    @{
+
+                        int cnt = 0;
+                        foreach (var item in Model.sectionList)
+                        {
+
+                            if (cnt++ % 3 == 0 && cnt > 1)
+                            {
+                                @:</div><div class="col-md-4 col-sm-4">
+                         }
+                            @:<div class="cat-list">
+                                @: <h3 class="cat-title"> <a href="@Url.Action("allannonce", "Annonces", new { id_section=item.id_section, section_title= item.section_title.ToSeoUrl()})"><img src="@Url.Content("~/Content/images/"+item.icon_image+"")" /> @Html.DisplayName(item.section_title) </a>
+                                    @:<span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
+                                    @: </h3>
+                                @:<ul class="cat-collapse collapse in cat-id-1">
+                        foreach (var cat in item.tb_category)
+                            {
+                                <li>
+                                    @Html.ActionLink(cat.category_title, "allannonce", "annonces", new { id_category = cat.id_category, category_title = cat.category_title.ToSeoUrl() }, new { @class = "category-display" })
+                                </li>
+                            }
+                            @:  </ul>
+                        @:</div>
+
+
+                        }
+
+                    }
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="inner-box has-aff relative">
+            <a class="dummy-aff-img" href="category.html"><img src="~/assets/images/aff2.jpg" class="img-responsive" alt=" aff"> </a>
+
+        </div>
+    </div>
+    <div class="col-sm-3 page-sidebar col-thin-left">
+        <aside>
+            <div class="inner-box no-padding">
+                <div id="fblike" class="fb-like-box hidden-xs" data-href="https://facebook.com/toutokazz" data-width="230" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+            </div>
+            <div class="inner-box no-padding">
+                <div class="inner-box-content"> <a href="#"><img class="img-responsive" src="~/assets/images/site/app.jpg" alt="tv"></a> </div>
+            </div>
+            <div class="inner-box">
+                <h2 class="title-2">Popular Categories </h2>
+                <div class="inner-box-content">
+                    <ul class="cat-list arrow">
+                        <li> <a href="sub-category-sub-location.html"> Apparel (1,386) </a></li>
+                        <li> <a href="sub-category-sub-location.html"> Art (1,163) </a></li>
+                        <li> <a href="sub-category-sub-location.html"> Business Opportunities (4,974) </a></li>
+                        <li> <a href="sub-category-sub-location.html"> Community and Events (1,258) </a></li>
+                        <li> <a href="sub-category-sub-location.html"> Electronics and Appliances (1,578) </a></li>
+                        <li> <a href="sub-category-sub-location.html"> Jobs and Employment (3,609) </a></li>
+                        <li> <a href="sub-category-sub-location.html"> Motorcycles (968) </a></li>
+                        <li> <a href="sub-category-sub-location.html"> Pets (1,188) </a></li>
+                        <li> <a href="sub-category-sub-location.html"> Services (7,583) </a></li>
+                        <li> <a href="sub-category-sub-location.html"> Vehicles (1,129) </a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="inner-box no-padding"> <img class="img-responsive" src="~/assets/images/add2.jpg" alt=""> </div>
+        </aside>
     </div>
 </div>

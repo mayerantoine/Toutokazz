@@ -5,59 +5,60 @@
     ViewBag.description = "Bienvenue sur Toutokazz, Créer votre comtpe et déposer une annonce";
     ViewBag.motscles = "toutokazz,toutokaz, annonces,comtpe,deposer,particulier,professionnel, haiti, classified ads, ads,site annonce, site annonces, petites";
     ViewBag.page_description = "Bienvenue sur Toutokazz, Créer votre compte et déposer une annonce";
-    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/Banner1a.jpg");
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.ImageUrl = Url.Content("~/Content/images/bg_intro2.jpg");
+    Layout = "~/Views/Shared/_LayoutPagev2.cshtml";
 }
 
-<div class="col-lg-12">
+
     <div class="row">
-        <div class="col-lg-6">
-            <div class="well well-lg">
-                <h4 style="font-weight:bold">Vous avez déja un compte?</h4>
-                @Html.Action("ExternalLoginButton", "account", new { ReturnUrl = ViewBag.ReturnUrl })
-                <h4 style="font-weight:bold">ou</h4>
-                <form role="form" action="@Url.Action("Login","account")" method="post">
-                    @Html.ValidationSummary(false)
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email </label>
-                        @Html.TextBoxFor(model => model.Email, new { type = "email", @class = "form-control", id = "Email", placeholder = "Votre Email" })
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Mot de passe</label>
-                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "Password", placeholder = "Mot de passe" })
+        <div class="col-sm-5 login-box">
+            <div class="panel panel-default">
+                <div class="panel-intro text-center">
+                    <h2 class="logo-title">
+                        <!-- Original Logo will be placed here  -->
+                        Se connecter
+                      </h2>
+                </div>
+                <div class="panel-body">
+                    @Html.Action("ExternalLoginButton", "account", new { ReturnUrl = ViewBag.ReturnUrl })
+                    <h2 class="logo-title text-center">
+                        <!-- Original Logo will be placed here  -->
+                        ou
+                    </h2>
+                    <form role="form" action="@Url.Action("Login","account")" method="post">
+                        @Html.ValidationSummary(false)
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email </label>
+                            <div class="input-icon"> <i class="icon-user fa"></i>
+                                @Html.TextBoxFor(model => model.Email, new { type = "email", @class = "form-control email", id = "Email", placeholder = "Votre Email" })
+                            </div>
+                          </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Mot de passe</label>
+                            <div class="input-icon">
+                                <i class="icon-lock fa"></i>
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", id = "Password", placeholder = "Mot de passe" })
+                            </div>
+                            </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-medium btn-success">Valider</button>
 
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-medium btn-success">Valider</button>
-
-                    </div>
-                    <div class="form-group">
-                        <div style="display:inline-block"><a class="btn btn-small btn-default pull-right" href="@Url.Action("forgotpassword","account")">Mot de passe oublié</a></div>
-                    </div>
-                </form>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <p class="text-center pull-right"> <a href="@Url.Action("forgotpassword","account")"> Mot de passe oublié</a> </p>
+                    <div style=" clear:both"></div>
+                </div>
             </div>
-        </div>
-        <div class="col-lg-6">
-            <div>
-                <h3> Vous n'avez pas encore de compte?</h3>
-                <p>LA CRÉATION DE VOTRE COMPTE EST GRATUITE</p>
+
+            <div class="login-box-btm text-center">
                 <p>
-                    Ce service vous permet de retrouver toutes vos annonces au même endroit.
-                    Déposez à présent plus simplement et plus rapidement vos annonces et améliorez leur gestion.
+                    Vous n'avez pas encore de compte? <br>
+                    <a href="@Url.Action("Create","account")"><strong>Créer un comtpe</strong> </a>
                 </p>
-
-                <div class="row" style="margin-top:30px;margin-bottom:50px;">
-                    <div class="col-sm-8">
-                        @Html.Action("ExternalLoginButtonBig", "account", new { ReturnUrl = ViewBag.ReturnUrl })
-                    </div>
-                </div>
-                <div class="row" style="margin-top:20px;margin-bottom:50px;">
-                    <div class="col-sm-8">
-                        <p><a class="btn btn-lg btn-primary btn-block" href="@Url.Action("Create","Account")" role="button">Créer un Compte avec Toutokazz</a></p>
-                    </div>
-                </div>
             </div>
         </div>
-   
+  
     </div>
-</div>
+
