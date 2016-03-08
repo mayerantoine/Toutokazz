@@ -21,6 +21,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+            $("#input-upload-img1").fileinput({ 'showUpload': false });
+            $("#input-upload-img2").fileinput({ 'showUpload': false });
+            $("#input-upload-img3").fileinput({ 'showUpload': false });
+            $("#input-upload-img4").fileinput({ 'showUpload': false });
+            $("#input-upload-img5").fileinput({ 'showUpload': false });
+
             function initializeDeposerannonce() {
                 console.log("initi deposer...")
                 //hide voiture
@@ -299,9 +305,31 @@
             }); // end select category
 
 
-        })
+             // Add visit departement master-childpage
+            $('#modelannonce_id_departement').change(function () {
 
+                $.ajax({
+                    url: '/annonces/getCommuneByDepartement/' + $('select#modelannonce_id_departement').val(),
+                    async: true,
+                    type: "get",
+                    datatype: "Json",
+                    success: function (data) {
+                        var items = '<option value=' + '' + '>Choisir Commune</option>';
+                        $.each(data, function (i, selectedsite) {
+                            //    console.log(selectedsite.Value);
+                            items += '<option value=' + selectedsite.Value + '>' + selectedsite.Text + '</option>';
+                        });
+                        console.log(items);
+                        $('select#modelannonce_id_commune').html(items);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(jqXHR + "-" + textStatus + "-" + errorThrown);
+                    },
+                });
 
+            });
+
+        });
     </script>
 
 

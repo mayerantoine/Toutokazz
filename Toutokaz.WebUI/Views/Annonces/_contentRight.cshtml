@@ -3,18 +3,61 @@
 @using MvcSiteMapProvider.Web.Html
 @using PagedList.Mvc
 
-<div class="col-lg-9">          
-        @Html.MvcSiteMap().SiteMapPath()
-      <h3>@Html.Label(Model.CategoryName)</h3>
-     <div class="row classifieds-table">
-           <div class="col-lg-12">
-               @Html.Partial("_SearchFilter")
-               @if(ViewBag.currentDisplay == 2) {
-                    @Html.Partial("_annoncesBlock",Model.AdsList)
-                }
-               else {
-                   @Html.Partial("_annoncesList",Model.AdsList)
-               }
-          </div>
+    
+<div class="category-list">
+    <div class="tab-box ">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs add-tabs" role="tablist">
+            <li class="active"> @Ajax.ActionLink("Toutes", "recherche", "Annonces", new { typeannonce = ViewBag.currentType, keywords = ViewBag.currentKeyword, id_category = ViewBag.currentCategory, ad_city = ViewBag.currentAdCity, display = ViewBag.currentDisplay }, new AjaxOptions { UpdateTargetId = "main-right", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, null)</li>
+            <li>  @Ajax.ActionLink("Particuliers", "recherche", "Annonces", new { typeannonce = ViewBag.currentType, keywords = ViewBag.currentKeyword, id_category = ViewBag.currentCategory, ad_city = ViewBag.currentAdCity, id_account_type = 1, display = ViewBag.currentDisplay }, new AjaxOptions { UpdateTargetId = "main-right", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, null)       </li>
+            <li>@Ajax.ActionLink("Professionnels", "recherche", "Annonces", new { typeannonce = ViewBag.currentType, keywords = ViewBag.currentKeyword, id_category = ViewBag.currentCategory, ad_city = ViewBag.currentAdCity, id_account_type = 2, display = ViewBag.currentDisplay }, new AjaxOptions { UpdateTargetId = "main-right", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, null)</li>         
+        
+           
+        @*  <li class="active"><a href="@Url.Action("recherche","annonces",new { typeannonce=ViewBag.currentType, keywords=ViewBag.currentKeyword ,  id_category =ViewBag.currentCategory,  ad_city=ViewBag.currentAdCity,display = ViewBag.currentDisplay},)" role="tab" data-toggle="tab">Toutes <span class="badge">228,705</span></a></li>
+    <li><a href="@Url.Action("recherche","annonces",new { typeannonce=ViewBag.currentType, keywords=ViewBag.currentKeyword ,  id_category =ViewBag.currentCategory,  ad_city=ViewBag.currentAdCity,id_account_type = 2,display = ViewBag.currentDisplay})" role="tab" data-toggle="tab">Professionel <span class="badge">228,705</span></a></li>
+    <li><a href="@Url.Action("recherche","annonces",new { typeannonce=ViewBag.currentType, keywords=ViewBag.currentKeyword ,  id_category =ViewBag.currentCategory,  ad_city=ViewBag.currentAdCity,id_account_type = 1,display = ViewBag.currentDisplay})" role="tab" data-toggle="tab">Particulier <span class="badge">228,705</span></a></li>*@ 
+        </ul>
+        <div class="tab-filter">
+            <select class="selectpicker" data-style="btn-select" data-width="auto">
+                <option>Filtrer par</option>
+                <option>Prix (croissant)</option>
+                <option>Prix (décroissant)</option>
+            </select>
+        </div>
     </div>
+    <!--/.tab-box-->
+
+    <div class="listing-filter">
+        <div class="pull-left col-xs-6">
+            <div class="breadcrumb-list"><a href="#" class="current"> <span> @Html.DisplayName(Model.CategoryName)</span></a> in  <span>@Html.DisplayName(Model.SelectedCity)</span>  </div>
+        </div>
+        <div class="pull-right col-xs-6 text-right listing-view-action"> <span class="list-view active"><i class="  icon-th"></i></span> <span class="compact-view"><i class=" icon-th-list  "></i></span> <span class="grid-view "><i class=" icon-th-large "></i></span> </div>
+        <div style="clear:both"></div>
+    </div>
+    <!--/.listing-filter-->
+
+    <div class="adds-wrapper" id="main-right">
+        @if (ViewBag.currentDisplay == 2)
+        {
+            @Html.Partial("_listingBlock", Model.AdsList)
+        }
+        else
+        {
+            @Html.Partial("_listing", Model.AdsList)
+        }
+    </div>
+    <!--/.adds-wrapper-->
+
 </div>
+<div class="pagination-bar text-center">
+    @Html.PagedListPager(Model.AdsList, pageNumber => @Url.Action("allannonce", "annonces", new { pageNumber, typeannonce = ViewBag.currentType, keywords = ViewBag.currentKeyword, id_category = ViewBag.currentCategory, ad_city = ViewBag.currentAdCity, id_account_type = ViewBag.currentAccountType }))
+</div>
+<!--/.pagination-bar -->
+
+<div class="post-promo text-center">
+    <h2> Poster tout ce que vous voulez vendre maintenant. </h2>
+    <h5>Vendre en ligne vos produits  c'est gratuit et facile !</h5>
+    <a href="@Url.Action("deposerannonce","annonces")" class="btn btn-lg btn-border btn-post btn-danger">Déposer une annonce </a>
+</div>
+<!--/.post-promo-->

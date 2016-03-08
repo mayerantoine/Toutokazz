@@ -3,36 +3,48 @@
 @using MvcSiteMapProvider.Web.Html
 @using PagedList.Mvc
 
-<div class="col-lg-12">
-    <div class="well well-sm" style="padding: 0;">
-        <div class="row top-classifieds">
-            @foreach (var ads in Model)
-            {
-                <div class="col-md-2">
-                    <a href="@Url.Action("details","Annonces", new { id= ads.id_ad, ad_title=ads.ad_title.ToSeoUrl()},null)">
-                        <div class="thumbnail">
-                            <img alt="@Url.Content(string.IsNullOrEmpty(ads.tb_ad_image.FirstOrDefault().image_filename)? "default-img.jpg" : ads.tb_ad_image.FirstOrDefault().image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + (string.IsNullOrEmpty(ads.tb_ad_image.FirstOrDefault().image_filename)? "default-img.jpg" : ads.tb_ad_image.FirstOrDefault().image_filename)+ "?width=150&height=150")" class="img-responsive" />
-                            <div class="caption">
-                                <p style="font-size:12px"> @Html.ActionLink(ads.ad_title, "details", "Annonces", new { id = ads.id_ad, ad_title = ads.ad_title.ToSeoUrl() }, null)<p>
-                                    @if (ads.id_section != 9 && ads.id_section != 8)
-                                    {
-                                    <p style="font-size:12px">
-                                        <strong>
-                                            <span>@Html.Raw(HttpUtility.HtmlDecode(ads.tb_devise.symbole))</span>
-                                            @Html.Label(ads.ad_price + "")
-                                        </strong>
-                                    </p>
-                                    }
+                     <div class="col-lg-12 content-box ">
+                           <div class="row row-featured">
+                               <div class="col-lg-12 box-title ">
+                                   <div class="inner">
+                                       <h2>
+                                           Petites Annonces Similaires
+                                                <a href="category.html" class="sell-your-item"> Voir plus <i class="  icon-th-list"></i> </a>
+                                       </h2>
 
-                                </div>
-                            </div>
-                        </a>
-                    </div>
 
-            }
-        </div>
-        <div class="col-lg-offset-5">
-            <h4><span class="label label-default">Petites Annonces Similaires</span></h4>
-        </div>
-    </div>
-</div>
+                                   </div>
+                               </div>
+
+                               <div style="clear: both"></div>
+
+                               <div class=" relative  content featured-list-row clearfix">
+
+                                   <nav class="slider-nav has-white-bg nav-narrow-svg">
+                                       <a class="prev">
+                                           <span class="nav-icon-wrap"></span>
+
+                                       </a>
+                                       <a class="next">
+                                           <span class="nav-icon-wrap"></span>
+                                       </a>
+                                   </nav>
+
+                                   <div class="no-margin featured-list-slider ">
+                                       @foreach (var ads in Model)
+                                       {
+                                           <div class="item">
+                                               <a href="@Url.Action("details","Annonces", new { id= ads.id_ad, ad_title=ads.ad_title.ToSeoUrl()},null)">
+                                                   <span class="item-carousel-thumb"> <img class="item-img" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + (string.IsNullOrEmpty(ads.tb_ad_image.FirstOrDefault().image_filename) ? "default-img.jpg" : ads.tb_ad_image.FirstOrDefault().image_filename) + "?width=120&height=100")" alt="img"> </span>
+                                                   <span class="item-name"> @Html.Label(ads.ad_title.ToSeoUrl())</span>
+                                                   <span class="price"><span>@Html.Raw(HttpUtility.HtmlDecode(ads.tb_devise.symbole))</span>@Html.Label(ads.ad_price + " ")</span>
+                                               </a>
+                                           </div>
+                                       }
+                                   </div>
+
+
+                               </div>
+
+                           </div>
+                       </div>

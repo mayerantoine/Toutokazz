@@ -1,0 +1,71 @@
+﻿@model Toutokaz.WebUI.Models.CategoryPageModel
+@using Toutokaz.WebUI.Helpers;
+
+<aside>
+    <div class="inner-box">
+        <div class="categories-list  list-filter">
+            <h5 class="list-title"><strong><a href="/annonces/allannonce"><i class="fa fa-angle-left"></i> Toutes les Catégories</a></strong></h5>
+            <ul class=" list-unstyled">
+                <li> <a href="@Url.Action("allannonce", "annonces", new { id_section=Model.selected_section.id_section, section_title= Model.selected_section.section_title.ToSeoUrl()})"><span class="title"><strong>@Html.DisplayName(Model.selected_section.section_title)</strong></span><span class="count">&nbsp;86626</span></a>
+                    <ul class=" list-unstyled long-list">
+                        @foreach (var item in Model.selected_section.tb_category.ToList())
+                        {
+                            <li><a href="@Url.Action("allannonce", "annonces", new {  id_section=Model.selected_section.id_section, section_title = Model.selected_section.section_title.ToSeoUrl() , id_category=item.id_category, category_title= item.category_title.ToSeoUrl()})"><span class="title">@Html.DisplayName(item.category_title)</span><span class="count">&nbsp;8626</span></a> </li>
+                        }
+                        </ul>
+                </li>
+              </ul>
+        </div>
+        <!--/.categories-list-->
+
+        <div class="locations-list  list-filter">
+            <h5 class="list-title"><strong><a href="#">Villes</a></strong></h5>
+            <ul class="browse-list list-unstyled long-list">
+                @foreach (var item in Model.communeList.ToList())
+                {
+                 <li> <a href="@Url.Action("allannonce", "annonces", new {  id_section=Model.selected_section.id_section, id_category=ViewBag.currentCategory,ad_city = item.id_commune})"> @Html.DisplayName(item.commune) </a></li>
+                }
+            </ul>
+        </div>
+        <!--/.locations-list-->
+
+        <div class="locations-list  list-filter">
+            <h5 class="list-title"><strong><a href="#">Price range</a></strong></h5>
+            <form role="form" class="form-inline ">
+                <div class="form-group col-sm-4 no-padding">
+                    <input type="text" placeholder="$ 2000 " id="minPrice" class="form-control">
+                </div>
+                <div class="form-group col-sm-1 no-padding text-center"> - </div>
+                <div class="form-group col-sm-4 no-padding">
+                    <input type="text" placeholder="$ 3000 " id="maxPrice" class="form-control">
+                </div>
+                <div class="form-group col-sm-3 no-padding">
+                    <button class="btn btn-default pull-right" type="submit">GO</button>
+                </div>
+            </form>
+            <div style="clear:both"></div>
+        </div>
+        <!--/.list-filter-->
+        <div class="locations-list  list-filter">
+            <h5 class="list-title"><strong><a href="#">Seller</a></strong></h5>
+            <ul class="browse-list list-unstyled long-list">
+                <li> <a href="sub-category-sub-location.html"><strong>All Ads</strong> <span class="count">228,705</span></a></li>
+                <li> <a href="sub-category-sub-location.html">Business <span class="count">28,705</span></a></li>
+                <li> <a href="sub-category-sub-location.html">Personal <span class="count">18,705</span></a></li>
+            </ul>
+        </div>
+        <!--/.list-filter-->
+        <div class="locations-list  list-filter">
+            <h5 class="list-title"><strong><a href="#">Condition</a></strong></h5>
+            <ul class="browse-list list-unstyled long-list">
+                <li> <a href="sub-category-sub-location.html">New <span class="count">228,705</span></a></li>
+                <li> <a href="sub-category-sub-location.html">Used <span class="count">28,705</span></a></li>
+                <li> <a href="sub-category-sub-location.html">None </a></li>
+            </ul>
+        </div>
+        <!--/.list-filter-->
+        <div style="clear:both"></div>
+    </div>
+
+    <!--/.categories-list-->
+</aside>
