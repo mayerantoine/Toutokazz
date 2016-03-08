@@ -329,6 +329,42 @@
 
             });
 
+
+
+            var options = {
+                target: "#output",
+                dataType: "Json",
+                beforeSubmit: beforeSubmit,
+                success: afterSuccess,
+                resetForm: false
+            };
+
+            $('#UploadForm').submit(function (e) {
+                e.preventDefault(); //STOP default action
+                $(this).ajaxSubmit(options);
+                return false;
+            });
+
+            function beforeSubmit() {
+                $('#loading-img').show(); //hide submit button
+                $('#loading-msg').hide();
+            };
+
+            function afterSuccess(data) {
+                $('#loading-img').hide(); //hide submit button
+                $('#loading-msg').slideDown(500);
+                if (data == "OK") {
+                    document.getElementById("UploadForm").reset();
+                    $('#loading-msg h4').text("Votre annonce a été soumise avec succes.");
+                    // window.location.href = "http://localhost:56713/MesAnnonces/Index";
+                    window.location.href = "http://toutokazz.com/MesAnnonces/Index";
+                    //   window.location.href = "http://staging-toutokazz.azurewebsites.net/MesAnnonces/Index";
+                }
+                else {
+                    $('#loading-msg h4').text(data);
+                }
+            };
+
         });
     </script>
 
