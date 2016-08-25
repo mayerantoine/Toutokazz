@@ -2,23 +2,14 @@
 @model IEnumerable<Toutokaz.Domain.Models.tb_section>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage.cshtml";
+    ViewBag.Title = "Toutokazz Admin - Lister Section";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPagev2.cshtml";
 }
-    <div class="row"> 
-        <div class="col-lg-offset-8 col-lg-4">
-             <a class="btn btn-primary btn-outline btn-sm" href="@Url.Action("Create", "Section", new { area="Admin"})"><span class="glyphicon glyphicon-plus"></span>Nouveau</a>
-           
-                       </div>           
-    </div>
 
-
-  <div class="col-lg-10"> 
-  <fieldset>
-     <legend>Liste des Sections</legend>
- </fieldset> 
+  <div class="inner-box"> 
+   <h2 class="title-2"> <i class="icon-docs"></i> Liste des Sections</h2>
         @Html.Raw(@ViewBag.Message)
-                  <table class="table table-condensed table-bordered table-striped table-hover">
+                  <table class="table table-striped table-bordered add-manage-table table demo">
                     <tr>
                         <th>Section</th>
                         <th>Description</th>

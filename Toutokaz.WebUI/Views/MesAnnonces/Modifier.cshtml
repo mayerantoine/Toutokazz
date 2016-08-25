@@ -3,66 +3,85 @@
 
 @{
     ViewBag.Title = "Toutokazz - Modifier annonce";
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
-}
-@section categories_menu {
-          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
+    Layout = "~/Views/Shared/_LayoutMesAnnoncesPagev2.cshtml";
 }
 
-	<div class="row" style="margin-bottom:20px;">
-		<div class="col-md-12">
-    		  <h2>Mes Annonces
-    		  </h2>
-		</div>
-	</div>
 
-<div class="col-lg-12">
-      @using (Html.BeginForm("modifier", "mesannonces", FormMethod.Post, new { @class = "form-horizontal", id = "modifierForm" }))
-         {
-        @Html.AntiForgeryToken()
-       @Html.ValidationSummary(true)
-               @Html.HiddenFor(model=>model.id_ad)
-              <div class="form-group">
-                @Html.LabelFor(model => Model.id_category,"Categorie*",new { @class="col-sm-2 control-label"})
-            <div class="col-sm-5">
-                  @Html.DropDownList("id_category", @ViewBag.selected_category as IDictionary<string , IEnumerable<SelectListItem> > ,"(Selectioner la categorie de l'annonce)", new {  @class="col-sm-8 form-control"})
-                @Html.ValidationMessageFor(model => model.id_category)
-            </div>
-          </div>
-                     <div class="form-group">
-                @Html.LabelFor(model => model.ad_title,"Titre de l'annonce*",new { @class="col-sm-2 control-label"})
-            <div class="col-sm-8">
-                @Html.TextBoxFor(model => model.ad_title,new { @class="form-control"})
-                @Html.ValidationMessageFor(model => model.ad_title)
-            </div>
-           </div>
+<div class="row">
+    <div id="modifierannonce" class="col-md-9 page-content">
+        <div class="inner-box category-content">
+            <h2 class="title-2 uppercase"><strong> <i class="icon-docs"></i> Déposer une annonce</strong> </h2>
 
-           <div class="form-group">
-           @Html.LabelFor(model => model.ad_description,"Description de l'annonce*",new { @class="col-sm-2 control-label"})
-            <div class="col-sm-8">
-                @Html.TextAreaFor(model => model.ad_description,new { @class="form-control",rows="8"})
-                @Html.ValidationMessageFor(model => model.ad_description)
+            <div id="output-success" class="alert alert-info col-lg-12 alert-dismissible" role="alert" style="display:none;">
+                <span class="error"></span>
             </div>
-           </div>
-          
-                   <div class="form-group">
-                @Html.LabelFor(model => model.ad_price,"Prix*",new { @class="col-sm-2 control-label"})
-            <div class="col-sm-5">
-                @Html.TextBoxFor(model => model.ad_price,new { @class="form-control"})
-                @Html.ValidationMessageFor(model => model.ad_price)
+            <div id="output-error" class="alert alert-danger" role="alert" style="display:none;"></div>
+            <div id="output"></div>
+            <div class="col-sm-12">
+                @using (Html.BeginForm("modifier", "mesannonces", FormMethod.Post, new { @class = "form-horizontal", id = "modifierForm" }))
+                {
+                    <fieldset>
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(model => model.id_ad)
+                        <div class="form-group">
+                            @Html.LabelFor(model => Model.id_category, "Categorie*", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-5">
+                                @Html.DropDownList("id_category", @ViewBag.selected_category as IDictionary<string, IEnumerable<SelectListItem>>, "(Selectioner la categorie de l'annonce)", new { @class = "col-sm-8 form-control" })
+                                @Html.ValidationMessageFor(model => model.id_category)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ad_title, "Titre de l'annonce*", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.ad_title, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ad_title)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ad_description, "Description de l'annonce*", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-8">
+                                @Html.TextAreaFor(model => model.ad_description, new { @class = "form-control", rows = "8" })
+                                @Html.ValidationMessageFor(model => model.ad_description)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ad_price, "Prix*", new { @class = "col-sm-2 control-label" })
+                            <div class="col-sm-5">
+                                @Html.TextBoxFor(model => model.ad_price, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ad_price)
+                            </div>
+                            <div class="col-sm-3">
+                                @Html.DropDownList("id_devise", @ViewBag.selected_devise as SelectList, string.Empty, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.id_devise)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"></label>
+                            <div class="col-sm-8">
+                                <button type="submit" class="btn btn-primary btn-lg" id="btnUpdate">Modifier votre annonce</button>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                }
             </div>
-              <div class="col-sm-3">
-                @Html.DropDownList("id_devise",@ViewBag.selected_devise  as SelectList,string.Empty,new { @class="form-control"})
-                @Html.ValidationMessageFor(model => model.id_devise)
+       </div>
+     </div>
+
+    <div class="col-md-3 reg-sidebar">
+        <div class="reg-sidebar-inner text-center">
+            <div class="promo-text-box">
+                <i class=" icon-picture fa fa-4x icon-color-1"></i>
+                <h3><strong>Déposer une annonce</strong></h3>
+                <p>
+                    Déposer une annonce sur le site toutokazz est gratuit, elle sera vérifiée par notre équipe de modération avant sa publication sur le site Internet. Par la suite, votre annonce restera en ligne pendant une durée de 60 jours.
+                    Consultez nos <a class="slink" href="@Url.Action("conditionsdutilisation","Home")">conditions générales</a> de vente. Si vous êtes nouveau sur Toutokazz,  <a class="slink" href="@Url.Action("create","account")">cliquer pour creer votre compte</a>
+                </p>
             </div>
-             </div>
-          
-                <div class="form-group">  
-                      <div class="col-sm-offset-2 col-sm-8">
-                         <button type="submit" class="btn btn-primary btn-lg" id="btnUpdate">Modifier votre annonce</button>
-                           </div>
-                  </div>  
-          
-          
-      }
-    </div>
+        </div>
+    </div><!--/.reg-sidebar-->
+</div>

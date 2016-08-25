@@ -443,17 +443,17 @@ namespace Toutokaz.WebUI.Controllers
                         {
                             if (file.image != null)
                             {
-                               String serverpath = WebConfigurationManager.AppSettings["ServerPath"]+"/large/";
-                               String serverthumbnail = WebConfigurationManager.AppSettings["ServerPath"]+"/thumbnail/";
+                              // String serverpath = WebConfigurationManager.AppSettings["ServerPath"]+"/large/";
+                               //String serverthumbnail = WebConfigurationManager.AppSettings["ServerPath"]+"/thumbnail/";
                                var fileName = Path.GetFileName(file.image.FileName); 
                                var extension = Path.GetExtension(fileName);
                                var guid = Guid.NewGuid().ToString();
                              //var directory = "adsphotos";
-                           // var filepathlarge = Path.Combine(Server.MapPath("~/Photos/large/"), fileName.ToSeoUrl() +guid + extension);
-                            var filepathlarge = Path.Combine(serverpath, fileName.ToSeoUrl() + guid + extension);
+                            var filepathlarge = Path.Combine(Server.MapPath("~/Photos/large/"), fileName.ToSeoUrl() +guid + extension);
+                           // var filepathlarge = Path.Combine(serverpath, fileName.ToSeoUrl() + guid + extension);
 
-                          //   var filepaththumbnail = Path.Combine(Server.MapPath("~/Photos/thumbnail/"), fileName.ToSeoUrl() +guid + extension);
-                            var filepaththumbnail = Path.Combine(serverthumbnail, fileName.ToSeoUrl() + guid + extension);
+                            var filepaththumbnail = Path.Combine(Server.MapPath("~/Photos/thumbnail/"), fileName.ToSeoUrl() +guid + extension);
+                          //  var filepaththumbnail = Path.Combine(serverthumbnail, fileName.ToSeoUrl() + guid + extension);
 
                                 //var filepathlarge = Path.Combine(Server.MapPath("~/Photos/large/"), guid + extension);
                                 //var filepathmedium = Path.Combine(Server.MapPath("~/Photos/medium/"), guid + extension);
@@ -1318,7 +1318,7 @@ namespace Toutokaz.WebUI.Controllers
         }
 
         [HttpGet]
-        public ActionResult allannonce(string typeannonce, String keywords, string category_title, int? id_category, string section_title, int? id_section, int? ad_city, int? id_account_type,string  sortOrder,int display = 1,int pageNumber = 1)
+        public ActionResult allannonce(string typeannonce, String keywords, string category_title, int? id_category, string section_title, int? id_section, int? ad_city, int? id_account_type, int? minPrice, int? maxPrice, string  sortOrder,int display = 1, int pageNumber = 1)
         {
 
             CategoryPageModel page = new CategoryPageModel();
@@ -1399,6 +1399,12 @@ namespace Toutokaz.WebUI.Controllers
                 ViewBag.currentCategory = id_category;
             }
 
+
+            if (id_section != null)
+            {
+                ViewBag.currentSection = id_section;
+            }
+
             if (id_account_type != null)
             {
                 ViewBag.currentAccountType = id_account_type;
@@ -1415,6 +1421,10 @@ namespace Toutokaz.WebUI.Controllers
             ViewBag.PrixSortParm = sortOrder == "Prix" ? "Prix desc" : "Prix";
 
             var result = annoncesRepository.SearchAds(typeannonce, keywords, id_category, id_section,ad_city, id_account_type,sortOrder);
+            if (minPrice !=null && maxPrice!=null )
+            {
+                result = result.Where(x=>x.ad_price > minPrice && x.ad_price < maxPrice);
+            }
             var total = result.Count();
             int pageSize = 12;
 
@@ -1426,7 +1436,9 @@ namespace Toutokaz.WebUI.Controllers
 
 
             ViewBag.count_annonce = total;
-           // ViewBag.ad_city = new SelectList(communeRepository.GetAllCommune().OrderBy(x => x.commune), "id_commune", "commune");
+            ViewBag.CountBusiness = result.Where(c=>c.tb_account.id_account_type == 2).Count();
+            ViewBag.CountPersonal = result.Where(c => c.tb_account.id_account_type == 1).Count();
+            // ViewBag.ad_city = new SelectList(communeRepository.GetAllCommune().OrderBy(x => x.commune), "id_commune", "commune");
             ViewBag.ad_city = populateCommunetByDepartement();
             ViewBag.ad_user_type = null;
             ViewBag.id_category = this.populateCategoryBySection();
@@ -1536,7 +1548,7 @@ namespace Toutokaz.WebUI.Controllers
             }
 
             page.AnnonceurName = annonceurname;
-            page.annoneur = annonceur;
+            page.annonceur = annonceur;
 
             var result  = annoncesRepository.GetAdsByAnnonceur(id);
             if (result == null)
@@ -1551,8 +1563,11 @@ namespace Toutokaz.WebUI.Controllers
                 page.AdsList = result.ToPagedList(pageNumber, pageSize);
             }
             ViewBag.count_annonce = total;
-           
-   
+
+            ViewBag.ad_city = populateCommunetByDepartement();
+            ViewBag.ad_user_type = null;
+            ViewBag.id_category = this.populateCategoryBySection();
+            ViewBag.typeannonce = this.populateTypeAnnonce();
 
             return View(page);
         }
@@ -1569,7 +1584,7 @@ namespace Toutokaz.WebUI.Controllers
             }
 
             page.AnnonceurName = annonceurname;
-            page.annoneur = annonceur;
+            page.annonceur = annonceur;
 
             var result = annoncesRepository.GetAdsByAnnonceur(id);
             if (result == null)
@@ -1629,7 +1644,12 @@ namespace Toutokaz.WebUI.Controllers
             }
 
         }
-    
+
+        [HttpGet]
+        public ActionResult panelLeft()
+        {
+            return PartialView("_panel.left");
+        }
         [ChildActionOnly]
         public ActionResult GetCategory(int index)
         {

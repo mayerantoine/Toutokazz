@@ -1,12 +1,17 @@
 ﻿@model IEnumerable<Toutokaz.Domain.Models.tb_section>
 @using Toutokaz.WebUI.Helpers;
 
-    <div align="center" style="margin-top:20px;margin-bottom:15px;">
-        <img src="~/Content/img/logo-revamp.png"/>
 
-    </div>
 
-    <div data-role="collapsible-set" data-inset="true">
+      @*
+
+           <div align="center" style="margin-top:20px;margin-bottom:15px;">
+            <img src="~/Content/img/logo-revamp.png"/>
+
+        </div>
+   *@ 
+
+    <div data-role="collapsible-set"  data-inset="false">
         @foreach (var item in Model)
         {
             <div data-role="collapsible" data-iconpos="right">               
@@ -28,5 +33,5 @@
     </div>
 
     <div>
-        <a href="@Url.Action("create","account")" data-role="button" style="background: #f99146;">Créer un Compte</a>
+        <a href="@Url.Action("create","account")" class="ui-btn clr-btn-deep-orange">Créer un Compte</a>
     </div>

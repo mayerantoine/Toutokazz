@@ -1,26 +1,18 @@
 ﻿@model Toutokaz.Domain.Models.tb_category
 
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage.cshtml";
+    ViewBag.Title = "Toutokazz Admin -Editer Catégorie";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPagev2.cshtml";
 }
 
-       <div class="row"> 
-        <div class="col-lg-offset-8 col-lg-4">
-              <a class="btn btn-primary btn-outline btn-sm" href="@Url.Action("Index","Category")">Annuler</a>
-            <a class="btn btn-primary btn-outline btn-sm" href="@Url.Action("Create","Category")"><span class="glyphicon glyphicon-plus"></span>Nouveau</a>
-            </div>           
-    </div>
-<div class="col-lg-10">
-       <fieldset>
-        <legend>EDITER CATEGORY</legend>
- </fieldset>
+<div class="inner-box">
+    <h2 class="title-2"><i class="icon-docs"></i> Editer Catégorie</h2>
       <form class="form-horizontal" role="form" method="post">
     @Html.ValidationSummary(true)
           <div>@Html.HiddenFor(model=>Model.id_category)</div>
                <div class="form-group">                        
                             <label for="lblSectiontitle" class="col-sm-3 control-label">Titre Section</label>
-                            <div class="col-sm-9">               
+                            <div class="col-sm-6">               
                                 @Html.DropDownList("id_section",@ViewBag.section as SelectList, new {@class="form-control", id="section_title"})
                                   @Html.ValidationMessageFor(model => model.tb_section.section_title)
                             </div>
@@ -28,21 +20,21 @@
 
               <div class="form-group">                             
                             <label for="lblcategory" class="col-sm-3 control-label">Categorie</label>
-                            <div class="col-sm-9">               
+                            <div class="col-sm-6">               
                                 @Html.TextBoxFor(model => model.category_title, new {@class="form-control", id="section_description"})
                                   @Html.ValidationMessageFor(model => model.category_title)
                             </div>
                      </div>
                <div class="form-group">                             
                             <label for="lblCategoryDesc" class="col-sm-3 control-label">Description</label>
-                            <div class="col-sm-9">               
+                            <div class="col-sm-6">               
                                 @Html.TextBoxFor(model => model.category_desctiption, new {@class="form-control", id="section_description"})
                                   @Html.ValidationMessageFor(model => model.category_desctiption)
                             </div>
                      </div>
 
                    <div class="form-group">  
-                          <div class="col-sm-offset-3 col-sm-9">
+                          <div class="col-sm-offset-3 col-sm-6">
                             <input type="submit" value="Sauvergarder" />
                            </div>
                        </div>  

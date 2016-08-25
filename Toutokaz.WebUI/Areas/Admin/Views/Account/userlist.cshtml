@@ -2,24 +2,16 @@
 @using Toutokaz.WebUI.Helpers
 @using PagedList.Mvc 
 @{
-    ViewBag.Title = "userlist";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage.cshtml";
+    ViewBag.Title = "Toutokazz Admin - Users";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPagev2.cshtml";
 }
-	<div class="row" style="margin-bottom:20px;">
-		<div class="col-lg-12">
-    		  <h2>Tous les Utilisateurs </h2>
-		</div>
-	</div>
-<div class="col-lg-12">
+
+<div class="inner-box">
+    <h2 class="title-2"><i class="icon-docs"></i> Tous les Utilisateurs</h2>
+    <div>@TempData["Error"]</div>
         <form class="form-inline"  action="@Url.Action("userlist", "account", new { area = "Admin" })" role="form" style="margin:10px">
                       <div class="form-group">
                         <input type="text" class="form-control" id="email"  name="email" placeholder="Email">
-                      </div>
-                       <div class="form-group">
-                        <input type="text" class="form-control" id="nom"  name="nom" placeholder="Nom">
-                      </div>
-                       <div class="form-group">
-                        <input type="text" class="form-control" id="prenom"  name="prenom" placeholder="Prenom">
                       </div>
                       <div class="form-group">
                         @Html.DropDownList("id_account_type", @ViewBag.id_account_type as SelectList ,"(Type du compte)", new {  @class="col-sm-3 form-control"})
@@ -27,23 +19,14 @@
                       <button type="submit" class="btn btn-primary">Filtrer</button>
                     </form>
 
-<table  class="table table-condensed table-striped table-hover table-bordered">
+<table  class="table table-striped table-bordered add-manage-table table demo">
     <tr>
 
-        <th>
-            @Html.DisplayName("Nom")
-        </th>
-        <th>
-            @Html.DisplayName("Prenom")
-        </th>
-        <th>
+         <th>
             @Html.DisplayName("Nom Utilisateur")
         </th>
         <th>
             @Html.DisplayName("Type compte")
-        </th>
-        <th>
-            @Html.DisplayName("Nom Entreprise")
         </th>
         <th>
             @Html.DisplayName("Role")
@@ -56,22 +39,11 @@
 
 @foreach (var item in Model) {
     <tr>
-
-
-        <td>
-            @Html.DisplayFor(modelItem => item.lastname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.firstname)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.username)
         </td>
           <td>
             @Html.DisplayFor(modelItem => item.tb_account_type.account_type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nom_entreprise)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.role)

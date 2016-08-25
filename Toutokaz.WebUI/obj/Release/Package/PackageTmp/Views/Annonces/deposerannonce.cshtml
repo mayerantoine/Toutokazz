@@ -4,9 +4,8 @@
     ViewBag.description = "Déposer vos annonces gratuites et sans commission en Haïti";
     ViewBag.motscles = "toutokazz,toutokaz, Déposer,annonces, annonces gratuites haiti, classified ads, ads,site annonce, site annonces, petites";
     ViewBag.page_description = "Toutokazz - Déposer vos annonces gratuites et sans commission en Haïti";
-    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/slide-positive-women.jpg");
-    
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.ImageUrl = Url.Content("~/Content/images/bg_intro2.jpg");
+    Layout = "~/Views/Shared/_LayoutPagev2.cshtml";
 }
 
 @section open_graph_tags{
@@ -16,3 +15,358 @@
 
 
 @Html.Partial("_CreateAnnonce", Model)
+
+@section Script{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#input-upload-img1").fileinput({ 'showUpload': false });
+            $("#input-upload-img2").fileinput({ 'showUpload': false });
+            $("#input-upload-img3").fileinput({ 'showUpload': false });
+            $("#input-upload-img4").fileinput({ 'showUpload': false });
+            $("#input-upload-img5").fileinput({ 'showUpload': false });
+
+            function initializeDeposerannonce() {
+                console.log("initi deposer...")
+                //hide voiture
+                $('#marque_vehicule').hide();
+                $('#modele_vehicule').hide();
+                $('#annee_vehicule').hide();
+                $('#transmission').hide();
+                $('#carburant').hide();
+                $('#mileage').hide();
+                $('#condition').show();
+
+                //hide immobilier
+                $('#nbpieces').hide();
+                $('#nbchambre').hide();
+                $('#surface').hide();
+                $('#loyer').hide();
+
+                //hide chaussure
+                $('#marque_chaussure').hide();
+                $('#chaussure_taille').hide();
+
+            };
+
+            //initialize depot
+            initializeDeposerannonce();
+
+
+            var SPHideShowField = {
+                '1': function () {
+                    //voiture
+                    $('#marque_vehicule').show();
+                    $('#modele_vehicule').show();
+                    $('#annee_vehicule').show();
+                    $('#transmission').show();
+                    $('#carburant').show();
+                    $('#mileage').show();
+                    $('#condition').show();
+                    $('#prix').show();
+
+                    //hide immobilier
+                    $('#nbpieces').hide();
+                    $('#nbchambre').hide();
+                    $('#surface').hide();
+                    $('#loyer').hide();
+
+                    //hide chaussure
+                    $('#marque_chaussure').hide();
+                    $('#chaussure_taille').hide();
+
+                },
+                '2': function () {
+                    //moto
+                    $('#marque_vehicule').show();
+                    $('#modele_vehicule').show();
+                    $('#annee_vehicule').show();
+                    $('#transmission').hide();
+                    $('#carburant').show();
+                    $('#mileage').hide();
+                    $('#condition').show();
+                    $('#prix').show();
+
+                    //hide immobilier
+                    $('#nbpieces').hide();
+                    $('#nbchambre').hide();
+                    $('#surface').hide();
+                    $('#loyer').hide();
+
+                    //hide chaussure
+                    $('#marque_chaussure').hide();
+                    $('#chaussure_taille').hide();
+                },
+                '66': function () {
+                    //camion engin lourd
+                    $('#marque_vehicule').show();
+                    $('#modele_vehicule').hide();
+                    $('#annee_vehicule').show();
+                    $('#transmission').hide();
+                    $('#carburant').hide();
+                    $('#mileage').hide();
+                    $('#condition').show();
+                    $('#prix').show();
+
+                    //hide immobilier
+                    $('#nbpieces').hide();
+                    $('#nbchambre').hide();
+                    $('#surface').hide();
+                    $('#loyer').hide();
+
+                    //hide chaussure
+                    $('#marque_chaussure').hide();
+                    $('#chaussure_taille').hide();
+                },
+                '4': function () {
+                    //voiture
+                    $('#marque_vehicule').show();
+                    $('#modele_vehicule').show();
+                    $('#annee_vehicule').show();
+                    $('#transmission').show();
+                    $('#carburant').show();
+                    $('#mileage').show();
+                    $('#condition').hide();
+                    $('#prix').show();
+
+                    //hide immobilier
+                    $('#nbpieces').hide();
+                    $('#nbchambre').hide();
+                    $('#surface').hide();
+                    $('#loyer').hide();
+
+                    //hide chaussure
+                    $('#marque_chaussure').hide();
+                    $('#chaussure_taille').hide();
+
+                },
+                '71': function () {
+                    //voiture
+                    $('#marque_vehicule').hide();
+                    $('#modele_vehicule').hide();
+                    $('#annee_vehicule').hide();
+                    $('#transmission').hide();
+                    $('#carburant').hide();
+                    $('#mileage').hide();
+
+                    //
+                    $('#condition').hide();
+                    $('#prix').show();
+
+                    //hide immobilier
+                    $('#nbpieces').hide();
+                    $('#nbchambre').hide();
+                    $('#surface').show();
+                    $('#loyer').hide();
+
+                    //hide chaussure
+                    $('#marque_chaussure').hide();
+                    $('#chaussure_taille').hide();
+
+                },
+                'vendre': function () {
+                    //voiture
+                    $('#marque_vehicule').hide();
+                    $('#modele_vehicule').hide();
+                    $('#annee_vehicule').hide();
+                    $('#transmission').hide();
+                    $('#carburant').hide();
+                    $('#mileage').hide();
+
+                    //
+                    $('#condition').show();
+                    $('#prix').show();
+
+                    //hide immobilier
+                    $('#nbpieces').show();
+                    $('#nbchambre').show();
+                    $('#surface').show();
+                    $('#loyer').hide();
+
+                    //hide chaussure
+                    $('#marque_chaussure').hide();
+                    $('#chaussure_taille').hide();
+
+                },
+                'louer': function () {
+                    //voiture
+                    $('#marque_vehicule').hide();
+                    $('#modele_vehicule').hide();
+                    $('#annee_vehicule').hide();
+                    $('#transmission').hide();
+                    $('#carburant').hide();
+                    $('#mileage').hide();
+
+                    //
+                    $('#condition').show();
+                    $('#prix').hide();
+
+                    //hide immobilier
+                    $('#nbpieces').show();
+                    $('#nbchambre').show();
+                    $('#surface').show();
+                    $('#loyer').show();
+
+                    //hide chaussure
+                    $('#marque_chaussure').hide();
+                    $('#chaussure_taille').hide();
+
+                },
+                'service': function () {
+
+                    //hide voiture
+                    $('#marque_vehicule').hide();
+                    $('#modele_vehicule').hide();
+                    $('#annee_vehicule').hide();
+                    $('#transmission').hide();
+                    $('#carburant').hide();
+                    $('#mileage').hide();
+
+                    $('#condition').hide();
+                    $('#prix').hide();
+
+                    //hide immobilier
+                    $('#nbpieces').hide();
+                    $('#nbchambre').hide();
+                    $('#surface').hide();
+                    $('#loyer').hide();
+
+                    //hide chaussure
+                    $('#marque_chaussure').hide();
+                    $('#chaussure_taille').hide();
+
+                },
+                'default': function () {
+                    //hide voiture
+                    $('#marque_vehicule').hide();
+                    $('#modele_vehicule').hide();
+                    $('#annee_vehicule').hide();
+                    $('#transmission').hide();
+                    $('#carburant').hide();
+                    $('#mileage').hide();
+
+                    $('#condition').hide();
+                    $('#prix').show();
+
+                    //hide immobilier
+                    $('#nbpieces').hide();
+                    $('#nbchambre').hide();
+                    $('#surface').hide();
+                    $('#loyer').hide();
+
+                    //hide chaussure
+                    $('#marque_chaussure').hide();
+                    $('#chaussure_taille').hide();
+                }
+
+            };
+
+
+            // deposer annonce form select field
+            $('#modelannonce_id_category').change(function () {
+                var selected = $('select#modelannonce_id_category').val();
+
+
+                if (selected == 1) {
+                    //voiture
+                    SPHideShowField[selected]();
+                }
+                else if (selected == 2) {
+                    SPHideShowField[selected]();
+
+                }
+                else if (selected == 66) {
+                    SPHideShowField[selected]();
+
+                }
+                else if (selected == 4) {
+                    SPHideShowField[selected]();
+                }
+                else if (selected >= 45 && selected <= 61) {
+                    //services
+                    SPHideShowField['service']();
+                }
+                else if (selected == 71) {
+                    SPHideShowField[selected]();
+                }
+                else if (selected == 5 || selected == 63) {
+                    // a vendre
+                    SPHideShowField['vendre']();
+                }
+                else if ((selected >= 6 && selected <= 9) || selected == 64) {
+                    // a louer
+                    SPHideShowField['louer']();
+                }
+                else {
+                    SPHideShowField['default']();
+                }
+
+            }); // end select category
+
+
+             // Add visit departement master-childpage
+            $('#modelannonce_id_departement').change(function () {
+
+                $.ajax({
+                    url: '/annonces/getCommuneByDepartement/' + $('select#modelannonce_id_departement').val(),
+                    async: true,
+                    type: "get",
+                    datatype: "Json",
+                    success: function (data) {
+                        var items = '<option value=' + '' + '>Choisir Commune</option>';
+                        $.each(data, function (i, selectedsite) {
+                            //    console.log(selectedsite.Value);
+                            items += '<option value=' + selectedsite.Value + '>' + selectedsite.Text + '</option>';
+                        });
+                        console.log(items);
+                        $('select#modelannonce_id_commune').html(items);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert(jqXHR + "-" + textStatus + "-" + errorThrown);
+                    },
+                });
+
+            });
+
+
+
+            var options = {
+                target: "#output",
+                dataType: "Json",
+                beforeSubmit: beforeSubmit,
+                success: afterSuccess,
+                resetForm: false
+            };
+
+            $('#UploadForm').submit(function (e) {
+                e.preventDefault(); //STOP default action
+                $(this).ajaxSubmit(options);
+                return false;
+            });
+
+            function beforeSubmit() {
+                $('#loading-img').show(); //hide submit button
+                $('#loading-msg').hide();
+            };
+
+            function afterSuccess(data) {
+                $('#loading-img').hide(); //hide submit button
+                $('#loading-msg').slideDown(500);
+                if (data == "OK") {
+                    document.getElementById("UploadForm").reset();
+                    $('#loading-msg h4').text("Votre annonce a été soumise avec succes.");
+                    // window.location.href = "http://localhost:56713/MesAnnonces/Index";
+                    window.location.href = "http://toutokazz.com/MesAnnonces/Index";
+                    //   window.location.href = "http://staging-toutokazz.azurewebsites.net/MesAnnonces/Index";
+                }
+                else {
+                    $('#loading-msg h4').text(data);
+                }
+            };
+
+        });
+    </script>
+
+
+}

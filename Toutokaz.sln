@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toutokaz.WebUI", "Toutokaz.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toutokazz.WebAPI", "Toutokazz.WebAPI\Toutokazz.WebAPI.csproj", "{C4D6B17E-F7BE-4570-9DA3-8B3AAA730246}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Toutokaz.MobileUI", "Toutokaz.MobileUI\Toutokaz.MobileUI.csproj", "{418C29DC-034C-4CF6-A439-9F2E54C4E79C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C4D6B17E-F7BE-4570-9DA3-8B3AAA730246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4D6B17E-F7BE-4570-9DA3-8B3AAA730246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4D6B17E-F7BE-4570-9DA3-8B3AAA730246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{418C29DC-034C-4CF6-A439-9F2E54C4E79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{418C29DC-034C-4CF6-A439-9F2E54C4E79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{418C29DC-034C-4CF6-A439-9F2E54C4E79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{418C29DC-034C-4CF6-A439-9F2E54C4E79C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

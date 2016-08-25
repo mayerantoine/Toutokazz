@@ -29,7 +29,7 @@
 <div class="row">
     <div class="col-sm-9 page-content col-thin-right">
         <div class="inner inner-box ads-details-wrapper">
-            <h2> @Html.Raw(Model.ad_title)<small class="label label-default adlistingtype">Company ad</small> </h2>
+            <h2> @Html.Raw(Model.ad_title)</h2>
             <span class="info-row"> <span class="date"><i class=" icon-clock"> </i> @Html.Encode(Model.ad_date_created.Value.ToShortDateString()) </span> - <span class="category">@Html.Label(Model.tb_category.category_title) </span>- <span class="item-location"><i class="fa fa-map-marker"></i> @Html.Label(Model.tb_commune.commune)</span> </span>
             <div class="ads-image">
                 <h1 class="pricetag"> @HttpUtility.HtmlDecode(Model.tb_devise.symbole) @Html.DisplayFor(x => x.ad_price)</h1>
@@ -183,11 +183,7 @@
                         
                 </div>
                 <div class="content-footer text-left"> <a class="btn  btn-default" data-toggle="modal" href="#contactAdvertiser"><i class=" icon-mail-2"></i> Contacter le vendeur </a> 
-                    @if (!String.IsNullOrEmpty(Model.ad_phone))
-                    {
-                        <a id="afficher" href="javascript:void(0)" class="btn  btn-info"><i class=" icon-phone-1"></i>Afficher le Téléphone </a>
-                        <a id="ad_phone" style="display:none;" href="javascript:void(0)" class="btn  btn-info"><i class=" icon-phone-1"></i>@Html.Raw(Model.ad_phone) </a>
-                    }
+           
                 </div>
             </div>
         </div>
@@ -253,9 +249,54 @@
     <!--/.page-side-bar-->
 </div>
 
+@section Similar{
 <div class="row">
     @{ Html.RenderAction("_GetSimilarAds", "Annonces", new { id = Model.id_ad });}
 </div>
+    }
+
+<!-- Modal contactAdvertiser -->
+
+
+<div class="modal fade" id="contactAdvertiser" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title"><i class=" icon-mail-2"></i> Contact advertiser </h4>
+            </div>
+            <div class="modal-body">
+                <form role="form">
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">Name:</label>
+                        <input class="form-control required" id="recipient-name" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="sender-email" class="control-label">E-mail:</label>
+                        <input id="sender-email" type="text" data-content="Must be a valid e-mail address (user@gmail.com)" data-trigger="manual" data-placement="top" placeholder="email@you.com" class="form-control email">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-Phone-Number" class="control-label">Phone Number:</label>
+                        <input type="text" maxlength="60" class="form-control" id="recipient-Phone-Number">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">Message <span class="text-count">(300) </span>:</label>
+                        <textarea class="form-control" id="message-text" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-success pull-right">Send message!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.modal -->
 
 
 @section Script{
@@ -271,6 +312,9 @@
             $("#afficher").hide();
         });
 
+        $('.bxslider').bxSlider({
+            pagerCustom: '#bx-pager'
+        });
 
     </script>
 }

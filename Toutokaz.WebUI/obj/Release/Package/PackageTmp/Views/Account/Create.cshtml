@@ -5,9 +5,8 @@
     ViewBag.description = "Bienvenue sur Toutokazz, Créer votre compte particulier et déposer une annonce";
     ViewBag.motscles = "toutokazz,toutokaz, annonces,compte,deposer,particulier,professionnel, haiti, classified ads, ads,site annonce, site annonces, petites";
     ViewBag.page_description = "Bienvenue sur Toutokazz, Créer votre compte particulier et déposer votre annonce";
-    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/Banner1a.jpg");
-    
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    ViewBag.ImageUrl = Url.Content("~/Content/images/bg_intro2.jpg");
+    Layout = "~/Views/Shared/_LayoutPagev2.cshtml";
 }
 
 @section open_graph_tags{
@@ -16,109 +15,199 @@
 
 
 <div class="col-lg-12">
-    <div class="col-lg-6">
-        <div id="creer-compte" class="well">
-            <div style="margin-bottom:15px;">
-                <h4>Inscription Rapide</h4>
+    <div class="col-md-8 page-content">
+        <div id="creer-compte" class="inner-box category-content">
+            <h2 class="title-2"> <i class="icon-user-add"></i> Créer votre compte, C'est gratuit </h2>
+       
+                <h2> Inscription Rapide</h2>
                 @Html.Action("ExternalLoginButtonBig", new { ReturnUrl = ViewBag.ReturnUrl })
-            </div>
+         
+            <h2> ou remplissez le formulaire</h2>
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="form-horizontal" action="@Url.Action("create","account")" role="form" method="post">
+                        <fieldset>
+                            @Html.ValidationSummary(true)
+                            <div>
+                                @Html.Raw(@ViewBag.Message)
+                            </div>
+                            <!--radio-->
+                            <div class="form-group required" id ="type_utilisateur">
+                                <label class="col-md-4 control-label">Vous êtes un <sup>*</sup></label>
+                                <div  class="col-md-6">
+                                    <div class="radio">
+                                        <label for="lblParticulier"> @Html.RadioButtonFor(model => model.account_type, 1, new { id = "account_type_1", name = "account_type" }) Particulier</label>
+                                    </div>
+                                    <div class="radio">
+                                      <label for="lblProfessionel"> @Html.RadioButtonFor(model => model.account_type, 2, new {  id = "account_type_2", name = "account_type" }) Professionnel</label>
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.account_type)
+                                </div>
+                            </div>
+                            
+                            <div class="form-group required">
+                                <label for="lblNom" class="col-md-4 control-label">Nom</label>
+                                <div class="col-md-6">
 
-            <h4>ou remplissez le formulaire</h4>
-            <form class="form-horizontal" action="@Url.Action("create","account")" role="form" method="post">
-                <div>
-                    @Html.Raw(@ViewBag.Message)
-                </div>
-                <div class="form-group">
-                    @Html.ValidationSummary(true)
+                                    @Html.TextBoxFor(model => model.Nom, new { @class = "form-control", id = "Nom", placeholder = "Nom" })
+                                    @Html.ValidationMessageFor(m => m.Nom)
+                                </div>
+                            </div>
+                        
+                            <div class="form-group required">
+                                <label for="lblPrenom" class="col-sm-4 control-label">Prenom</label>
+                                <div class="col-sm-6">
 
-                    <label for="lblNom" class="col-sm-3 control-label">Nom</label>
-                    <div class="col-sm-9">
+                                    @Html.TextBoxFor(model => model.Prenom, new { @class = "form-control", id = "Prenom", placeholder = "Prenom" })
+                                    @Html.ValidationMessageFor(m => m.Prenom)
+                                </div>
+                            </div>
+                           
+                            <div class="form-group required" id="f_nom_entreprise">
 
-                        @Html.TextBoxFor(model => model.Nom, new { @class = "form-control", id = "Nom", placeholder = "Nom" })
-                        @Html.ValidationMessageFor(m => m.Nom)
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="lblPrenom" class="col-sm-3 control-label">Prenom</label>
-                    <div class="col-sm-9">
+                                <label for="lblNomEntreprise" class="col-sm-4 control-label">Nom de l'entreprise</label>
+                                <div class="col-sm-6">
+                                    @Html.TextBoxFor(model => model.nom_entreprise, new { @class = "form-control", id = "nom_entreprise", placeholder = "Nom  de l'entreprise" })
+                                    @Html.ValidationMessageFor(m => m.nom_entreprise)
+                                </div>
+                            </div>
+                         
+                            <div class="form-group required">
+                                <label for="inputEmail" class="col-sm-4 control-label">Email</label>
+                                <div class="col-sm-6">
 
-                        @Html.TextBoxFor(model => model.Prenom, new { @class = "form-control", id = "Prenom", placeholder = "Prenom" })
-                        @Html.ValidationMessageFor(m => m.Prenom)
-                    </div>
-                </div>
-                <div class="form-group" id="type_utilisateur">
-                    <label for="lblP" class="col-sm-3 control-label">Type d'utilisateur :</label>
-                    <label for="lblParticulier" class="col-sm-3 control-label"> @Html.RadioButtonFor(model => model.account_type, 1, new { @class = "radio-inline", id = "account_type_1", name = "account_type" }) Particulier</label>
-                    <label for="lblProfessionel" class="col-sm-4 control-label"> @Html.RadioButtonFor(model => model.account_type,2, new { @class = "radio-inline", id = "account_type_2", name = "account_type" }) Professionnel</label>            
-                    @Html.ValidationMessageFor(m => m.account_type)
-                </div>
-                <div class="form-group" id="f_nom_entreprise">
+                                    @Html.TextBoxFor(model => model.Email, new { type = "email", @class = "form-control", id = "Email", placeholder = "Votre Email" })
+                                    @Html.ValidationMessageFor(m => m.Email)
+                                </div>
+                            </div>
+                            
+                            <div class="form-group required">
+                                <label for="inputPassword" class="col-sm-4 control-label">Mot de Passe</label>
+                                <div class="col-sm-6">
 
-                    <label for="lblNomEntreprise" class="col-sm-3 control-label">Nom de l'entreprise</label>
-                    <div class="col-sm-9">
-                        @Html.TextBoxFor(model => model.nom_entreprise, new { @class = "form-control", id = "nom_entreprise", placeholder = "Nom  de l'entreprise" })
-                        @Html.ValidationMessageFor(m => m.nom_entreprise)
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputEmail" class="col-sm-3 control-label">Email</label>
-                    <div class="col-sm-9">
+                                    @Html.PasswordFor(model => model.password, new { @class = "form-control", id = "password", placeholder = "Mot de passe" })
+                                    <span class="help-block">8 carateres minimum,avec 1 alphanumerique et 1 special </span>
+                                    @Html.ValidationMessageFor(m => m.password)
+                                </div>
+                            </div>
+                            
+                            <div class="form-group required">
+                                <label for="inputPasswordConfirm" class="col-sm-4 control-label">Confirmer  mot de passe</label>
+                                <div class="col-sm-6">
+                                    @Html.PasswordFor(model => model.confirmPassword, new { @class = "form-control", id = "confirmPassword", placeholder = "Mot de passe" })
+                                    @Html.ValidationMessageFor(m => m.confirmPassword)
+                                </div>
+                            </div>
+                          
 
-                        @Html.TextBoxFor(model => model.Email, new { type = "email", @class = "form-control", id = "Email", placeholder = "Votre Email" })
-                        @Html.ValidationMessageFor(m => m.Email)
-                    </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label"></label>
+                                <div class="col-md-8">
+                                    <div class="termbox mb10">
+                                        <label class="checkbox-inline" for="checkboxes-1">
+                                            En cliquant sur "Créer un compte" , vous acceptez nos  <a href="@Url.Action("conditionsdutilisation","Home")">Conditions d'utilisation</a>
+                                        </label>
+                                    </div>
+                                    <div style="clear:both"></div>
+                                    <button id="btnvalider" type="submit" class="btn btn-primary btn-mdd">Créer un compte</button>
+                                </div>
+                            </div>
+                         </fieldset>
+                     </form>
                 </div>
-                <div class="form-group">
-                    <label for="inputPassword" class="col-sm-3 control-label">Mot de Passe</label>
-                    <div class="col-sm-9">
-
-                        @Html.PasswordFor(model => model.password, new { @class = "form-control", id = "password", placeholder = "Mot de passe" })
-                        <span class="help-block">8 carateres minimum,avec 1 alphanumerique et 1 special </span>
-                        @Html.ValidationMessageFor(m => m.password)
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPasswordConfirm" class="col-sm-3 control-label">Confirmer  mot de passe</label>
-                    <div class="col-sm-9">
-                        @Html.PasswordFor(model => model.confirmPassword, new { @class = "form-control", id = "confirmPassword", placeholder = "Mot de passe" })
-                        @Html.ValidationMessageFor(m => m.confirmPassword)
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <div class="checkbox">
-                            <label>
-                                En cliquant sur "Inscription" , vous acceptez nos <a href="@Url.Action("conditionsdutilisation","Home")">conditions d'utilisation</a>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-10">
-                        <button id="btnvalider" type="submit" class="btn btn-primary btn-mdd">Inscription</button>
-                    </div>
-                </div>
-            </form>
+             </div>
         </div>
     </div>
-    <div class="col-lg-6">
-        <h3>CRÉER UN COMPTE </h3>
-        <h5> LA CRÉATION DE VOTRE COMPTE  EST GRATUITE</h5>
-        <p>
-            Ce service vous permet de retrouver toutes vos annonces au même endroit.
-            Déposez à présent plus simplement et plus rapidement vos annonces et améliorez leur gestion.
-        </p>
+    <div class="col-md-4 reg-sidebar">
 
-        <div style="margin-top:20px;margin-bottom:30px;">
-            <h4><span class="glyphicon glyphicon-ok"></span> Pas de frais d’affichage</h4>
-            <h4><span class="glyphicon glyphicon-ok"></span> Pas de commissions</h4>
-            <h4><span class="glyphicon glyphicon-ok"></span> Facile à utiliser</h4>
-            <h4><span class="glyphicon glyphicon-ok"></span> Publicité rapide et efficace</h4>
+        <div class="reg-sidebar-inner text-center">
+            <div class="promo-text-box">
+                <i class=" icon-picture fa fa-4x icon-color-1"></i>
+                <h3><strong>Post a Free Classified</strong></h3>
+                <p> Post your free online classified ads with us. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+            </div>
+            <div class="promo-text-box">
+                <i class=" icon-pencil-circled fa fa-4x icon-color-2"></i>
+                <h3><strong>Create and Manage Items</strong></h3>
+                <p>
+                    Nam sit amet dui vel orci venenatis ullamcorper eget in lacus.
+                    Praesent tristique elit pharetra magna efficitur laoreet.
+                </p>
+            </div>
+            <div class="promo-text-box">
+                <i class="  icon-heart-2 fa fa-4x icon-color-3"></i>
+                <h3><strong>Create your Favorite  ads list.</strong></h3>
+                <p>
+                    PostNullam quis orci ut ipsum mollis malesuada varius eget metus.
+                    Nulla aliquet dui sed quam iaculis, ut finibus massa tincidunt.
+                </p>
+            </div>
         </div>
-
-        <p>Vous avez deja un compte:</p>
-        <p><a class="btn btn-medium btn-warning" href="@Url.Action("Moncompte","account")" role="button">CONNEXION</a></p>
-
     </div>
 
 </div>  
+
+@section Script{
+  
+     <script type="text/javascript">
+        $(document).ready(function () {
+
+            //initialize create account
+            function init_create_account() {
+
+                console.log('change :' + $("#type_utilisateur input[name=account_type]:checked").val());
+
+                if ($("#type_utilisateur input[name=account_type]:checked").val() == 2) {
+                    $('#f_nom_entreprise').show();
+                }
+                else {
+                    $('#f_nom_entreprise').hide();
+                }
+
+            }
+
+            init_create_account();
+
+            $("#type_utilisateur input[name=account_type]:radio").change(function () {
+
+                console.log('change');
+                console.log($(this).val());
+                if ($(this).val() == 1) {
+                    $('#f_nom_entreprise').hide();
+                }
+                if ($(this).val() == 2) {
+                    console.log('2 is check')
+                    $('#f_nom_entreprise').show();
+                }
+
+            });
+
+            $(".help-block").hide();
+            $("#password").focus(function () {
+                $(".help-block").show();
+
+            }).blur(function () {
+                $(".help-block").hide();
+            });
+
+            $("#confirmPassword").blur(function () {
+                var $p1 = $(this);
+                var p1 = document.getElementById("confirmPassword");
+                var $p2 = $("#password");
+                var p2 = document.getElementById("password");
+                console.log($p1.val());
+                if (p1.value != p2.value || p1.value == '' || p2.value == '') {
+                    p2.setCustomValidity('Votre mot de passe est incorrect');
+                } else {
+                    p2.setCustomValidity('');
+                }
+
+            });
+
+
+
+        });// end ready
+
+     
+    </script>     
+ }

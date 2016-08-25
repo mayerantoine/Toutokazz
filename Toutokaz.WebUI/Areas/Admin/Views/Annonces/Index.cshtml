@@ -2,123 +2,270 @@
 @using Toutokaz.WebUI.Helpers
 @using PagedList.Mvc 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage.cshtml";
+    ViewBag.Title = "Toutokazz - Admin Annonces";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPagev2.cshtml";
 }
 
-	<div class="row" style="margin-bottom:20px;">
-		<div class="col-md-12">
-    		  <h2>Toutes les Annonces
-        	   <span class="pull-right">
-                    <a href="@Url.Action("deposerannonce","Annonces")" class="btn btn-md btn-primary">
-                    <span class="glyphicon glyphicon-plus"></span>Deposer Annonce</a>
-                </span>   
-    		  </h2>
-		</div>
-	</div>
 
-<div class="col-lg-12">
-    <form class="form-inline"  action="@Url.Action("Index", "Annonces", new { area = "Admin" })" role="form" style="margin:10px">
-                      <div class="form-group">
-                        <input type="text" class="form-control" id="titlekeyword"  name="titlekeyword" placeholder="Titre">
-                      </div>
-                              <div class="form-group">
-                        <input type="text" class="form-control" id="annonceur"  name="annonceur" placeholder="Annonceur">
-                      </div>
-                      <div class="form-group">
-                        @Html.DropDownList("id_category", @ViewBag.id_category as IDictionary<string , IEnumerable<SelectListItem> > ,"(categorie de l'annonce)", new {  @class="col-sm-3 form-control"})
-                      </div>
-                        <div class="form-group">
-                              @Html.DropDownList("id_ad_status",@ViewBag.id_ad_status as SelectList,"(select status)",new  { @class="form-control"})
-                      </div>
-                      <button type="submit" class="btn btn-primary">Filtrer</button>
-                    </form>
+                               <div id="modalDeleteAds" class="modal fade">
+                                   <div class="modal-dialog">
+                                       <div class="modal-content">
+                                           <div class="modal-header">
+                                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                               <h4 class="modal-title">Supprimer une annonce</h4>
+                                           </div>
+                                           <div class="modal-body">
+                                               <p>Vous etes sur le point de supprimer une annonce.</p>
+                                               <p>Voulez-vous continuer et supprimer l'annonce?</p>
+                                           </div>
+                                           <div class="modal-footer">
+                                               <a id="btnYes" class="btn btn-primary danger" role="button">Oui</a>
+                                               <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-primary" role="button">Non</a>
+                                           </div>
+                                       </div><!-- /.modal-content -->
+                                   </div><!-- /.modal-dialog -->
+                               </div><!-- /.modal -->
 
-    <table class="table table-condensed table-striped table-hover table-bordered">
-    <tr>
-         <th><input type="checkbox"  id="chkall"/></th>
-         <th>
-            @Html.DisplayName("Details")
-        </th>
-          <th>
-            @Html.DisplayName("Categorie")
-        </th>
+                               <div id="modalPublishedAds" class="modal fade">
+                                   <div class="modal-dialog">
+                                       <div class="modal-content">
+                                           <div class="modal-header">
+                                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                               <h4 class="modal-title">Publier une annonce</h4>
+                                           </div>
+                                           <div class="modal-body">
+                                               <p>Vous etes sur le point de publier une annonce.</p>
+                                               <p>Voulez-vous continuer et publier l'annonce?</p>
+                                           </div>
+                                           <div class="modal-footer">
+                                               <a id="btnPublierYes" class="btn btn-primary danger" role="button">Oui</a>
+                                               <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-primary" role="button">Non</a>
+                                           </div>
+                                       </div><!-- /.modal-content -->
+                                   </div><!-- /.modal-dialog -->
+                               </div><!-- /.modal -->
 
-        <th>
-            @Html.DisplayName("Creer le")
-        </th>
-        <th>
-            @Html.DisplayName("Expire le")
-        </th>
+                               <div id="modalDesactiverAds" class="modal fade">
+                                   <div class="modal-dialog">
+                                       <div class="modal-content">
+                                           <div class="modal-header">
+                                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                               <h4 class="modal-title">Desactiver une annonce</h4>
+                                           </div>
+                                           <div class="modal-body">
+                                               <p>Vous etes sur le point de desactiver une annonce.</p>
+                                               <p>Voulez-vous continuer et desactiver l'annonce?</p>
+                                           </div>
+                                           <div class="modal-footer">
+                                               <a id="btnDesactiverYes" class="btn btn-primary danger" role="button">Oui</a>
+                                               <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-primary" role="button">Non</a>
+                                           </div>
+                                       </div><!-- /.modal-content -->
+                                   </div><!-- /.modal-dialog -->
+                               </div><!-- /.modal -->
 
-               <th>
-            @Html.DisplayName("Satus")
-        </th>
-    </tr>
+                               <div id="modalVenduAds" class="modal fade">
+                                   <div class="modal-dialog">
+                                       <div class="modal-content">
+                                           <div class="modal-header">
+                                               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                               <h4 class="modal-title">Marquer Vendu</h4>
+                                           </div>
+                                           <div class="modal-body">
+                                               <p>Vous etes sur le point de marquer cette annonce comme vendu.</p>
+                                               <p>Voulez-vous continuer?</p>
+                                           </div>
+                                           <div class="modal-footer">
+                                               <a id="btnVenduYes" class="btn btn-primary danger" role="button">Oui</a>
+                                               <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-primary" role="button">Non</a>
+                                           </div>
+                                       </div><!-- /.modal-content -->
+                                   </div><!-- /.modal-dialog -->
+                               </div><!-- /.modal -->
+                               
+               
+                                <div class="inner-box">
+                                           <h2 class="title-2"><i class="icon-docs"></i>  Annonces</h2>
+                                           <div>@TempData["Error"]</div>
+                                           <div class="table-responsive">
+                                               <div class="table-action">
+                                                   <label for="checkAll">
+                                                       <input type="checkbox" onclick="checkAll(this)" id="checkAll">
+                                                       Sélectionner tout | <a href="#" class="btn btn-xs btn-danger">Supprimer <i class="glyphicon glyphicon-remove "></i></a>
+                                                   </label>
+                                                   <div class="table-search pull-left col-xs-12">
+                                                       <form class="form-inline" action="@Url.Action("Index", "Annonces", new { area = "Admin" })" role="form" style="margin:10px">
+                                                           <div class="form-group">
+                                                            <input type="text" class="form-control" id="titlekeyword" name="titlekeyword" placeholder="Titre">                              
+                                                           </div>
+                                                           <div class="form-group">
+                                                               <input type="text" class="form-control" id="annonceur" name="annonceur" placeholder="Annonceur">
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.DropDownList("id_category", @ViewBag.id_category as IDictionary<string, IEnumerable<SelectListItem>>, "(categorie de l'annonce)", new { @class = "col-sm-3 form-control" })
+                                                           </div>
+                                                           <div class="form-group">
+                                                               @Html.DropDownList("id_ad_status", @ViewBag.id_ad_status as SelectList, "(select status)", new { @class = "form-control" })
+                                                           </div>
+                                                           <button type="submit" class="btn btn-primary">Filtrer</button>
+                                                       </form>
+                                                   </div>
+                                               </div>
+                                               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true">
+                                                   <thead>
+                                                       <tr>
+                                                           <th data-type="numeric" data-sort-initial="true"> </th>
+                                                           <th> Photo </th>
+                                                           <th data-sort-ignore="true"> Details </th>
+                                                           <th data-type="numeric"> Prix </th>
+                                                           <th> Statut </th>
+                                                       </tr>
+                                                   </thead>
+                                                   <tbody>
+                                                       @foreach (var item in Model)
+                                                       {
+                                                           <tr>
+                                                               <td style="width:2%" class="add-img-selector">
+                                                                   <div class="checkbox">
+                                                                       <label>
+                                                                           <input type="checkbox" id="ad_@item.id_ad" data-ads="@item.id_ad" class="chkbox" />
+                                                                       </label>
+                                                                   </div>
+                                                               </td>
+                                                               <td style="width:14%" class="add-img-td">
+                                                                   <a href="@Url.Action("details","Annonces",new { area="Admin", id= item.id_ad})">
+                                                                       <img class="thumbnail  img-responsive" src="@Url.Content(System.Web.Configuration.WebConfigurationManager.AppSettings["PhotosDir"]+item.tb_ad_image.FirstOrDefault().image_filename+"?width=100&height=100")" alt="img">
+                                                                   </a>
+                                                               </td>
+                                                               <td style="width:58%" class="ads-details-td">
+                                                                   <div>
+                                                                       <p><strong> @Html.ActionLink(item.ad_title, "details", "Annonces", new { area = "Admin", id = item.id_ad }, null) </strong></p>
+                                                                       <p>
+                                                                           <strong> Postée le </strong>:
+                                                                           @Html.Encode(item.ad_date_created.Value.ToShortDateString())
+                                                                       </p>
+                                                                       <p> <strong>Visites </strong>: 0 | <strong>Location:</strong> @Html.Label(item.tb_commune.commune) </p>
+                                                                       <p>
+                                                                           <a href="@Url.Action("modifier","Annonces",new {area="Admin", id = item.id_ad})" class="btn btn-primary btn-xs">Modifier</a>
+                                                                           @if (item.ad_status == 1)
+                                                                           {
+                                                                               @:| <a href="@Url.Action("Desactiver","Annonces",new { id = item.id_ad})" class="btn btn-warning btn-xs confirm-desactiver" data-ads="@item.id_ad">Désactiver</a>
+                                                                                                            }
+                                                                           @if (item.ad_status == 2)
+                                                                           {
+                                                                               @: | <a href="@Url.Action("Publier","Annonces",new { area="Admin", id = item.id_ad})" class="btn btn-info btn-xs confirm-publier" data-ads="@item.id_ad">Publier</a>
+                                                                                                            }
+                                                                           @if (item.ad_status == 2 || item.ad_status == 1)
+                                                                           {
+                                                                               @: | <a href="@Url.Action("Vendu","Annonces",new {area="Admin", id = item.id_ad})" class="btn btn-success btn-xs confirm-vendu" data-ads="@item.id_ad">Vendu</a>
+                                                                                                            }
+                                                                           | <a href="@Url.Action("Supprimer","Annonces",new { area="Admin",id = item.id_ad})" class="btn btn-danger btn-xs confirm-delete" data-ads="@item.id_ad">Supprimer</a>
+                                                                       </p>
+                                                                   </div>
+                                                               </td>
+                                                               <td style="width:16%" class="price-td"><div><strong> @HttpUtility.HtmlDecode(item.tb_devise.symbole) @Html.DisplayFor(x => item.ad_price)</strong></div></td>
+                                                               <td style="width:10%" class="action-td">
+                                                                   @if (item.ad_status == 1)
+                                                                   {
+                                                                       @Html.Label(item.tb_ad_status.status, new { @class = "label label-success" })
+                                                                   }
+                                                                   @if (item.ad_status == 2)
+                                                                   {
+                                                                       @Html.Label(item.tb_ad_status.status, new { @class = "label label-danger" })
+                                                                   }
+                                                                   @if (item.ad_status == 3)
+                                                                   {
+                                                                       @Html.Label(item.tb_ad_status.status, new { @class = "label label-info" })
+                                                                   }
+                                                                   @if (item.ad_status == 4)
+                                                                   {
+                                                                       @Html.Label(item.tb_ad_status.status, new { @class = "label label-danger" })
+                                                                   }
+                                                               </td>
+                                                           </tr>
+                                                       }
+                                                   </tbody>
+                                               </table>
+                                               <div> @Html.PagedListPager(Model, page => @Url.Action("Index", new { page }))</div>
+                                           </div>
+                                           <!--/.row-box End-->
+                                       </div>
+                                   
+                                   <!--/.page-content-->
+                          
+                   
+                               @section Script{
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-          <input type="checkbox" id="ad_@item.id_ad" data-ads="@item.id_ad" class="chkbox"/>
-        </td>
-         <td>
-                      <div class="media">
-                            <a class="thumbnail pull-left" href="#">
-                                         <img  class="media-objet"  src="@Url.Content(System.Web.Configuration.WebConfigurationManager.AppSettings["PhotosDir"]+item.tb_ad_image.FirstOrDefault().image_filename+"?width=100&height=100")" />
-                              </a>
-                          <div class="media-body">
-                          <h5 class="media-heading">@Html.ActionLink(item.ad_title, "details","Annonces", new { id= item.id_ad},null)</h5>  
-                                <h5 class="media-heading">@Html.ActionLink(item.tb_account.username, "EditProfile","Account", new { area=""},null)</h5>   
-                              <p>
-                                       <a href="@Url.Action("Details","Annonces",new {  area="Admin",id = item.id_ad})">Voir annonce</a> 
-                                      | <a href="@Url.Action("Valider","Annonces",new { area="Admin",id = item.id_ad})">Valider</a> 
-                                      | <a href="@Url.Action("Modifier","Annonces",new { area="Admin",id = item.id_ad})">Modifier</a> 
-                                      | <a href="@Url.Action("Desactiver","Annonces",new { area="Admin",id = item.id_ad})">Desactiver</a> 
-                                      | <a href="@Url.Action("Supprimer","Annonces",new { area="Admin",id = item.id_ad})" class="confirm-delete" data-ads="@item.id_ad" >Supprimer</a> 
-                               </p>           
-                        </div>    
-          
-                        </div>
-                  
-        </td>
+                                   <script type="text/javascript">
 
-        <td>
-            @Html.DisplayFor(modelItem => item.tb_category.category_title)
-        </td>
-          <td>
-            @Html.Encode(item.ad_date_created.Value.ToShortDateString())
-        </td>
-  
-         <td>
-            @Html.Encode(item.ad_date_expired.Value.ToShortDateString())
-        </td>
-        <td>
-                           @if(item.ad_status== 1) {
-                            @Html.Label(item.tb_ad_status.status, new { @class="label label-success" })
-                        }
-                           @if(item.ad_status== 2) {
-                            @Html.Label(item.tb_ad_status.status,new { @class="label label-danger" })
-                        }
-                           @if(item.ad_status== 3) {
-                            @Html.Label(item.tb_ad_status.status,new { @class="label label-info" })
-                        }
-            
-                            @if(item.ad_status== 4) {
-                            @Html.Label(item.tb_ad_status.status,new { @class="label label-danger" })
-                        }
+                               $('#modalDeleteAds').on('show', function () {
+                               var id = $(this).data('ads'),
+                               removeBtn = $(this).find('.danger');
+                               });
 
-                            @if(item.ad_status== 5) {
-                            @Html.Label(item.tb_ad_status.status,new { @class="label label-danger" })
-                        }
-        </td>
+                               $('#modalDesactiverAds').on('show', function () {
+                               var id = $(this).data('ads'),
+                               removeBtn = $(this).find('.danger');
+                               });
 
-    </tr>
-}
+                               $('#modalVenduAds').on('show', function () {
+                               var id = $(this).data('ads'),
+                               removeBtn = $(this).find('.danger');
+                               });
 
-</table>
-      <div>
-            <div> @Html.PagedListPager(Model, page => @Url.Action("Index", new { page}))</div>
-        </div>
-  </div>
+                               $('#modalPublishedAds').on('show', function () {
+                               var id = $(this).data('ads'),
+                               removeBtn = $(this).find('.danger');
+                               });
 
+                               $('.confirm-delete').on('click', function (e) {
+                               e.preventDefault();
+
+                               var id = $(this).data('ads');
+                               var href = $(this).attr('href');
+                               console.log(href);
+                               $('#btnYes').attr('href', href);
+                               $('#modalDeleteAds').data('ads', id).modal('show');
+                               return false;
+
+                               });
+
+                               $('.confirm-desactiver').on('click', function (e) {
+                               e.preventDefault();
+                               console.log("desactiver");
+                               var id = $(this).data('ads');
+                               var href = $(this).attr('href');
+                               console.log(href);
+                               $('#btnDesactiverYes').attr('href', href);
+                               $('#modalDesactiverAds').data('ads', id).modal('show');
+                               return false;
+                               });
+
+
+                               $('.confirm-publier').on('click', function (e) {
+                               e.preventDefault();
+                               console.log("publier");
+                               var id = $(this).data('ads');
+                               var href = $(this).attr('href');
+                               console.log(href);
+                               $('#btnPublierYes').attr('href', href);
+                               $('#modalPublishedAds').data('ads', id).modal('show');
+                               return false;
+
+                               });
+
+                               $('.confirm-vendu').on('click', function (e) {
+                               e.preventDefault();
+
+                               var id = $(this).data('ads');
+                               var href = $(this).attr('href');
+                               console.log(href);
+                               $('#btnVenduYes').attr('href', href);
+                               $('#modalVenduAds').data('ads', id).modal('show');
+                               return false;
+
+                               });
+
+                                   </script>
+                                   }
 

@@ -18,6 +18,25 @@ $(document).ready(function() {
 	 Carousel 
 	====================================*/
 
+    $(".owl-carousel").owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 5
+            }
+        }
+
+
+    });
+
     // Featured Listings  carousel || HOME PAGE
     var owlitem = $(".item-carousel");
 
@@ -43,16 +62,15 @@ $(document).ready(function() {
     })
 
 
-
-
     // Featured Listings  carousel || HOME PAGE
     var featuredListSlider = $(".featured-list-slider");
 
     featuredListSlider.owlCarousel({
         //navigation : true, // Show next and prev buttons
         navigation: false,
-        pagination: false,
-        items: 5,
+        pagination: true,
+        dots: true,
+        items: 6,
         itemsDesktopSmall: 	[979,3],
         itemsTablet: [768, 3],
         itemsTabletSmall: [660, 2],

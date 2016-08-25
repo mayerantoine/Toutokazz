@@ -1,20 +1,11 @@
 ﻿@model PagedList.IPagedList<Toutokaz.Domain.Models.tb_ads>
 @using Toutokaz.WebUI.Helpers
 @using PagedList.Mvc 
+
 @{
     ViewBag.Title = "Toutokazz - MesAnnonces";
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Layout = "~/Views/Shared/_LayoutPagev2.cshtml";
 }
-@section categories_menu {
-          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
-}
-	<div class="row" style="margin-bottom:20px;">
-		<div class="col-md-12">
-    		  <h2>Mes Annonces
-    		  </h2>
-           <div>@TempData["Error"]</div>
-		</div>
-	</div>
 
 <div  id="modalDeleteAds"  class="modal fade">
   <div class="modal-dialog">
@@ -93,111 +84,137 @@
 </div><!-- /.modal -->
 
 
-<div class="col-lg-12">        
-     <form class="form-inline" role="form" style="margin:10px">
-                      <div class="form-group">
-                        <input type="text" class="form-control" id="titlekeyword"  name="titlekeyword" placeholder="Titre">
-                      </div>
-                      <div class="form-group">
-                        @Html.DropDownList("id_category", @ViewBag.id_category as IDictionary<string , IEnumerable<SelectListItem> > ,"(categorie de l'annonce)", new {  @class="col-sm-3 form-control"})
-                      </div>
-                        <div class="form-group">
-                              @Html.DropDownList("id_ad_status",@ViewBag.id_ad_status as SelectList,"(select status)",new  { @class="form-control"})
-                      </div>
-                      <button type="submit" class="btn btn-primary">Filtrer</button>
-                    </form>
-     <table class="table table-condensed table-striped table-hover table-bordered">
-                <tr>
-                    <th><input type="checkbox"  id="chkall"/></th>
-                    <th>
-                        @Html.DisplayName("Details")
+ <div class="row">
+    <div class="col-sm-3 page-sidebar">
+           <aside>
+                                <div class="inner-box">
+                                    <div class="user-panel-sidebar">
+                                        <div class="collapse-box">
+                                            <h5 class="collapse-title no-border"> Tableau de bord <a class="pull-right" data-toggle="collapse" href="#MyClassified"><i class="fa fa-angle-down"></i></a></h5>
+                                            <div id="MyClassified" class="panel-collapse collapse in">
+                                                <ul class="acc-list">
+                                                    <li><a href="account-home.html"><i class="icon-home"></i> Mon Profil </a></li>
 
-                   </th>
-                      <th>
-                        @Html.DisplayName("Categorie")
-                    </th>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- /.collapse-box  -->
+                                        <div class="collapse-box">
+                                            <h5 class="collapse-title"> Mes Annonces <a class="pull-right" data-toggle="collapse" href="#MyAds"><i class="fa fa-angle-down"></i></a></h5>
+                                            <div id="MyAds" class="panel-collapse collapse in">
+                                                <ul class="acc-list">
+                                                    <li class="active"><a href="account-myads.html"><i class="icon-docs"></i> Mes Annonces <span class="badge">42</span> </a></li>
+                                                    <li><a href="account-archived-ads.html"><i class="icon-folder-close"></i> Annonces désactivées<span class="badge">42</span></a></li>
+                                                    <li><a href="account-pending-approval-ads.html"><i class="icon-hourglass"></i> Annonces Pendantes <span class="badge">42</span></a></li>
 
-                    <th>
-                        @Html.DisplayName("Publiée le")
-                    </th>
-                    <th>
-                        @Html.DisplayName("Expire le")
-                    </th>
+                                                </ul>
+                                            </div>
+                                        </div>
 
-                           <th>
-                        @Html.DisplayName("Statut")
-                    </th>
+                                    </div>
+                                </div>
+                                <!-- /.inner-box  -->
 
-                </tr>
-
-            @foreach (var item in Model) {
-                <tr>
-                    <td>
-                        <input type="checkbox" id="ad_@item.id_ad" data-ads="@item.id_ad" class="chkbox"/>
-                    </td>
-                     <td>
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="@Url.Action("details","MesAnnonces",new { id= item.id_ad})">
-                                <img class="media-objet" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+item.tb_ad_image.FirstOrDefault().image_filename+"?width=100&height=100")" />
-                            </a>
-                          <div class="media-body">
-                          <h5 class="media-heading">@Html.ActionLink(item.ad_title, "details","MesAnnonces", new { id= item.id_ad},null)</h5>    
-                              <p>
-                                       <a href="@Url.Action("Details","MesAnnonces",new { id = item.id_ad})">Voir mon annonce</a> 
-                             
-                                      | <a href="@Url.Action("modifier","mesAnnonces",new { id = item.id_ad})">Modifier</a> 
-                                    @if(item.ad_status== 1) {
-                                      @:| <a href="@Url.Action("Desactiver","MesAnnonces",new { id = item.id_ad})" class="confirm-desactiver"  data-ads="@item.id_ad" >Desactiver</a> 
-                                    }
-                                      @if(item.ad_status== 2) {
-                                       @: | <a href="@Url.Action("Publier","MesAnnonces",new { id = item.id_ad})" class="confirm-publier"  data-ads="@item.id_ad">Publier</a> 
-                                    }
-                                       @if (item.ad_status == 2 || item.ad_status == 1)
-                                       {
-                                       @: | <a href="@Url.Action("Vendu","MesAnnonces",new { id = item.id_ad})" class="confirm-vendu"  data-ads="@item.id_ad">Vendu</a> 
-                                    }
-                                      | <a href="@Url.Action("Supprimer","MesAnnonces",new { id = item.id_ad})" class="confirm-delete" data-ads="@item.id_ad" >Supprimer</a> 
-                               </p>           
-                        </div>    
-          
+                            </aside>
                         </div>
-                  
-                    </td>
+    <!--/.page-sidebar-->
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tb_category.category_desctiption)
-                    </td>
-                      <td>
-                        @Html.Encode(item.ad_date_created.Value.ToShortDateString())
-                    </td>
-  
-                     <td>
-                        @Html.Encode(item.ad_date_expired.Value.ToShortDateString())
-                    </td>
-                    <td>
-                        @if(item.ad_status== 1) {
-                            @Html.Label(item.tb_ad_status.status, new { @class="label label-success" })
-                        }
-                           @if(item.ad_status== 2) {
-                            @Html.Label(item.tb_ad_status.status,new { @class="label label-danger" })
-                        }
-                           @if(item.ad_status== 3) {
-                            @Html.Label(item.tb_ad_status.status,new { @class="label label-info" })
-                        }
-                          @if(item.ad_status== 4) {
-                            @Html.Label(item.tb_ad_status.status,new { @class="label label-danger" })
-                        }
-
-                    </td>
-                </tr>
-            }
-
-            </table>
-         
-      <div>
-            <div> @Html.PagedListPager(Model, page => @Url.Action("Index", new { page}))</div>
-        </div>
-        
+   <div class="col-sm-9 page-content">
+        <div class="inner-box">
+            <h2 class="title-2"><i class="icon-docs"></i> Mes Annonces</h2>
+            <div>@TempData["Error"]</div>
+              <div class="table-responsive">
+                                               <div class="table-action">
+                                                   <label for="checkAll">
+                                                       <input type="checkbox" onclick="checkAll(this)" id="checkAll">
+                                                       Sélectionner tout | <a href="#" class="btn btn-xs btn-danger">Supprimer <i class="glyphicon glyphicon-remove "></i></a>
+                                                   </label>
+                                                   <div class="table-search pull-right col-xs-7">
+                                                       <div class="form-group">
+                                                           <label class="col-xs-5 control-label text-right">
+                                                               Recherche <br>
+                                                               <a title="clear filter" class="clear-filter" href="#clear">[clear]</a>
+                                                           </label>
+                                                           <div class="col-xs-7 searchpan">
+                                                              <input type="text" class="form-control" id="filter">
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                               <table id="addManageTable" class="table table-striped table-bordered add-manage-table table demo" data-filter="#filter" data-filter-text-only="true">
+                                                   <thead>
+                                                       <tr>
+                                                           <th data-type="numeric" data-sort-initial="true"> </th>
+                                                           <th> Photo </th>
+                                                           <th data-sort-ignore="true"> Details </th>
+                                                           <th data-type="numeric"> Prix </th>
+                                                           <th> Statut </th>
+                                                       </tr>
+                                                   </thead>
+                                                   <tbody>
+                                                       @foreach (var item in Model) {
+                                                       <tr>
+                                                           <td style="width:2%" class="add-img-selector">
+                                                               <div class="checkbox">
+                                                                   <label>
+                                                                       <input type="checkbox" id="ad_@item.id_ad" data-ads="@item.id_ad" class="chkbox" />
+                                                                   </label>
+                                                               </div>
+                                                           </td>
+                                                           <td style="width:14%" class="add-img-td"><a href="@Url.Action("details","MesAnnonces",new { id= item.id_ad})"><img class="thumbnail  img-responsive" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+item.tb_ad_image.FirstOrDefault().image_filename+"?width=100&height=100")" alt="img"></a></td>
+                                                           <td style="width:58%" class="ads-details-td">
+                                                               <div>
+                                                                   <p><strong> @Html.ActionLink(item.ad_title, "details", "MesAnnonces", new { id = item.id_ad }, null) </strong></p>
+                                                                   <p>
+                                                                       <strong> Postée le </strong>:
+                                                                       @Html.Encode(item.ad_date_created.Value.ToShortDateString())
+                                                                   </p>
+                                                                   <p> <strong>Visites </strong>: 0 <strong>Location:</strong> @Html.Label(item.tb_commune.commune) </p>
+                                                                   <p>
+                                                                        <a href="@Url.Action("modifier","mesAnnonces",new { id = item.id_ad})" class="btn btn-primary btn-xs">Modifier</a>
+                                                                        @if (item.ad_status == 1)
+                                                                        {
+                                                                            @:| <a href="@Url.Action("Desactiver","MesAnnonces",new { id = item.id_ad})" class="btn btn-warning btn-xs confirm-desactiver" data-ads="@item.id_ad">Désactiver</a>
+                                                                                                            }
+                                                                        @if (item.ad_status == 2)
+                                                                        {
+                                                                            @: | <a href="@Url.Action("Publier","MesAnnonces",new { id = item.id_ad})" class="btn btn-info btn-xs confirm-publier" data-ads="@item.id_ad">Publier</a>
+                                                                                                            }
+                                                                        @if (item.ad_status == 2 || item.ad_status == 1)
+                                                                        {
+                                                                            @: | <a href="@Url.Action("Vendu","MesAnnonces",new { id = item.id_ad})" class="btn btn-success btn-xs confirm-vendu" data-ads="@item.id_ad">Vendu</a>
+                                                                                                            }
+                                                                          | <a href="@Url.Action("Supprimer","MesAnnonces",new { id = item.id_ad})" class="btn btn-danger btn-xs confirm-delete" data-ads="@item.id_ad">Supprimer</a> </p>
+                                                               </div>
+                                                           </td>
+                                                           <td style="width:16%" class="price-td"><div><strong> @HttpUtility.HtmlDecode(item.tb_devise.symbole) @Html.DisplayFor(x => item.ad_price)</strong></div></td>
+                                                           <td style="width:10%" class="action-td">
+                                                               @if (item.ad_status == 1)
+                                                               {
+                                                                   @Html.Label(item.tb_ad_status.status, new { @class = "label label-success" })
+                                                               }
+                                                               @if (item.ad_status == 2)
+                                                               {
+                                                                   @Html.Label(item.tb_ad_status.status, new { @class = "label label-danger" })
+                                                               }
+                                                               @if (item.ad_status == 3)
+                                                               {
+                                                                   @Html.Label(item.tb_ad_status.status, new { @class = "label label-info" })
+                                                               }
+                                                               @if (item.ad_status == 4)
+                                                               {
+                                                                   @Html.Label(item.tb_ad_status.status, new { @class = "label label-danger" })
+                                                               }
+                                                           </td>
+                                                       </tr>
+                                                       }
+                                                    </tbody>
+                                               </table>
+                  <div> @Html.PagedListPager(Model, page => @Url.Action("Index", new { page }))</div>
+                                           </div>
+                <!--/.row-box End-->
+       </div>
+   </div>
+  <!--/.page-content-->
  </div>
-
-
+ <!--/.row--> 

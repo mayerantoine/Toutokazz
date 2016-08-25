@@ -1,19 +1,11 @@
 ﻿@model Toutokaz.Domain.Models.tb_section
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage.cshtml";
+    ViewBag.Title = "Toutokazz - Admin Edit Annonces";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPagev2.cshtml";
 }
-       <div class="row"> 
-        <div class="col-lg-offset-8 col-lg-4">
-              <a class="btn btn-primary btn-outline btn-sm" href="@Url.Action("Index","Section")">Annuler</a>
-            <a class="btn btn-primary btn-outline btn-sm" href="@Url.Action("Create","Section")"><span class="glyphicon glyphicon-plus"></span>Nouveau</a>
-            </div>           
-    </div>
-<div class="col-lg-10">
-  <fieldset>
-     <legend>EDITER SECTION</legend>
- </fieldset>  
-  
+
+<div class="inner-box">
+     <h2 class="title-2">Editer Section</h2> 
               <div class="col-lg-9"> 
                      @Html.Raw(@ViewBag.Message)
                   <form class="form-horizontal" role="form" method="post">

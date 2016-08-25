@@ -247,6 +247,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ActiveMenu.cs" />
+    <Compile Include="Helpers\ActiveMenuTab.cs" />
     <Compile Include="Helpers\GroupedSelectExtension.cs" />
     <Compile Include="Helpers\RadioButtonListExtension.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
@@ -635,6 +636,7 @@
     <Content Include="Content\css\select2.png" />
     <Content Include="Content\css\select2x2.png" />
     <Content Include="Content\css\social-sharing.css" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.svg" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\icons-18-black.png" />
     <Content Include="Content\images\icons-18-white.png" />
@@ -849,6 +851,7 @@
     <Content Include="Content\images\image-services.png" />
     <Content Include="Content\images\image-vehicules-32.png" />
     <Content Include="Content\images\image-vetement.png" />
+    <Content Include="Content\img\avatar-profile.jpg" />
     <Content Include="Content\img\Falling-sales2.jpg" />
     <Content Include="Content\img\FB_Post_500.jpg" />
     <Content Include="Content\img\logo-revamp-white.png" />
@@ -894,6 +897,28 @@
     <Content Include="Content\jquery.mobile.structure-1.4.5.min.css" />
     <Content Include="Content\jquery.mobile.theme-1.4.5.css" />
     <Content Include="Content\jquery.mobile.theme-1.4.5.min.css" />
+    <Content Include="Content\nativedroid\flexboxgrid.min.css" />
+    <Content Include="Content\nativedroid\material-design-iconic-font.min.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.amber.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.blue-grey.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.blue.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.brown.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.cyan.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.deep-orange.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.deep-purple.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.green.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.grey.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.indigo.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.light-blue.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.light-green.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.lime.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.orange.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.pink.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.purple.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.red.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.teal.css" />
+    <Content Include="Content\nativedroid\nativedroid2.color.yellow.css" />
+    <Content Include="Content\nativedroid\nativedroid2.css" />
     <Content Include="Content\Site.Mobile.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\img\favicon_ombre.png" />
@@ -1034,6 +1059,10 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admin\Views\Annonces\EditProfile.cshtml" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Content\fonts\Material-Design-Iconic-Font.ttf" />
     <None Include="MvcSiteMapSchema.xsd" />
     <None Include="Properties\PublishProfiles\staging-toutokazz - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\staging-toutokazz - FTP.pubxml" />
@@ -1073,6 +1102,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\nativedroid2.js" />
+    <Content Include="Scripts\nd2settings.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\respond.min1.js" />
     <Content Include="Scripts\Select2-locales\select2_locale_ar.js" />
@@ -1122,6 +1153,13 @@
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\toutokaz.js" />
+    <Content Include="Scripts\vendor\chartist\chartist.min.js" />
+    <Content Include="Scripts\vendor\chartist\style.css" />
+    <Content Include="Scripts\vendor\jquerymobile\jquery.mobile.min.css" />
+    <Content Include="Scripts\vendor\waves\waves.min.css" />
+    <Content Include="Scripts\vendor\waves\waves.min.js" />
+    <Content Include="Scripts\vendor\wow\animate.css" />
+    <Content Include="Scripts\vendor\wow\wow.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1216,7 +1254,7 @@
     <Content Include="Views\Shared\_LayoutLanding.cshtml" />
     <Content Include="Views\Account\_ExternalLoginButtonb.cshtml" />
     <Content Include="Views\Shared\_ViewSwitcher.cshtml" />
-    <Content Include="Views\Shared\_Layout.Mobile.cshtml" />
+    <Content Include="Views\Shared\_LayoutPagev2.Mobile.cshtml" />
     <Content Include="Views\Home\Index.Mobile.cshtml" />
     <Content Include="Views\Shared\_CategoriesMenu.Mobile.cshtml" />
     <Content Include="Views\Shared\_Categories.Mobile.cshtml" />
@@ -1253,6 +1291,16 @@
     <Content Include="Views\Annonces\_listingBLock.cshtml" />
     <Content Include="Views\Annonces\_asideCategory.cshtml" />
     <Content Include="Views\Annonces\_asideSubCategory.cshtml" />
+    <Content Include="Views\Annonces\allannonce.Mobile-No.cshtml" />
+    <Content Include="Views\Annonces\details.Mobile-No.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdminPagev2.cshtml" />
+    <Content Include="Views\MesAnnonces\EditProfile.cshtml" />
+    <Content Include="Views\Shared\_LayoutMesAnnoncesPagev2.cshtml" />
+    <Content Include="Views\Annonces\_asideProfile.cshtml" />
+    <Content Include="Scripts\vendor\waves\waves.min.js.map" />
+    <Content Include="Views\Shared\_panel.left.cshtml" />
+    <Content Include="Views\Annonces\annonceur.Mobile.cshtml" />
+    <Content Include="Views\Annonces\_listing.Mobile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

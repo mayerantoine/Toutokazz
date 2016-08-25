@@ -2,18 +2,18 @@
 
 @{
     ViewBag.Title = "EditUser";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPage.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminPagev2.cshtml";
 }
 
-<div class="col-lg-12">
-<h3>EDITER PROFIL</h3>
-     <hr />
-         <div class="col-lg-3">
+<div class="inner-box">
+    <h2 class="title-2"><i class="icon-docs"></i> Editer Profil</h2>
+    <div>@TempData["Error"]</div>
+         <div class="col-sm-3">
              <div class="thumbnail">
                  <img src="~/Content/img/default-img.jpg" />
              </div>
          </div>
-        <div class="col-lg-7">                                  
+        <div class="col-sm-6">                                  
                    @using (Html.BeginForm("edituser","account",new{ Area="Admin"}, FormMethod.Post, new { @class = "form-horizontal"}))
                         {
                           <div class="form-group"> 

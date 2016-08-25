@@ -1,9 +1,15 @@
 ﻿@model Toutokaz.WebUI.Models.HomePageModel
+@using Toutokaz.WebUI.Helpers
 
 @{
-    ViewBag.Title = "Toutokazz";
-    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
-    }
+    ViewBag.Title = "Toutokazz - Site de petites annonces gratuites, le meilleur d'Haiti";
+    ViewBag.description = "Bienvenue sur Toutokazz, le meilleur site de petites annonces d'Haiti";
+    ViewBag.motscles = "toutokazz,toutokaz, haiti, classified ads,site annonces, petites, annonces, annonces gratuites, immobilier, voiture, auto, moto, annonces immobilier, vêtements";
+    ViewBag.page_description = "Toutokazz, le meilleur site de petites annonces d'Haiti. Avec toutokazz, vendez facilement et rapidement vos biens et objet d''occasions sur internet";
+    ViewBag.ImageUrl = Url.Content("~/Content/images/bg_intro2.jpg");
+    Layout = "~/Views/Shared/_LayoutPagev2.Mobile.cshtml";
+
+ }
 
 
- @{  Html.RenderAction("GetCategoryMenu", "Annonces");}
+@{  Html.RenderAction("GetCategoryMenu", "Annonces");}

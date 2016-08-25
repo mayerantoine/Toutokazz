@@ -22,7 +22,7 @@ namespace Toutokaz.WebUI.Helpers
 
             if (param != null)
             {
-                currentParam = helper.ViewContext.Controller.ValueProvider.GetValue("typeannonce").RawValue.ToString();
+                currentParam = helper.ViewContext.Controller.ValueProvider.GetValue("id_account_type").RawValue.ToString();
                 if (currentController == controller && currentAction == action && currentParam == param)
                 {
                     classValue = "active";

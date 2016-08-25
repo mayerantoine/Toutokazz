@@ -1,0 +1,42 @@
+﻿@model Toutokaz.WebUI.Models.AnnonceurViewModel
+@using Toutokaz.WebUI.Helpers
+@using MvcSiteMapProvider.Web.Html
+@using PagedList.Mvc
+
+<aside>
+    <div class="panel sidebar-panel panel-contact-seller">
+        <div class="panel-heading">Profile Vendeur</div>
+        <div class="panel-content user-info">
+            <div class="panel-body text-center">
+                <div>
+                    <img src="~/Content/img/avatar-profile.jpg" />
+                </div>
+                <div class="seller-info">
+                    <h3 class="no-margin">
+
+                        @if (Model.annonceur.id_account_type.Equals(1))
+                        {
+
+                            if (String.IsNullOrEmpty(Model.annonceur.pseudo))
+                            {
+                                <span>@Model.annonceur.firstname, @Model.annonceur.lastname</span>
+                            }
+                            else
+                            {
+                                <span>@Model.annonceur.pseudo</span>
+                            }
+                        }
+                        else
+                        {
+                            <span>@Model.annonceur.nom_entreprise</span>
+                        }
+                    </h3>
+                    <p>Email: <strong>@Html.Encode(Model.annonceur.email)</strong></p>
+                    <p>Téléphone: <strong>@Html.Encode(Model.annonceur.telephone)</strong></p>
+                    <p>Adresse: <strong>@Html.Encode(Model.annonceur.adresse)</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</aside>

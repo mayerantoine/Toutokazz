@@ -25,6 +25,9 @@ namespace Toutokaz.WebUI.Controllers
         IDeviseRepository deviseRepository;
         IItemConditionRepository condRepository;
 
+
+        IAccountRepository account;
+
         public MesAnnoncesController(IAnnoncesRepository repository)
         {
             annoncesRepository = repository;
@@ -32,7 +35,9 @@ namespace Toutokaz.WebUI.Controllers
             catRepository = new CategoryRepository();
             deviseRepository = new DeviseRepository();
             condRepository = new ItemConditionRepository();
-           
+
+            account = new AccountRepository();
+
         }
         //
         // GET: /MesAnnonces/
@@ -51,6 +56,9 @@ namespace Toutokaz.WebUI.Controllers
 
           //  var query =  annoncesRepository.GetAdsByUser((Guid)user.ProviderUserKey);
             var query = annoncesRepository.GetAdsByUserId(user_id);
+            ViewBag.CountMesAnnonces = query.Count();
+            ViewBag.CountMesAnnoncesPendantes = query.Where(c=>c.ad_status == 3).Count();
+            ViewBag.CountMesAnnoncesDesactives = query.Where(c => c.ad_status == 2).Count();
 
             if (!String.IsNullOrEmpty(titlekeyword) || id_category != null || id_ad_status != null)
             {
@@ -366,6 +374,68 @@ namespace Toutokaz.WebUI.Controllers
             }
         }
 
+
+        [HttpGet]
+        public ActionResult EditProfile()
+        {
+            if (Request.IsAuthenticated)
+            {
+                string username = User.Identity.Name;
+                int UserId = WebSecurity.GetUserId(username);
+                //  MembershipUser user =  Membership.GetUser(username);
+
+                tb_account acc = account.GetAccountByUserId(UserId);
+                var query = annoncesRepository.GetAdsByUserId(UserId);
+                ViewBag.CountMesAnnonces = query.Count();
+                ViewBag.CountMesAnnoncesPendantes = query.Where(c => c.ad_status == 3).Count();
+                ViewBag.CountMesAnnoncesDesactives = query.Where(c => c.ad_status == 2).Count();
+                //ViewBag.accountId = acc.id_account;
+                ProfileViewModel profile = new ProfileViewModel
+                {
+                    id_account = acc.id_account,
+                    Nom = acc.lastname,
+                    Prenom = acc.firstname,
+                    telephone = acc.telephone,
+                    address = acc.adresse
+
+                };
+
+                return View(profile);
+            }
+
+            return RedirectToAction("Index", "MesAnnonces");
+
+        }
+
+
+        [HttpPost]
+        public ActionResult EditProfile(ProfileViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                tb_account acc = account.GetById(model.id_account);
+                acc.firstname = model.Prenom;
+                acc.lastname = model.Nom;
+                acc.telephone = model.telephone;
+                acc.adresse = model.address;
+                acc.pseudo = model.alias;
+                try
+                {
+                    account.Update(acc);
+                    account.Save();
+                }
+                catch (Exception exp)
+                {
+                    throw exp;
+                }
+                return RedirectToAction("index", "mesannonces");
+            }
+
+            return View(model);
+
+        }
+
+       
         //
         // GET: /MesAnnonces/Delete/5
 

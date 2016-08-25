@@ -73,7 +73,7 @@ namespace Toutokaz.WebUI.Controllers
                         String role  = Roles.GetRolesForUser(login.Email).SingleOrDefault();
 
                         if (role.Equals("administrateur"))
-                        { return RedirectToAction("Index", "Home", new { area = "Admin" }); }
+                        { return RedirectToAction("Index", "Annonces", new { area = "Admin" }); }
                         else
                         {
                             return RedirectToAction("Index", "MesAnnonces");

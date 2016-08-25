@@ -1,131 +1,275 @@
 ﻿@model Toutokaz.Domain.Models.tb_ads
+@using Toutokaz.WebUI.Helpers
 @{
     ViewBag.Title = " Toutokazz - Details";
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
-}
-@section categories_menu {
-          @{Html.RenderAction("_NavbarCategoriesMenu", "Home");}
-}
- <div class="col-lg-12 content-right">
-    <h4>@Html.ActionLink("Retour Mes Annonces","Index","MesAnnonces")</h4>
-    
-  <h3>@Html.Label(Model.ad_title)</h3>
- <div class="row">
-    <div class="col-md-8">
-         <div class="row">
-                <div class="col-md-12" id="slider">
-                  <div class="col-md-12" id="carousel-bounding-box" style="padding: 0;">
-                    <div id="detailCarousel" class="carousel slide thumbnail">
-                      <div class="carousel-inner">
- 
-                          @{
-                              int slide = 1;
-                              foreach( var item in Model.tb_ad_image) 
-                              {
-                                  
-                                   if(slide == 1 ) {
-                                      <div class="active item details" data-slide-number="@slide">
-                                          <img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+ (string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" :item.image_filename)+ "?width=800&height=500")" class="img-responsive" />
-                                        </div>                               
-                                   }
-                                   else {
-                                  
-                                <div class="item details" data-slide-number="@slide">
-                                  <img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + (string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename) + "?width=800&height=500")" class="img-responsive" />
-                                </div>
-                                   }
-                                  slide++;
-                              }
-                          }
-                      </div>
-                      <a class="carousel-control left" href="#detailCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                      <a class="carousel-control right" href="#detailCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-         <div class="row">
-                <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
-                  <ul class="list-inline">
-                           @{
-                              int cnt =0; 
-                               foreach(var item in Model.tb_ad_image)
-                               {
-                                   
-                                   if( cnt == 0) {
-                                     <li><a id="carousel-selector-@cnt"  class="selected"><img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + item.image_filename + "?width=80&height=60")" class="img-responsive" /></a></li>
-                                   }
-                                   else{
-          
-                                   <li><a id="carousel-selector-@cnt" ><img alt="@Url.Content(string.IsNullOrEmpty(item.image_filename)? "default-img.jpg" : item.image_filename)" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+ item.image_filename + "?width=80&height=60")" class="img-responsive" /></a></li>
-                                }
-                                   cnt++;
-                              }
-                          }
-                  </ul>    
-                </div> 
-          </div>  
-         <div class="row">
-            <div class="col-md-9">
-              <h4>Description</h4>
-              <p style="text-align: justify;">
-                  @Html.Raw(Model.ad_description)
-              </p>
-            </div>
-          </div>      
-    </div>
-     <div class="col-md-4">
-    <!--Detail de l'annonce-->
-      <div class="panel panel-info">
-            <div class="panel-heading">
-                <h6>DETAIL DE L'ANNONCE</h6>
-            </div>
-            <div class="panel-body">
-              <table class="table table-condensed table-hover">
-                <tbody style="font-size: 14px;">
-                     <tr>
-                    <td>Code Annonce</td>
-                    <td>@Html.Label(Model.ad_code.ToString())</td>
-                  </tr>
-                    @if (Model.id_section != 9 && Model.id_section != 19)
-                      {
-                  <tr>
-                    <td>Prix</td>
-                    <td><strong>@HttpUtility.HtmlDecode(Model.tb_devise.symbole) @Html.DisplayFor(x=>x.ad_price)</strong></td>
-                  </tr>
-                    }
-                  <tr>
-                    <td>Status</td>
-                    <td>@Html.Label(Model.tb_ad_status.status)</td>
-                  </tr>
+    Layout = "~/Views/Shared/_LayoutPagev2.cshtml";
 
-                  <tr>
-                    <td>Catégorie</td>
-                    <td>@Html.Label(Model.tb_category.category_title)</td>
-                  </tr>
-                    <tr>
-                    <td>Annonce crée le </td>
-                    <td>@Html.Encode(Model.ad_date_created.Value.ToShortDateString())</td>
-                  </tr>    
-                      <tr>
-                    <td>Commune</td>
-                    <td>@Html.Label(Model.tb_commune.commune)</td>
-                  </tr>  
-                       <tr>
-                    <td>Département</td>
-                    <td>@Html.Label(Model.tb_departement.departement)</td>
-                  </tr> 
-                </tbody>
-        </table>
+}
+
+
+@section open_graph_tags{
+    @Html.Partial("_OpenGraphTag")
+}
+
+
+@section breadcrumb{
+
+    <div class="container">
+        <ol class="breadcrumb pull-left">
+            <li><a href="@Url.Action("Index","MesAnnonces")"><i class="fa fa-angle-double-left"></i>  Retour Mes Annonces</a></li>
+        </ol>
+    </div>
+
+
+}
+
+
+
+<div class="row">
+    <div class="col-sm-9 page-content col-thin-right">
+        <div class="inner inner-box ads-details-wrapper">
+            <h2> @Html.Raw(Model.ad_title)<small class="label label-default adlistingtype">Company ad</small> </h2>
+            <span class="info-row"> <span class="date"><i class=" icon-clock"> </i> @Html.Encode(Model.ad_date_created.Value.ToShortDateString()) </span> - <span class="category">@Html.Label(Model.tb_category.category_title) </span>- <span class="item-location"><i class="fa fa-map-marker"></i> @Html.Label(Model.tb_commune.commune)</span> </span>
+            <div class="ads-image">
+                <h1 class="pricetag"> @HttpUtility.HtmlDecode(Model.tb_devise.symbole) @Html.DisplayFor(x => x.ad_price)</h1>
+                <ul class="bxslider">
+                    @{
+                        int slide = 1;
+                        foreach (var item in Model.tb_ad_image)
+                        {
+                            <li><img src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + (string.IsNullOrEmpty(item.image_filename) ? "default-img.jpg" : item.image_filename) + "?width=700&height=500")" alt="img" /></li>
+                            slide++;
+                        }
+                    }
+                </ul>
+                <div id="bx-pager">
+                    @{
+                        int cnt = 0;
+                        foreach (var item in Model.tb_ad_image)
+                        {
+                            <a class="thumb-item-link" data-slide-index="@cnt" href=""><img src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + item.image_filename + "?width=80&height=60")" alt="img" /></a>
+                            cnt++;
+                        }
+                    }
+                </div>
             </div>
-     
-        </div>    
-  
-     </div>
-  </div>
-    
- 
-    
- 
- 
- </div>
+            <!--ads-image-->
+
+            <div class="Ads-Details">
+                <h5 class="list-title"><strong>DETAIL DE L'ANNONCE</strong></h5>
+                <div class="row">
+                    <div class="ads-details-info col-md-8">
+                        <p>
+                            @Html.Raw(Model.ad_description)
+                        </p>
+
+                    </div>
+                    <div class="col-md-4">
+                        @if (Model.id_category == 1 || Model.id_category == 2)
+                        {
+
+                            <aside class="panel panel-body panel-details">
+                                <ul>
+                                    @foreach (var c in Model.tb_ad_vehicule)
+                                    {
+                                        <li>
+                                            <p class=" no-margin "><strong>Marque:</strong> @Html.Label(c.marque)</p>
+                                        </li>
+                                        <li>
+                                            <p class="no-margin"><strong>Modèle:</strong> @Html.Label(c.modele)</p>
+                                        </li>
+                                        <li>
+                                            <p class="no-margin"><strong>Annee:</strong> @Html.DisplayFor(m => c.annee)</p>
+                                        </li>
+                                        <li>
+                                            <p class=" no-margin ">
+                                                <strong>Transmission:</strong> @if (c.id_transmission == 1)
+                                                {  @Html.Label("Manuelle")}
+                                                else if (c.id_transmission == 2)
+                                                { @Html.Label("Automatique") }
+                                                else
+                                                {  @Html.Label("NA")}
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="no-margin">
+                                                <strong>Carburant:</strong> @if (c.id_carburant == 1)
+                                                {  @Html.Label("Gazoline")}
+                                                else if (c.id_carburant == 2)
+                                                { @Html.Label("Diesel") }
+                                                else if (c.id_carburant == 3)
+                                                { @Html.Label("Propane") }
+                                                else
+                                                {  @Html.Label("NA")}
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="no-margin"><strong>Kilometrage:</strong> @Html.DisplayFor(m => c.mileage)</p>
+                                        </li>
+                                    }
+                                </ul>
+
+                            </aside>
+
+                        }
+                        else if (Model.id_section == 2)
+                        {
+                            <aside class="panel panel-body panel-details">
+                                <ul>
+                                    @foreach (var c in Model.tb_ad_immobilier)
+                                    {
+                                        <li>
+                                            <p class=" no-margin "><strong>Pièce(s):</strong> @Html.DisplayFor(m => c.id_nb_pieces) pièce(s)</p>
+                                        </li>
+                                        <li>
+                                            <p class="no-margin"><strong>Chambre(s):</strong> @Html.DisplayFor(m => c.id_nb_pieces) chambre(s</p>
+                                        </li>
+                                        <li>
+                                            <p class="no-margin"><strong>Surface:</strong> @Html.DisplayFor(m => c.surface)<label> m&sup2;</label> </p>
+                                        </li>
+                                        <li>
+                                            <p class=" no-margin "><strong>Loyer:</strong> @Html.DisplayFor(m => c.loyer) <label> USD </label></p>
+                                        </li>
+                                    }
+                                </ul>
+
+                            </aside>
+                        }
+                        else
+                        {
+                            <aside class="panel panel-body panel-details">
+                                <ul>
+                                    <li>
+                                        <p class=" no-margin "><strong>Code:</strong> @Html.Label(Model.ad_code.ToString())</p>
+                                    </li>
+                                    @if (Model.id_section != 9 && Model.id_section != 8)
+                                    {
+                                        <li>
+                                            <p class=" no-margin "><strong>Prix:</strong> @HttpUtility.HtmlDecode(Model.tb_devise.symbole) @Html.DisplayFor(x => x.ad_price)</p>
+                                        </li>
+                                    }
+                                    <li>
+                                        <p class="no-margin">
+                                            <strong>Etat:</strong>
+
+                                            @if (Model.id_item_condition == 1)
+                                            {
+                                                @Html.Label("Neuf")
+                                            }
+                                            @if (Model.id_item_condition == 2)
+                                            {
+                                                @Html.Label("En bon etat")
+                                            }
+                                            @if (Model.id_item_condition == 3)
+                                            {
+                                                @Html.Label("D'occasion")
+                                            }
+
+                                        </p>
+                                    </li>
+                                </ul>
+                            </aside>
+                        }
+
+
+                        <div class="ads-action">
+                            <ul class="list-border">
+                                <li><a href="#"> <i class=" fa fa-user"></i> Les annonces du vendeur </a> </li>
+                                <li><a href="#"> <i class="fa fa-share-alt"></i> Partager</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="content-footer text-left">
+                    <a class="btn  btn-default" data-toggle="modal" href="#contactAdvertiser"><i class=" icon-mail-2"></i> Contacter le vendeur </a>
+                    @if (!String.IsNullOrEmpty(Model.ad_phone))
+                    {
+                        <a id="afficher" href="javascript:void(0)" class="btn  btn-info"><i class=" icon-phone-1"></i>Afficher le Téléphone </a>
+                        <a id="ad_phone" style="display:none;" href="javascript:void(0)" class="btn  btn-info"><i class=" icon-phone-1"></i>@Html.Raw(Model.ad_phone) </a>
+                    }
+                </div>
+            </div>
+        </div>
+        <!--/.ads-details-wrapper-->
+
+    </div>
+    <!--/.page-content-->
+
+    <div class="col-sm-3  page-sidebar-right">
+        <aside>
+            <div class="panel sidebar-panel panel-contact-seller">
+                <div class="panel-heading">Contacter le Vendeur</div>
+                <div class="panel-content user-info">
+                    <div class="panel-body text-center">
+                        <div class="seller-info">
+                            <h3 class="no-margin">
+                                @if (Model.tb_account.id_account_type.Equals(1))
+                                {
+
+                                    if (String.IsNullOrEmpty(Model.tb_account.pseudo))
+                                    {
+                                        <span><a href="@Url.Action("annonceur", "annonces", new { id = Model.id_account , annonceurname = Model.tb_account.firstname.ToSeoUrl() })">@Model.tb_account.firstname@Model.tb_account.lastname</a></span>
+                                    }
+                                    else
+                                    {
+                                        <span><a href="@Url.Action("annonceur", "annonces", new { id = Model.id_account , annonceurname = Model.tb_account.firstname.ToSeoUrl() })">@Model.tb_account.pseudo</a></span>
+                                    }
+                                }
+                                else
+                                {
+                                    <span><a href="@Url.Action("vitrine", "annonces", new { id = Model.id_account , annonceurname = Model.tb_account.nom_entreprise.ToSeoUrl() })">@Model.tb_account.nom_entreprise</a></span>
+                                }
+                            </h3>
+                            <p>Location: <strong>@Html.Label(Model.tb_commune.commune)</strong></p>
+
+                        </div>
+                        <div class="user-ads-action">
+                            <a href="#contactAdvertiser" data-toggle="modal" class="btn   btn-default btn-block"><i class=" icon-mail-2"></i> Envoyer le message </a>
+                            @if (!String.IsNullOrEmpty(Model.ad_phone))
+                            {
+                                <a id="afficher" href="javascript:void(0)" class="btn  btn-info btn-block"><i class=" icon-phone-1"></i>Afficher le Téléphone </a>
+                                <a id="ad_phone" style="display:none;" href="javascript:void(0)" class="btn  btn-info btn-block"><i class=" icon-phone-1"></i>@Html.Raw(Model.ad_phone) </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel sidebar-panel">
+                <div class="panel-heading">Safety Tips for Buyers</div>
+                <div class="panel-content">
+                    <div class="panel-body text-left">
+                        <ul class="list-check">
+                            <li> Meet seller at a public place </li>
+                            <li> Check the item before you buy</li>
+                            <li> Pay only after collecting the item</li>
+                        </ul>
+                        <p><a class="pull-right" href="#"> Know more <i class="fa fa-angle-double-right"></i> </a></p>
+                    </div>
+                </div>
+            </div>
+            <!--/.categories-list-->
+        </aside>
+    </div>
+    <!--/.page-side-bar-->
+</div>
+
+
+@section Script{
+    <script type="text/javascript">
+
+        //details page hide and show ad phone
+        $("#ad_phone").hide();
+        $("#afficher").on('click', function (e) {
+            e.preventDefault();
+
+            console.log("click afficher");
+            $("#ad_phone").show();
+            $("#afficher").hide();
+        });
+
+
+    </script>
+}
+

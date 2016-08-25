@@ -1,17 +1,27 @@
 ﻿@model Toutokaz.WebUI.Models.LoginViewModel
 
 @{
-    ViewBag.Title = "Moncompte";
-    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+    ViewBag.Title = "Toutokazz - Mon compte";
+    ViewBag.description = "Bienvenue sur Toutokazz, Créer votre comtpe et déposer une annonce";
+    ViewBag.motscles = "toutokazz,toutokaz, annonces,compte,déposer,particulier,professionnel, haiti, classified ads, ads,site annonce, site annonces, petites";
+    ViewBag.page_description = "Bienvenue sur Toutokazz, Créer votre compte et déposer une annonce";
+    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/Banner1a.jpg");
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
-<div id="moncompteMobile">
-        <div class="col-lg-6">      
+@section open_graph_tags{
+    @Html.Partial("_OpenGraphTag")
+}
+
+
+<div class="col-lg-12">
+    <div class="row">
+        <div class="col-lg-6">
             <div class="well well-lg">
                 <h4 style="font-weight:bold">Vous avez déja un compte?</h4>
                 @Html.Action("ExternalLoginButton", "account", new { ReturnUrl = ViewBag.ReturnUrl })
-                <h4 style="font-weight:bold">ou</h4>
-                <form role="form" method="post">
+                <h3 style="font-weight:bold">-----ou------</h3>
+                <form role="form" action="@Url.Action("Login","account")" method="post">
                     @Html.ValidationSummary(false)
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email </label>
@@ -32,4 +42,27 @@
                 </form>
             </div>
         </div>
+        <div class="col-lg-6">
+            <div>
+                <h3> Vous n'avez pas encore de compte?</h3>
+                <p>LA CRÉATION DE VOTRE COMPTE EST GRATUITE</p>
+                <p>
+                    Ce service vous permet de retrouver toutes vos annonces au même endroit.
+                    Déposez à présent plus simplement et plus rapidement vos annonces et améliorez leur gestion.
+                </p>
+
+                <div class="row" style="margin-top:30px;margin-bottom:50px;">
+                    <div class="col-sm-8">
+                        @Html.Action("ExternalLoginButtonBig", "account", new { ReturnUrl = ViewBag.ReturnUrl })
+                    </div>
+                </div>
+                <div class="row" style="margin-top:20px;margin-bottom:50px;">
+                    <div class="col-sm-8">
+                        <p><a class="btn btn-lg btn-primary btn-block" href="@Url.Action("Create","Account")" role="button">Créer un Compte avec Toutokazz</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>

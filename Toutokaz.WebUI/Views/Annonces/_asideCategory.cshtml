@@ -8,7 +8,7 @@
             <ul class=" list-unstyled">
                 @foreach (var item in Model.categoryList)
                 {
-                    <li><a href="@Url.Action("allannonce", "Annonces", new { id_section=item.id_section, section_title= item.section_title.ToSeoUrl()})"><span class="title">@Html.DisplayName(item.section_title)</span><span class="count">&nbsp;8626</span></a> </li>
+                    <li><a href="@Url.Action("allannonce", "Annonces", new { id_section=item.id_section, section_title= item.section_title.ToSeoUrl()})"><span class="title">@Html.DisplayName(item.section_title)</span></a> </li>
                 }
                 
             </ul>
@@ -26,40 +26,22 @@
         </div>
         <!--/.locations-list-->
 
-        <div class="locations-list  list-filter">
-            <h5 class="list-title"><strong><a href="#">Price range</a></strong></h5>
-            <form role="form" class="form-inline ">
-                <div class="form-group col-sm-4 no-padding">
-                    <input type="text" placeholder="$ 2000 " id="minPrice" class="form-control">
-                </div>
-                <div class="form-group col-sm-1 no-padding text-center"> - </div>
-                <div class="form-group col-sm-4 no-padding">
-                    <input type="text" placeholder="$ 3000 " id="maxPrice" class="form-control">
-                </div>
-                <div class="form-group col-sm-3 no-padding">
-                    <button class="btn btn-default pull-right" type="submit">GO</button>
-                </div>
-            </form>
-            <div style="clear:both"></div>
-        </div>
-        <!--/.list-filter-->
-        <div class="locations-list  list-filter">
-            <h5 class="list-title"><strong><a href="#">Seller</a></strong></h5>
-            <ul class="browse-list list-unstyled long-list">
-                <li> <a href="sub-category-sub-location.html"><strong>All Ads</strong> <span class="count">228,705</span></a></li>
-                <li> <a href="sub-category-sub-location.html">Business <span class="count">28,705</span></a></li>
-                <li> <a href="sub-category-sub-location.html">Personal <span class="count">18,705</span></a></li>
-            </ul>
-        </div>
-        <!--/.list-filter-->
-        <div class="locations-list  list-filter">
-            <h5 class="list-title"><strong><a href="#">Condition</a></strong></h5>
-            <ul class="browse-list list-unstyled long-list">
-                <li> <a href="sub-category-sub-location.html">New <span class="count">228,705</span></a></li>
-                <li> <a href="sub-category-sub-location.html">Used <span class="count">28,705</span></a></li>
-                <li> <a href="sub-category-sub-location.html">None </a></li>
-            </ul>
-        </div>
+     @*  <div class="locations-list  list-filter">
+        <h5 class="list-title"><strong><a href="#">Prix </a></strong></h5>
+        <form role="form" class="form-inline" id="PrixForm" action="@Url.Action("allannonce","annonces")" method="get">
+            <div class="form-group col-sm-4 no-padding">
+                <input type="text" placeholder="Prix min " id="minPrice" class="form-control">
+            </div>
+            <div class="form-group col-sm-1 no-padding text-center"> - </div>
+            <div class="form-group col-sm-4 no-padding">
+                <input type="text" placeholder="Prix max " id="maxPrice" class="form-control">
+            </div>
+            <div class="form-group col-sm-3 no-padding">
+                <button class="btn btn-default pull-right" type="submit">GO</button>
+            </div>
+        </form>
+        <div style="clear:both"></div>
+    </div>*@ 
         <!--/.list-filter-->
         <div style="clear:both"></div>
     </div>

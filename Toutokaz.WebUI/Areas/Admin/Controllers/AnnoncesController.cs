@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using WebMatrix.WebData;
 using Toutokaz.Data.Interfaces;
 using Toutokaz.Data.Repositories;
 using Toutokaz.Domain.Models;
@@ -30,6 +31,7 @@ namespace Toutokaz.WebUI.Areas.Admin.Controllers
         IItemConditionRepository condRepository;
         IAnnoncesImageRepository imageRepository;
         IAuthProvider authProvider;
+        IAccountRepository account;
 
         public AnnoncesController(IAnnoncesRepository repository)
         {
@@ -43,6 +45,7 @@ namespace Toutokaz.WebUI.Areas.Admin.Controllers
             catRepository = new CategoryRepository();
             imageRepository = new AnnoncesImageRepository();
             authProvider = new FormsAuthProvider();
+            account = new AccountRepository();
         }
 
         //
@@ -57,8 +60,11 @@ namespace Toutokaz.WebUI.Areas.Admin.Controllers
        //     MembershipUser user = Membership.GetUser();
             ViewBag.id_category = this.populateCategoryBySection();
             ViewBag.id_ad_status = new SelectList(annoncesRepository.GetAllAdsStatus(), "id_ad_status", "status");
-
+        
             var query = annoncesRepository.GetAllAds();
+            ViewBag.CountMesAnnonces = query.Count();
+            ViewBag.CountMesAnnoncesPendantes = query.Where(c => c.ad_status == 3).Count();
+            ViewBag.CountMesAnnoncesDesactives = query.Where(c => c.ad_status == 2).Count();
 
             if (!String.IsNullOrEmpty(titlekeyword) || id_category != null || id_ad_status != null || !String.IsNullOrEmpty(annonceur))
             {
@@ -285,8 +291,7 @@ namespace Toutokaz.WebUI.Areas.Admin.Controllers
 
         }
 
-
-
+        
         public ActionResult Desactiver(int id)
         {
             tb_ads ad = annoncesRepository.GetById(id);
@@ -320,6 +325,69 @@ namespace Toutokaz.WebUI.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "Annonces", new { area = "Admin" });
 
-        }    
+        }
+
+
+
+        [HttpGet]
+        public ActionResult EditProfile()
+        {
+            if (Request.IsAuthenticated)
+            {
+                string username = User.Identity.Name;
+                int UserId = WebSecurity.GetUserId(username);
+                //  MembershipUser user =  Membership.GetUser(username);
+
+                tb_account acc = account.GetAccountByUserId(UserId);
+                var query = annoncesRepository.GetAllAds();
+                ViewBag.CountMesAnnonces = query.Count();
+                ViewBag.CountMesAnnoncesPendantes = query.Where(c => c.ad_status == 3).Count();
+                ViewBag.CountMesAnnoncesDesactives = query.Where(c => c.ad_status == 2).Count();
+                //ViewBag.accountId = acc.id_account;
+                ProfileViewModel profile = new ProfileViewModel
+                {
+                    id_account = acc.id_account,
+                    Nom = acc.lastname,
+                    Prenom = acc.firstname,
+                    telephone = acc.telephone,
+                    address = acc.adresse
+
+                };
+
+                return View(profile);
+            }
+
+            return RedirectToAction("Index", "Annonces", new { area = "Admin" });
+
+        }
+
+
+        [HttpPost]
+        public ActionResult EditProfile(ProfileViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                tb_account acc = account.GetById(model.id_account);
+                acc.firstname = model.Prenom;
+                acc.lastname = model.Nom;
+                acc.telephone = model.telephone;
+                acc.adresse = model.address;
+                acc.pseudo = model.alias;
+                try
+                {
+                    account.Update(acc);
+                    account.Save();
+                }
+                catch (Exception exp)
+                {
+                    throw exp;
+                }
+                return RedirectToAction("index", "Annonces", new { area = "Admin" });
+            }
+
+            return View(model);
+
+        }
+
     }
 }

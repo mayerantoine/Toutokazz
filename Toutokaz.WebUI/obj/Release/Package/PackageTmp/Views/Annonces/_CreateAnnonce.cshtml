@@ -1,189 +1,216 @@
 ﻿@model Toutokaz.WebUI.Models.DeposerAnnonceModel
 @using Toutokaz.WebUI.Helpers
 
+<div class="row">
+    <div id="deposerannonce" class="col-md-9 page-content">
+        <div class="inner-box category-content">
+            <h2 class="title-2 uppercase"><strong> <i class="icon-docs"></i> Déposer une annonce</strong> </h2>
 
-<div id="deposerannonce" class="col-lg-12">
-    <h3>DEPOSER UNE ANNONCE</h3>
-    <div>
-        <p>
-            Déposer une annonce sur le site toutokazz est gratuit, elle sera vérifiée par notre équipe de modération avant sa publication sur le site Internet. Par la suite, votre annonce restera en ligne pendant une durée de 60 jours.
-            Consultez nos <a class="slink" href="@Url.Action("conditionsdutilisation","Home")">conditions générales</a> de vente. Si vous êtes nouveau sur Toutokazz,  <a class="slink" href="@Url.Action("create","account")">cliquer pour creer votre compte</a>
-        </p>
+        <div id="output-success" class="alert alert-info col-lg-12 alert-dismissible" role="alert" style="display:none;">
+            <span class="error"></span>
+        </div>
+        <div id="output-error" class="alert alert-danger" role="alert" style="display:none;"></div>
+        <div id="output"></div>
+            <div class="col-sm-12">
+                @using (Html.BeginForm("deposerannonce", "Annonces", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", id = "UploadForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <fieldset>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.modelannonce.id_category, "Catégorie*", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-8">
+                                @Html.DropDownList("modelannonce.id_category", @ViewBag.id_category as IDictionary<string, IEnumerable<SelectListItem>>, "(Selectioner la categorie de l'annonce)", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.modelannonce.id_category)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.modelannonce.ad_type, "Type d'annonce*", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-8">
+                                @*  @Html.DropDownList("modelannonce.ad_type", @ViewBag.ad_type as SelectList, "(Choisir type )", new { @class = "form-control" })*@
+                                @Html.RadioButtonListFor(x => x.modelannonce.ad_type, ViewBag.ad_type as SelectList, "radio-inline", true, null)
+                                @Html.ValidationMessageFor(model => model.modelannonce.ad_type)
+                            </div>
+                        </div>
+
+                        <!---Departement-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.modelannonce.id_departement, "Département*", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-8">
+                                @Html.DropDownList("modelannonce.id_departement", @ViewBag.id_departement as SelectList, "(Votre departement)", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.modelannonce.id_departement)
+                            </div>
+                        </div>
+
+                        <!---Commune-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.modelannonce.id_commune, "Commune*", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-8">
+                                @*   @Html.DropDownList("modelannonce.id_commune",@ViewBag.id_commune as SelectList,"(Votre commune)",new { @class="form-control"})*@
+
+                                <select id="modelannonce_id_commune" name="modelannonce.id_commune" class="form-control"></select>
+                                @Html.ValidationMessageFor(model => model.modelannonce.id_commune)
+                            </div>
+                        </div>
+
+                        <!--Title-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.modelannonce.ad_title, "Titre de l'annonce*", new { @class="col-md-3 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.modelannonce.ad_title, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.modelannonce.ad_title)
+                            </div>
+                        </div>
+
+                        <!--Description-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.modelannonce.ad_description, "Description de l'annonce*", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.modelannonce.ad_description, new { @class = "form-control", rows = "8" })
+                                @Html.ValidationMessageFor(model => model.modelannonce.ad_description)
+                            </div>
+                        </div>
+
+                        <!--Prix-->
+                        <div id="prix" class="form-group">
+                            @Html.LabelFor(model => model.modelannonce.ad_price, "Prix*", new { min = "0", max = "999999999", @class = "col-md-3 control-label" })
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(model => model.modelannonce.ad_price, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.modelannonce.ad_price)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.DropDownList("modelannonce.id_devise", @ViewBag.id_devise as SelectList, "(Devise)", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.modelannonce.id_devise)
+                            </div>
+                        </div>
+
+                        <!--Vehicule-->
+                        <div id="ad_vehicule">
+                            @Html.EditorFor(model => Model.vehicule, "_tb_ad_vehicule")
+                        </div>
+
+                        <!--immobilier-->
+                        <div id="ad_immobilier">
+                            @Html.EditorFor(model => Model.immobilier, "_tb_ad_immobilier")
+                        </div>
+
+                        <!--chaussure-->
+                        <div id="ad_chaussure">
+                            @Html.EditorFor(model => Model.chaussure, "_tb_ad_chaussure")
+                        </div>
+
+                        <!--condition-->
+                        <div class="form-group" id="condition">
+                            <label class="col-md-3 control-label">Condition</label>
+                            <div class="col-md-8">
+                                @Html.DropDownList("modelannonce.id_item_condition", @ViewBag.id_item_condition as SelectList, "(Condition)", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.modelannonce.id_item_condition)
+                            </div>
+                        </div>
+
+                        <!--Téléphone-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.modelannonce.ad_phone, "Téléphone", new { @class = "col-md-3 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.modelannonce.ad_phone, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.modelannonce.ad_phone)
+                            </div>
+                        </div>
+
+                        <!--Photos-->
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="textarea"> Ajouter photo </label>
+                            <div class="col-md-8">
+                                <div class="mb10"><input type="file" name="[0].image" id="input-upload-img1"> </div>
+                                <div class="mb10"><input type="file" name="[1].image"  id="input-upload-img2"> </div>
+                                <div class="mb10"><input type="file" name="[2].image"  id="input-upload-img3"> </div>
+                                <div class="mb10"><input type="file" name="[3].image"  id="input-upload-img4"> </div>
+                                <div class="mb10"><input type="file" name="[4].image"  id="input-upload-img5"> </div>
+                            </div>
+                        </div>
+
+                        <div class="content-subheading"> <i class="icon-user fa"></i> <strong>Se Connecter</strong> </div>
+                        <!-- Block Login Or  Seller-->
+                        
+                            <div>
+                                <p>
+                                    Si vous avez déja un compte sur Toutokazz.com, tapez votre email et votre mot de passe. <br />
+                                    Si vous êtes nouveau sur Toutokazz.com,  <a class="slink" href="@Url.Action("create","account")">cliquer pour créer votre compte</a>
+                                </p>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="exampleInputEmail1">Email </label>
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.login.Email, new { type = "email", @class = "form-control", id = "Email", placeholder = "Votre Email" })
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="exampleInputPassword1">Mot de passe</label>
+                                <div class="col-md-8">
+                                    @Html.PasswordFor(model => model.login.Password, new { @class = "form-control", id = "Password", placeholder = "Mot de passe" })
+                                </div>
+                            </div>
+                         
+                                   
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-8" id="loading-img" style="display:none;color:#f99146;">
+                                <h4><img src="~/Content/img/toutokazz-loader.gif" style="margin-right:15px;" />Nous validons et sauvegardons votre annonce.Veuillez Patienter.....</h4>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-8" id="loading-msg" style="display:none;color:#f99146;">
+                                <h4></h4>
+                            </div>
+                        </div>
+              
+      
+                        <div class="form-group">
+                            <label class="col-md-3 control-label"></label>
+                            <div class="col-md-8">
+                                <button type="submit" class="btn btn-primary btn-lg" id="btnSave">Valider la création de votre annonce</button>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                }
+            </div>
     </div>
-    <div id="output-success" class="alert alert-info col-lg-12 alert-dismissible" role="alert" style="display:none;">
-        <span class="error"></span>
-    </div>
-    <div id="output-error" class="alert alert-danger" role="alert" style="display:none;"></div>
-    <div id="output"></div>
+    </div><!--page content deposer annonce-->
 
-    @using (Html.BeginForm("deposerannonce", "Annonces", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", id = "UploadForm" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.modelannonce.id_category, "Catégorie*", new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-5">
-                @Html.DropDownList("modelannonce.id_category", @ViewBag.id_category as IDictionary<string, IEnumerable<SelectListItem>>, "(Selectioner la categorie de l'annonce)", new { @class = "col-sm-8 form-control" })
-                @Html.ValidationMessageFor(model => model.modelannonce.id_category)
+    <div class="col-md-3 reg-sidebar">
+        <div class="reg-sidebar-inner text-center">
+            <div class="promo-text-box">
+                <i class=" icon-picture fa fa-4x icon-color-1"></i>
+                <h3><strong>Déposer une annonce</strong></h3>
+                <p>     Déposer une annonce sur le site toutokazz est gratuit, elle sera vérifiée par notre équipe de modération avant sa publication sur le site Internet. Par la suite, votre annonce restera en ligne pendant une durée de 60 jours.
+                Consultez nos <a class="slink" href="@Url.Action("conditionsdutilisation","Home")">conditions générales</a> de vente. Si vous êtes nouveau sur Toutokazz,  <a class="slink" href="@Url.Action("create","account")">cliquer pour creer votre compte</a>
+             </p>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.modelannonce.ad_type, "Type d'annonce*", new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-5">
-             @*  @Html.DropDownList("modelannonce.ad_type", @ViewBag.ad_type as SelectList, "(Choisir type )", new { @class = "form-control" })*@
-                @Html.RadioButtonListFor(x => x.modelannonce.ad_type, ViewBag.ad_type as SelectList, "radio-inline", true, null)
-                @Html.ValidationMessageFor(model => model.modelannonce.ad_type)
-            </div>
-        </div>
+            <div class="panel sidebar-panel">
+                <div class="panel-heading uppercase"><small><strong>How to sell quickly?</strong></small></div>
+                <div class="panel-content">
+                    <div class="panel-body text-left">
+                        <ul class="list-check">
+                            <li> Use a brief title and  description of the item  </li>
+                            <li> Make sure you post in the correct category</li>
+                            <li> Add nice photos to your ad</li>
+                            <li> Put a reasonable price</li>
+                            <li> Check the item before publish</li>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.modelannonce.id_departement, "Département*", new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-5">
-                @Html.DropDownList("modelannonce.id_departement", @ViewBag.id_departement as SelectList, "(Votre departement)", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.modelannonce.id_departement)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.modelannonce.id_commune, "Commune*", new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-5">
-                @*   @Html.DropDownList("modelannonce.id_commune",@ViewBag.id_commune as SelectList,"(Votre commune)",new { @class="form-control"})*@
-
-                <select id="modelannonce_id_commune" name="modelannonce.id_commune" class="form-control"></select>
-                @Html.ValidationMessageFor(model => model.modelannonce.id_commune)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.modelannonce.ad_title, "Titre de l'annonce*", new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-5">
-                @Html.TextBoxFor(model => model.modelannonce.ad_title, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.modelannonce.ad_title)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.modelannonce.ad_description, "Description de l'annonce*", new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-5">
-                @Html.TextAreaFor(model => model.modelannonce.ad_description, new { @class = "form-control", rows = "8" })
-                @Html.ValidationMessageFor(model => model.modelannonce.ad_description)
-            </div>
-        </div>
-
-        <div id="prix" class="form-group">
-            @Html.LabelFor(model => model.modelannonce.ad_price, "Prix*", new { min = "0", max = "999999999", @class = "col-sm-2 control-label" })
-            <div class="col-sm-3">
-                @Html.TextBoxFor(model => model.modelannonce.ad_price, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.modelannonce.ad_price)
-            </div>
-            <div class="col-sm-2">
-                @Html.DropDownList("modelannonce.id_devise", @ViewBag.id_devise as SelectList, "(Devise)", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.modelannonce.id_devise)
-            </div>
-        </div>
-
-        <div id="ad_vehicule">
-            @Html.EditorFor(model => Model.vehicule, "_tb_ad_vehicule")
-        </div>
-
-        <div id="ad_immobilier">
-            @Html.EditorFor(model => Model.immobilier, "_tb_ad_immobilier")
-        </div>
-
-        <div id="ad_chaussure">
-            @Html.EditorFor(model => Model.chaussure, "_tb_ad_chaussure")
-        </div>
-
-        <div class="form-group" id="condition">
-            <label class="col-sm-2 control-label">Condition</label>
-            <div class="col-sm-3">
-                @Html.DropDownList("modelannonce.id_item_condition", @ViewBag.id_item_condition as SelectList, "(Condition)", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.modelannonce.id_item_condition)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.modelannonce.ad_phone, "Téléphone", new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-5">
-                @Html.TextBoxFor(model => model.modelannonce.ad_phone, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.modelannonce.ad_phone)
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            @Html.Label("Ajouter photo", new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-5">
-                <input type="file" id="image1" name="[0].image" class="form-control preview" data-preview="imgPreview1">
-
-                <input type="file" id="image2" name="[1].image" class="form-control preview" data-preview="imgPreview2">
-
-                <input type="file" id="image3" name="[2].image" class="form-control preview" data-preview="imgPreview3">
-
-                <img id="imgPreview1" src="@Url.Content("~/Content/img/default-img.jpg")" alt="Image de votre article" class="imgpreview" />
-                <img id="imgPreview2" src="@Url.Content("~/Content/img/default-img.jpg")" alt="Image de votre article" class="imgpreview" />
-                <img id="imgPreview3" src="@Url.Content("~/Content/img/default-img.jpg")" alt="Image de votre article" class="imgpreview" />
-
-            </div>
-        </div>
-
-
-        if (!Request.IsAuthenticated)
-        {
-        <!-- Block Login-->
-            <div class="well col-sm-offset-2 col-lg-9">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Se Connecter</h3>
-                    <p>
-                        Si vous avez déja un compte sur Toutokazz.com, tapez votre email et votre mot de passe. <br />
-                        Si vous êtes nouveau sur Toutokazz.com,  <a class="slink" href="@Url.Action("create","account")">cliquer pour créer votre compte</a>
-                    </p>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="exampleInputEmail1">Email </label>
-                    <div class="col-sm-8">
-                        @Html.TextBoxFor(model => model.login.Email, new { type = "email", @class = "form-control", id = "Email", placeholder = "Votre Email" })
+                        </ul>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" for="exampleInputPassword1">Mot de passe</label>
-                    <div class="col-sm-8">
-                        @Html.PasswordFor(model => model.login.Password, new { @class = "form-control", id = "Password", placeholder = "Mot de passe" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-3" style="display:inline-block"><a class="btn btn-small btn-default pull-right" href="@Url.Action("forgotpassword","account")">Mot de passe oublié</a></div>
-                </div>
             </div>
-         <!--  End Block Login-->
 
-        }
-        <div class="col-sm-offset-2 col-sm-8" id="loading-img" style="display:none;color:#f99146;">
-            <h4><img src="~/Content/img/toutokazz-loader.gif" style="margin-right:15px;" />Nous validons et sauvegardons votre annonce.Veuillez Patienter.....</h4>
+
         </div>
-        <div class="col-sm-offset-2 col-sm-8" id="loading-msg" style="display:none;color:#f99146;">
-            <h4></h4>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-8">
-                <div class="checkbox">
-                    <label>
-                        En cliquant sur Valider, vous acceptez nos <a class="slink" href="@Url.Action("conditionsdutilisation","Home")">conditions d'utilisation</a>
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-8">
-                <button type="submit" class="btn btn-primary btn-lg" id="btnSave">Valider la création de votre annonce</button>
-            </div>
-        </div>
-
-
-    }
-
-
+    </div><!--/.reg-sidebar-->
 </div>
+

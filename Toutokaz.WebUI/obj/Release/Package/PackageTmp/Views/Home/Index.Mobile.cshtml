@@ -1,9 +1,160 @@
 ﻿@model Toutokaz.WebUI.Models.HomePageModel
+@using Toutokaz.WebUI.Helpers
 
 @{
-    ViewBag.Title = "Toutokazz";
-    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
-    }
+    ViewBag.Title = "Toutokazz - Site de petites annonces gratuites, le meilleur d'Haiti";
+    ViewBag.description = "Bienvenue sur Toutokazz, le meilleur site de petites annonces d'Haiti";
+    ViewBag.motscles = "toutokazz,toutokaz, haiti, classified ads,site annonces, petites, annonces, annonces gratuites, immobilier, voiture, auto, moto, annonces immobilier, vêtements";
+    ViewBag.page_description = "Toutokazz, le meilleur site de petites annonces d'Haiti. Avec toutokazz, vendez facilement et rapidement vos biens et objet d''occasions sur internet";
+    ViewBag.ImageUrl = Url.Content("~/Content/images/bg_intro2.jpg");
+    Layout = "~/Views/Shared/_LayoutPagev2.cshtml";
+
+ }
 
 
- @{  Html.RenderAction("GetCategoryMenu", "Annonces");}
+ @section Intro{
+
+    <div class="intro">
+        <div class="dtable hw100">
+            <div class="dtable-cell hw100">
+                <div class="container text-center">
+                    <h1 class="intro-title animated fadeInDown"> Recherchez vos annonces  </h1>
+                    <p class="sub animateme fittext3 animated fadeIn">Trouvez la bonne affaire pour toutes les occasions </p>
+
+                    <div class="row search-row animated fadeInUp">
+                        <div class="col-lg-4 col-sm-4 search-col relative locationicon">
+                            <i class="icon-location-2 icon-append"></i>
+                            <input type="text" name="country" id="autocomplete-ajax" class="form-control locinput input-rel searchtag-input has-icon" placeholder="Commune..." value="">
+
+                        </div>
+                        <div class="col-lg-4 col-sm-4 search-col relative">
+                            <i class="icon-docs icon-append"></i>
+                            <input type="text" name="ads" class="form-control has-icon" placeholder="Je Cherche ..." value="">
+                        </div>
+                        <div class="col-lg-4 col-sm-4 search-col">
+                            <button class="btn btn-primary btn-search btn-block"><i class="icon-search"></i><strong>Trouver</strong></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<div class="col-lg-12 content-box ">
+    <div class="row row-featured row-featured-category">
+        <div class="col-lg-12  box-title no-border">
+            <div class="inner">
+                <h2>
+                    <span>Recherche par</span>
+                    Catégorie    <a href="@Url.Action("allannonce","annonces")" class="sell-your-item">Toutes les Catégories <i class="  icon-th-list"></i> </a>
+                </h2>
+            </div>
+        </div>
+
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/annonces/1/v-hicules/1/voiture"><img src="~/assets/images/category/car-2.jpg" class="img-responsive" alt="img"> <h6> Voiture  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/annonces/4/multim-dia/16/laptop"><img src="~/assets/images/category/laptop-2.jpg" class="img-responsive" alt="img"> <h6> Laptops  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/annonces/4/multim-dia/20/t-l-phonie"><img src="~/assets/images/category/mobile.jpg" class="img-responsive" alt="img"> <h6> Téléphone  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/Annonces/allannonce?id_section=4&amp;section_title=multim-dia"><img src="~/assets/images/category/tv.jpg" class="img-responsive" alt="img"> <h6> Electronique  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/annonces/4/multim-dia/17/accessoires-informatique"><img src="~/assets/images/category/hdd.jpg" class="img-responsive" alt="img"> <h6> Accessoires Informatique  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/Annonces/allannonce?id_section=2&amp;section_title=immobilier"><img src="~/assets/images/category/house.jpg" class="img-responsive" alt="img"> <h6> Immobilier  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/annonces/3/maison/12/electrom-nager"><img src="~/assets/images/category/Home-Electronics-Appliances-2.jpg" class="img-responsive" alt="img"> <h6> Electroménager </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/Annonces/allannonce?id_section=9&amp;section_title=services"><img src="~/assets/images/category/camera.jpg" class="img-responsive" alt="img"> <h6>  Services </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/annonces/10/v-tements-and-accessoires/43/chaussures-and-sacs"><img src="~/assets/images/category/fashion.jpg" class="img-responsive" alt="img"> <h6> Chaussures et Sacs </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/annonces/10/v-tements-and-accessoires/42/montres-et-bijoux"><img src="~/assets/images/category/toy.jpg" class="img-responsive" alt="img"> <h6> Montre et Bijoux   </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/Annonces/allannonce?id_section=8&amp;section_title=cours-and-formation"><img src="~/assets/images/category/jobs.jpg" class="img-responsive" alt="img"> <h6> Cours et Formation  </h6> </a>
+        </div>
+
+        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 f-category">
+            <a href="/annonces/3/maison/10/ameublement"><img src="~/assets/images/category/catalog.jpg" class="img-responsive" alt="img"> <h6> Ammeublement  </h6> </a>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<div style="clear: both"></div>
+
+<!-- Sponsored ads-->
+
+<div class="col-lg-12 content-box ">
+    <div class="row row-featured">
+        <div class="col-lg-12 box-title ">
+            <div class="inner">
+                <h2>
+                    <span>Sponsored </span>
+                    Products     <a href="category.html" class="sell-your-item"> View more <i class="  icon-th-list"></i> </a>
+                </h2>
+
+
+            </div>
+        </div>
+
+        <div style="clear: both"></div>
+
+        <div class=" relative  content featured-list-row clearfix">
+
+            <nav class="slider-nav has-white-bg nav-narrow-svg">
+                <a class="prev">
+                    <span class="nav-icon-wrap"></span>
+
+                </a>
+                <a class="next">
+                    <span class="nav-icon-wrap"></span>
+                </a>
+            </nav>
+
+            <div class="no-margin featured-list-slider ">
+                @foreach (var ads in Model.ImgNew)
+                {
+                    <div class="item">
+                        <a href="@Url.Action("details","Annonces", new { id= ads.id_ad, ad_title=ads.ad_title.ToSeoUrl()},null)">
+                            <span class="item-carousel-thumb"> <img class="item-img" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"] + (string.IsNullOrEmpty(ads.tb_ad_image.FirstOrDefault().image_filename) ? "default-img.jpg" : ads.tb_ad_image.FirstOrDefault().image_filename) + "?width=120&height=100")" alt="img"> </span>
+                            <span class="item-name"> @Html.Label(ads.ad_title.ToSeoUrl())</span>
+                            <span class="price"><span>@Html.Raw(HttpUtility.HtmlDecode(ads.tb_devise.symbole))</span>@Html.Label(ads.ad_price + " ")</span>
+                        </a>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

@@ -207,8 +207,10 @@ namespace Toutokaz.WebUI.Areas.Admin.Controllers
             
             return View();
         }
-        
-        public SelectList PopulateAccountType()
+
+
+
+       public SelectList PopulateAccountType()
         {
             return new SelectList(new[] {
                 new { Id=1 , Value="Particulier"},

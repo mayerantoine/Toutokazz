@@ -11,7 +11,7 @@ namespace Toutokaz.WebUI.Models
     public class AnnonceurViewModel
     {
         public string AnnonceurName { get; set; }
-        public  tb_account annoneur { get; set; }
+        public  tb_account annonceur { get; set; }
         public IPagedList<tb_ads> AdsList { get; set; }
     }
 }
