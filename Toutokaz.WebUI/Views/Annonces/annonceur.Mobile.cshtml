@@ -1,0 +1,36 @@
+﻿@model Toutokaz.WebUI.Models.AnnonceurViewModel
+@using Toutokaz.WebUI.Helpers
+@using MvcSiteMapProvider.Web.Html
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Toutokazz - Vitrine des annonceurs";
+    ViewBag.page_description = "Toutokazz, Postez vos annonces sur votre vitrine en ligne";
+    ViewBag.description = "Toutokazz, Postez vos annonces sur votre vitrine en ligne";
+    ViewBag.ImageUrl = Url.Content("~/Content/img/slides/slide-positive-women.jpg");
+    
+    Layout = "~/Views/Shared/_LayoutPagev2.Mobile.cshtml";
+}
+
+@section open_graph_tags{
+    @Html.Partial("_OpenGraphTag")
+}
+
+<ul data-role="listview">
+    <li data-role="list-divider" style=" padding-top:15px; height: 100px; background-image: url('../../Content/img/pat2.jpg'); ">
+        <img src="~/Content/img/avatar-profile.jpg" width="200" height="200" />
+        <div style="margin-left:150px;">
+            <span style="font-size:large;font-weight:bold"> @Model.annonceur.firstname, @Model.annonceur.lastname <span class="badge">@ViewBag.count_annonce</span></span>
+            <ul style="list-style:none;font-size:small;">
+                <li>@Html.Encode(Model.annonceur.email)</li>
+                <li>@Html.Encode(Model.annonceur.telephone)</li>
+                <li>@Html.Encode(Model.annonceur.adresse)</li>
+            </ul>
+        </div>
+     </li>
+    <li data-role="list-divider" class="page_heading">Annonces</li>
+    @Html.Partial("_annoncesList.Mobile", Model.AdsList)
+
+</ul>
+
+

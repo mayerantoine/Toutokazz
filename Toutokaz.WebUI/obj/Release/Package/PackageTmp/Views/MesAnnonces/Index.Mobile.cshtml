@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Toutokazz - Creer un compte";
+    Layout = "~/Views/Shared/_Layout.Mobile.cshtml";
+}
+
+@section Header{
+    <div data-role="header">
+        <div align="center">
+            <img src="~/Content/img/logo-revamp-white.png" class="logomobile" vspace="2" />
+        </div>
+        <a href="@Url.Action("SearchKeywords","annonces")" data-icon="search" data-iconshadow="false" data-iconpos="notext" class="ui-btn-right ui-icon-nodisc"></a>
+        <a href="@Url.Action("index","home")" class="ui-btn ui-btn-left ui-shadow ui-corner-all ui-icon-home ui-btn-icon-notext"></a>
+    </div>
+
+}
+
+
+<div>
+    <div id="creer-compte">
+
+        <div>
+            <h5>MERCI DE CREER UN COMPTE FACEBOOK AVEC TOUTOKAZZ</h5>
+            <h6>Visitez le site web pour deposer vos annonces.</h6>
+            <div style="margin-top:20px;margin-bottom:30px;">
+                <h4><span class="glyphicon glyphicon-ok"></span> Pas de frais d’affichage</h4>
+                <h4><span class="glyphicon glyphicon-ok"></span> Pas de commissions</h4>
+                <h4><span class="glyphicon glyphicon-ok"></span> Facile à utiliser</h4>
+                <h4><span class="glyphicon glyphicon-ok"></span> Publicité rapide et efficace</h4>
+            </div>
+        </div>
+    </div>
+</div>

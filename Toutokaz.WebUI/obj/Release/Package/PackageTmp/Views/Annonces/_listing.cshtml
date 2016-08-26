@@ -1,0 +1,29 @@
+﻿@model  PagedList.IPagedList<Toutokaz.Domain.Models.tb_ads>
+    @using Toutokaz.WebUI.Helpers
+    @using MvcSiteMapProvider.Web.Html
+    @using PagedList.Mvc
+
+    
+    @foreach (var item in Model)
+    {
+    <div class="item-list">
+        <div class="col-sm-2 no-padding photobox">
+            <div class="add-image"> <span class="photo-count"><i class="fa fa-camera"></i> 2 </span> <a href="@Url.Action("details","Annonces", new { id= item.id_ad, ad_title=item.ad_title.ToSeoUrl()},null)"><img class="thumbnail no-margin" src="@Url.Content(WebConfigurationManager.AppSettings["PhotosDir"]+ (string.IsNullOrEmpty(item.tb_ad_image.FirstOrDefault().image_filename)? "default-img.jpg" : item.tb_ad_image.FirstOrDefault().image_filename) + "?width=100&height=100")" alt="img"></a> </div>
+        </div>
+        <!--/.photobox-->
+        <div class="col-sm-7 add-desc-box">
+            <div class="@Url.Action("details","Annonces", new { id= item.id_ad, ad_title=item.ad_title.ToSeoUrl()},null)">
+                <h5 class="add-title"> <a href=""> @Html.ActionLink(item.ad_title, "details", "Annonces", new { id = item.id_ad, ad_title = item.ad_title.ToSeoUrl() }, null)  </a> </h5>
+                <span class="info-row"> <span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="right" title="Business Ads">B </span> <span class="date"><i class=" icon-clock"> </i> @Html.Encode(item.ad_date_created.Value.ToString("dd. MM. yyyy"))</span> - <span class="category">@Html.DisplayFor(x => item.tb_category.category_title) </span>- <span class="item-location"><i class="fa fa-map-marker"></i> @Html.DisplayFor(x => item.tb_commune.commune) </span> </span>
+                <p class="hidden-sm">@Html.TruncateDescription(item.ad_description, 120)</p>
+             </div>
+        </div>
+        <!--/.add-desc-box-->
+        <div class="col-sm-3 text-right  price-box">
+            <h2 class="item-price"> @Html.Raw(HttpUtility.HtmlDecode(item.tb_devise.symbole)) @Html.DisplayFor(x => item.ad_price)</h2>
+            <a class="btn btn-default  btn-sm make-favorite"> <i class="fa fa-heart"></i> <span>Save</span> </a>
+        </div>
+        <!--/.add-desc-box-->
+    </div>
+    <!--/.item-list-->
+    }

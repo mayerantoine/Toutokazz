@@ -1,0 +1,60 @@
+﻿@model Toutokaz.WebUI.Models.CategoryPageModel
+@using Toutokaz.WebUI.Helpers; 
+
+<aside>
+    <div class="inner-box">
+        <div class="categories-list  list-filter">
+            <h5 class="list-title"><strong><a href="/annonces/allannonce">Toutes les Catégories</a></strong></h5>
+            <ul class=" list-unstyled">
+                @foreach (var item in Model.categoryList)
+                {
+                    <li><a href="@Url.Action("allannonce", "Annonces", new { id_section=item.id_section, section_title= item.section_title.ToSeoUrl()})"><span class="title">@Html.DisplayName(item.section_title)</span><span class="count">&nbsp;8626</span></a> </li>
+                }
+                
+            </ul>
+        </div>
+        <!--/.categories-list-->
+
+        <div class="locations-list  list-filter">
+            <h5 class="list-title"><strong><a href="#">Villes</a></strong></h5>
+            <ul class="browse-list list-unstyled long-list">
+                @foreach (var c in Model.communeList.ToList())
+                {
+                    <li> <a href="@Url.Action("allannonce", "annonces", new { ad_city = c.id_commune})"> @Html.DisplayName(c.commune) </a></li>
+                }
+            </ul>
+        </div>
+        <!--/.locations-list-->
+
+        <div class="locations-list  list-filter">
+            <h5 class="list-title"><strong><a href="#">Prix </a></strong></h5>
+            <form role="form" class="form-inline" id="PrixForm" action="@Url.Action("allannonce","annonces")" method="get">
+                <div class="form-group col-sm-4 no-padding">
+                    <input type="text" placeholder="Prix min " id="minPrice" class="form-control">
+                </div>
+                <div class="form-group col-sm-1 no-padding text-center"> - </div>
+                <div class="form-group col-sm-4 no-padding">
+                    <input type="text" placeholder="Prix max " id="maxPrice" class="form-control">
+                </div>
+                <div class="form-group col-sm-3 no-padding">
+                    <button class="btn btn-default pull-right" type="submit">GO</button>
+                </div>
+            </form>
+            <div style="clear:both"></div>
+        </div>
+        <!--/.list-filter-->
+        <div class="locations-list  list-filter">
+            <h5 class="list-title"><strong><a href="#">Seller</a></strong></h5>
+            <ul class="browse-list list-unstyled long-list">
+                <li class="active"> @Ajax.ActionLink("Toutes", "recherche", "Annonces", new { typeannonce = ViewBag.currentType, keywords = ViewBag.currentKeyword, id_category = ViewBag.currentCategory, ad_city = ViewBag.currentAdCity, display = ViewBag.currentDisplay }, new AjaxOptions { UpdateTargetId = "main-right", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, null)</li>
+                <li>  @Ajax.ActionLink("Particuliers", "recherche", "Annonces", new { typeannonce = ViewBag.currentType, keywords = ViewBag.currentKeyword, id_category = ViewBag.currentCategory, ad_city = ViewBag.currentAdCity, id_account_type = 1, display = ViewBag.currentDisplay }, new AjaxOptions { UpdateTargetId = "main-right", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, null)       </li>
+                <li>@Ajax.ActionLink("Professionnels", "recherche", "Annonces", new { typeannonce = ViewBag.currentType, keywords = ViewBag.currentKeyword, id_category = ViewBag.currentCategory, ad_city = ViewBag.currentAdCity, id_account_type = 2, display = ViewBag.currentDisplay }, new AjaxOptions { UpdateTargetId = "main-right", InsertionMode = InsertionMode.Replace, HttpMethod = "GET" }, null)</li>
+
+            </ul>
+        </div>
+         <!--/.list-filter-->
+        <div style="clear:both"></div>
+    </div>
+
+    <!--/.categories-list-->
+</aside>
